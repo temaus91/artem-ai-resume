@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FileText, Check, AlertTriangle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { fitAssessments } from "@/data/marcus-profile";
+import { fitAssessments } from "@/data/artem-profile";
 
 type FitType = "strong" | "weak";
 

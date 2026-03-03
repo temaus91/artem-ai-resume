@@ -1,13 +1,13 @@
-// Marcus Chen's profile data - the core content for the AI and display
+// Artem Tarasenko's profile data - the core content for the AI and display
 
-export const marcusProfile = {
-  name: "Marcus Chen",
-  title: "Staff Engineer",
+export const artemProfile = {
+  name: "Artem Tarasenko",
+  title: "Senior Engineer",
   subtitle: "Platform infrastructure, developer tools, and technical strategy",
-  location: "San Francisco Bay Area",
-  status: "Open to Staff+ roles at Series B-D companies",
+  location: "Seattle Area",
+  status: "Open to Senior+ roles at large companies",
   
-  companies: ["Stripe", "Datadog", "Series B → IPO"],
+  companies: ["Amazon", "Oracle"],
   
   summary: `I'm strongest at platform/infrastructure work, weakest at consumer product. 
 I prefer "fix the mess" situations over greenfield builds. 
@@ -16,7 +16,7 @@ I'm not interested in management tracks right now.`,
   experience: [
     {
       company: "Datadog",
-      role: "Staff Engineer, Platform Infrastructure",
+      role: "Senior Engineer, Platform Infrastructure",
       period: "2021–Present",
       highlights: [
         "Designed observability platform serving 15K+ customers, handling 10TB/day",
@@ -32,7 +32,7 @@ I'm not interested in management tracks right now.`,
     },
     {
       company: "Stripe",
-      role: "Senior Engineer → Staff Engineer",
+      role: "Senior Engineer → Senior Engineer",
       period: "2018–2021",
       highlights: [
         "Built integration ecosystem serving 500+ partners, 2M+ API calls/day",
@@ -44,22 +44,6 @@ I'm not interested in management tracks right now.`,
         approach: "Created a compatibility layer that let us evolve the API while maintaining old behavior for existing integrations.",
         technicalWork: "Built API versioning system, automated compatibility testing, documentation generation from OpenAPI specs.",
         lessonsLearned: "API design is forever. Every shortcut you take in the schema becomes someone else's integration dependency."
-      }
-    },
-    {
-      company: "Series B Startup (acquired)",
-      role: "Founding Engineer",
-      period: "2016–2018",
-      highlights: [
-        "First engineering hire; built v1 of the product in 4 months",
-        "Navigated two pivots during that period",
-        "Defined technical strategy and hired first 6 engineers"
-      ],
-      aiContext: {
-        situation: "Joined with no product roadmap. CEO had an idea but no technical validation.",
-        approach: "Built fast, validated with users, threw away code ruthlessly when direction changed.",
-        technicalWork: "Full-stack development, AWS infrastructure, CI/CD, monitoring—wore every hat.",
-        lessonsLearned: "At this stage, speed of learning matters more than code quality. The code you're proud of will probably get deleted."
       }
     }
   ],
@@ -109,7 +93,7 @@ I'm not interested in management tracks right now.`,
     }
   ],
   
-  systemPrompt: `You are helping hiring managers evaluate Marcus Chen as a candidate.
+  systemPrompt: `You are helping hiring managers evaluate Artem Tarasenko as a candidate.
 
 CORE INSTRUCTIONS:
 - Be specific. Use actual details from his experience, not generic language.
@@ -118,7 +102,7 @@ CORE INSTRUCTIONS:
 - Don't oversell. Confidence comes from substance, not superlatives.
 
 WHAT MARCUS WANTS YOU TO KNOW:
-- He's looking for Staff+ roles at Series B-D companies
+- He's looking for Senior+ roles at Series B-D companies
 - He's strongest at platform/infrastructure work, weakest at consumer product
 - He prefers "fix the mess" situations over greenfield builds
 - He's not interested in management tracks right now
@@ -168,7 +152,7 @@ At the Series B startup: Was the first engineering hire and built the initial te
 
 SOC2 Compliance at Datadog: Led a 12-person cross-functional team (engineering, legal, ops) through certification. Zero audit findings.
 
-Important note: He's explicitly not interested in management tracks right now. He wants to stay technical in Staff+ individual contributor roles.`
+Important note: He's explicitly not interested in management tracks right now. He wants to stay technical in Senior+ individual contributor roles.`
 };
 
 export const fitAssessments = {
