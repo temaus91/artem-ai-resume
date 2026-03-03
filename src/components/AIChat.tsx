@@ -1,12 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { X, Send, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { demoResponses } from "@/data/artem-profile";
-
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-}
+import { useState } from 'react';
+import { X, Send, MessageCircle } from 'lucide-react';
+import { useChat } from '@/hooks/useChat';
 
 interface AIChatProps {
   isOpen: boolean;
@@ -14,205 +8,80 @@ interface AIChatProps {
 }
 
 const suggestedQuestions = [
-  "How did you replace the legacy Oracle testing framework?",
-  "Tell me about your biggest failure and what changed afterward.",
-  "What is your leadership and mentoring style as an IC?",
-  "What can you share about LS Intelligence without confidential details?",
+  'What’s your biggest weakness?',
+  'Tell me about a project that failed',
+  'Why did you leave [Company]?',
+  'What would your last manager say about you?',
 ];
 
 const AIChat = ({ isOpen, onClose }: AIChatProps) => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const [displayedResponse, setDisplayedResponse] = useState("");
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, displayedResponse]);
-
-  const getResponse = (question: string): string => {
-    const q = question.toLowerCase();
-    if (
-      q.includes("oracle") ||
-      q.includes("framework") ||
-      q.includes("testing") ||
-      q.includes("automation studio") ||
-      q.includes("engine")
-    ) {
-      return demoResponses.default;
-    }
-    if (
-      q.includes("adoption") ||
-      q.includes("training") ||
-      q.includes("document") ||
-      q.includes("rollout") ||
-      q.includes("support channel")
-    ) {
-      return demoResponses.costReduction;
-    }
-    if (q.includes("failure") || q.includes("mistake") || q.includes("wrong")) {
-      return demoResponses.failure;
-    }
-    if (
-      q.includes("leadership") ||
-      q.includes("lead") ||
-      q.includes("team") ||
-      q.includes("mentor") ||
-      q.includes("teaching")
-    ) {
-      return demoResponses.leadership;
-    }
-    if (
-      q.includes("ls intelligence") ||
-      q.includes("clinical one") ||
-      q.includes("pharma") ||
-      q.includes("ai tool")
-    ) {
-      return demoResponses.lsIntelligence;
-    }
-    return demoResponses.default;
-  };
-
-  const typeResponse = (response: string) => {
-    setIsTyping(true);
-    setDisplayedResponse("");
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i < response.length) {
-        setDisplayedResponse(response.slice(0, i + 1));
-        i++;
-      } else {
-        clearInterval(interval);
-        setIsTyping(false);
-        setMessages((prev) => [...prev, { role: "assistant", content: response }]);
-        setDisplayedResponse("");
-      }
-    }, 8);
-  };
-
-  const handleSubmit = (question: string) => {
-    if (!question.trim() || isTyping) return;
-    setMessages((prev) => [...prev, { role: "user", content: question }]);
-    setInput("");
-    setTimeout(() => {
-      const response = getResponse(question);
-      typeResponse(response);
-    }, 500);
-  };
+  const [input, setInput] = useState('');
+  const { messages, ask, loading } = useChat();
 
   if (!isOpen) return null;
 
+  const send = async (text?: string) => {
+    const content = (text ?? input).trim();
+    if (!content || loading) return;
+    setInput('');
+    await ask(content);
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-fade-in">
-      <div className="w-full max-w-2xl h-[80vh] bg-card border border-border rounded-2xl flex flex-col overflow-hidden shadow-2xl animate-slide-up">
-        {/* Header */}
+    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm">
+      <div className="absolute right-0 top-0 h-full w-full max-w-2xl bg-card border-l border-border shadow-2xl animate-in slide-in-from-right duration-300">
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-accent-foreground font-serif font-bold">
-              A
-            </div>
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-accent-foreground font-serif font-bold">A</div>
             <div>
               <p className="text-foreground font-medium">Ask AI About Artem</p>
-              <p className="text-xs text-muted-foreground flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-                Ready to answer your questions
-              </p>
+              <p className="text-xs text-muted-foreground">Direct, honest fit answers</p>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
-          >
-            <X className="w-5 h-5" />
+          <button onClick={onClose} className="p-2 hover:bg-muted rounded-lg">
+            <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
 
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {messages.length === 0 && !isTyping && (
-            <div className="h-full flex flex-col items-center justify-center text-center px-6">
-              <Sparkles className="w-12 h-12 text-accent mb-4" />
-              <h3 className="text-xl font-serif text-foreground mb-2">
-                What would you like to know?
-              </h3>
-              <p className="text-muted-foreground text-sm mb-6 max-w-md">
-                Ask specific questions about Artem's experience, skills, and fit for your role. Get direct, evidence-based answers.
-              </p>
-              <div className="w-full max-w-md space-y-2">
-                {suggestedQuestions.map((q, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleSubmit(q)}
-                    className="w-full text-left p-3 bg-secondary rounded-xl text-sm text-foreground hover:bg-muted transition-colors border border-transparent hover:border-accent/30"
-                  >
-                    "{q}"
+        <div className="h-[calc(100%-140px)] overflow-y-auto p-6 space-y-4">
+          {messages.length === 0 ? (
+            <div className="text-center py-12">
+              <MessageCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-lg font-medium mb-2">What would you like to know?</h3>
+              <p className="text-muted-foreground text-sm mb-6">Ask specific questions about experience and role fit.</p>
+              <div className="space-y-2 max-w-xl mx-auto">
+                {suggestedQuestions.map((q) => (
+                  <button key={q} onClick={() => void send(q)} className="w-full text-left p-3 rounded-lg bg-secondary hover:bg-muted text-sm">
+                    {q}
                   </button>
                 ))}
               </div>
             </div>
-          )}
-
-          {messages.map((msg, i) => (
-            <div
-              key={i}
-              className={cn(
-                "flex",
-                msg.role === "user" ? "justify-end" : "justify-start"
-              )}
-            >
-              <div
-                className={cn(
-                  "max-w-[85%] rounded-2xl px-4 py-3",
-                  msg.role === "user"
-                    ? "bg-accent text-accent-foreground rounded-br-md"
-                    : "bg-secondary text-foreground rounded-bl-md"
-                )}
-              >
-                <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+          ) : (
+            messages.map((msg, i) => (
+              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${msg.role === 'user' ? 'bg-accent text-accent-foreground' : 'bg-secondary text-foreground'}`}>
+                  {msg.content}
+                </div>
               </div>
-            </div>
-          ))}
-
-          {isTyping && (
-            <div className="flex justify-start">
-              <div className="max-w-[85%] bg-secondary text-foreground rounded-2xl rounded-bl-md px-4 py-3">
-                <p className="text-sm whitespace-pre-wrap leading-relaxed">
-                  {displayedResponse}
-                  <span className="inline-block w-2 h-4 bg-accent ml-1 animate-typing-cursor" />
-                </p>
-              </div>
-            </div>
+            ))
           )}
-
-          <div ref={messagesEndRef} />
+          {loading && <p className="text-sm text-muted-foreground">Thinking…</p>}
         </div>
 
-        {/* Input */}
-        <div className="p-4 border-t border-border">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSubmit(input);
-            }}
-            className="flex gap-3"
-          >
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border bg-card">
+          <div className="flex gap-2">
             <input
-              type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask a follow-up question..."
-              disabled={isTyping}
-              className="flex-1 bg-secondary rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground border border-border focus:border-accent focus:outline-none transition-colors disabled:opacity-50"
+              onKeyDown={(e) => e.key === 'Enter' && void send()}
+              placeholder="Ask about strengths, gaps, or fit..."
+              className="flex-1 bg-secondary rounded-lg px-4 py-2 text-sm"
             />
-            <button
-              type="submit"
-              disabled={!input.trim() || isTyping}
-              className="px-4 py-3 bg-accent text-accent-foreground rounded-xl font-medium disabled:opacity-50 hover:opacity-90 transition-opacity"
-            >
-              <Send className="w-5 h-5" />
+            <button onClick={() => void send()} className="p-2 bg-accent hover:bg-accent/90 rounded-lg text-accent-foreground" disabled={loading}>
+              <Send className="w-4 h-4" />
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
