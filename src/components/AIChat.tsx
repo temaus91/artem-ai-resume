@@ -14,10 +14,10 @@ interface AIChatProps {
 }
 
 const suggestedQuestions = [
-  "Would this person be good for a Series B startup with messy data infrastructure?",
-  "How did they reduce costs by $1.2M? Was it technical or political?",
-  "Tell me about their biggest failure.",
-  "What kind of leadership experience do they have?",
+  "How did you replace the legacy Oracle testing framework?",
+  "Tell me about your biggest failure and what changed afterward.",
+  "What is your leadership and mentoring style as an IC?",
+  "What can you share about LS Intelligence without confidential details?",
 ];
 
 const AIChat = ({ isOpen, onClose }: AIChatProps) => {
@@ -33,17 +33,43 @@ const AIChat = ({ isOpen, onClose }: AIChatProps) => {
 
   const getResponse = (question: string): string => {
     const q = question.toLowerCase();
-    if (q.includes("series b") || q.includes("infrastructure") || q.includes("messy")) {
+    if (
+      q.includes("oracle") ||
+      q.includes("framework") ||
+      q.includes("testing") ||
+      q.includes("automation studio") ||
+      q.includes("engine")
+    ) {
       return demoResponses.default;
     }
-    if (q.includes("cost") || q.includes("$1.2m") || q.includes("reduce")) {
+    if (
+      q.includes("adoption") ||
+      q.includes("training") ||
+      q.includes("document") ||
+      q.includes("rollout") ||
+      q.includes("support channel")
+    ) {
       return demoResponses.costReduction;
     }
     if (q.includes("failure") || q.includes("mistake") || q.includes("wrong")) {
       return demoResponses.failure;
     }
-    if (q.includes("leadership") || q.includes("lead") || q.includes("team") || q.includes("manage")) {
+    if (
+      q.includes("leadership") ||
+      q.includes("lead") ||
+      q.includes("team") ||
+      q.includes("mentor") ||
+      q.includes("teaching")
+    ) {
       return demoResponses.leadership;
+    }
+    if (
+      q.includes("ls intelligence") ||
+      q.includes("clinical one") ||
+      q.includes("pharma") ||
+      q.includes("ai tool")
+    ) {
+      return demoResponses.lsIntelligence;
     }
     return demoResponses.default;
   };
@@ -84,10 +110,10 @@ const AIChat = ({ isOpen, onClose }: AIChatProps) => {
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-accent-foreground font-serif font-bold">
-              M
+              A
             </div>
             <div>
-              <p className="text-foreground font-medium">Ask AI About Marcus</p>
+              <p className="text-foreground font-medium">Ask AI About Artem</p>
               <p className="text-xs text-muted-foreground flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
                 Ready to answer your questions
@@ -111,7 +137,7 @@ const AIChat = ({ isOpen, onClose }: AIChatProps) => {
                 What would you like to know?
               </h3>
               <p className="text-muted-foreground text-sm mb-6 max-w-md">
-                Ask specific questions about Marcus's experience, skills, or fit for your role. Get honest, detailed answers.
+                Ask specific questions about Artem's experience, skills, and fit for your role. Get direct, evidence-based answers.
               </p>
               <div className="w-full max-w-md space-y-2">
                 {suggestedQuestions.map((q, i) => (
