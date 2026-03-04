@@ -76,7 +76,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         approach:
           "I wrote a technical design proposing a full replacement. Initially I co-led implementation with a principal engineer (UI ownership split), then took full ownership when he left and drove delivery to production.",
         technicalWork:
-          "I led the Java logic and execution engine architecture, added CLI-compatible execution, JSON test definitions, run-time observability, and migration support from Excel-based suites. I later transferred ownership through docs, enablement sessions, and a dedicated support channel. In parallel, I contributed to LS Intelligence with secure user-management APIs, auth integration, and end-user workflow pages in Clinical One.",
+          "I led the Java logic and execution engine architecture, added CLI-compatible execution, JSON test definitions, run-time observability, and migration support from Excel-based suites. I later transferred ownership through docs, enablement sessions, and a dedicated support channel. In parallel, I contributed to AI Intelligence with secure user-management APIs, auth integration, and end-user workflow pages in Clinical One.",
         lessonsLearned:
           "Own the full lifecycle, not just code: design quality, rollout, enablement, and long-term maintainability determine whether a platform change actually succeeds."
       }
@@ -232,7 +232,7 @@ FIT EVALUATION GUARDRAILS:
 - If there is a mismatch, anchor it to a concrete requirement he truly lacks.
 
 CONFIDENTIALITY CONSTRAINT:
-- For LS Intelligence details, stay abstract and non-confidential
+- For AI Intelligence details, stay abstract and non-confidential
 - Use safe wording: building AI solutions for pharmaceutical workflows via Clinical One portal
 - Do not reveal internal sensitive implementation details
 
