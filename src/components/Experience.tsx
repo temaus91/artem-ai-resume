@@ -3,7 +3,7 @@ import ExperienceCard from "./ExperienceCard";
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-24 px-6">
+    <section id="experience" className="py-16 md:py-24 px-6">
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="mb-12">

@@ -9,7 +9,7 @@ const Hero = ({ onOpenChat }: HeroProps) => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col justify-center px-6 pt-20"
+      className="min-h-[88svh] md:min-h-screen flex flex-col justify-center px-6 pt-24 pb-10 md:pt-20 md:pb-0"
     >
       <div className="max-w-4xl mx-auto w-full">
         {/* Status badge */}
@@ -19,7 +19,7 @@ const Hero = ({ onOpenChat }: HeroProps) => {
         </div>
 
         {/* Main heading */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground mb-6 animate-slide-up">
+        <h1 className="text-4xl leading-tight sm:text-5xl md:text-7xl lg:text-8xl font-serif text-foreground mb-6 animate-slide-up">
           {artemProfile.name}
         </h1>
 
@@ -58,7 +58,7 @@ const Hero = ({ onOpenChat }: HeroProps) => {
         </button>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground animate-fade-in opacity-0" style={{ animationDelay: "1.5s", animationFillMode: "forwards" }}>
+        <div className="hidden md:flex absolute bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground animate-fade-in opacity-0" style={{ animationDelay: "1.5s", animationFillMode: "forwards" }}>
           <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
           <div className="w-px h-8 bg-gradient-to-b from-muted-foreground to-transparent" />
         </div>
