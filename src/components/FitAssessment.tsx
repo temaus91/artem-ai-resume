@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sparkles, AlertTriangle } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 import { useJDAnalyzer } from '@/hooks/useJDAnalyzer';
 
 const strongSample = `Senior Full-Stack Engineer (Platform): Build internal developer tooling, own Java/TypeScript services, mentor ICs, and improve test automation reliability across teams.`;
@@ -50,7 +50,6 @@ const FitAssessment = () => {
             </div>
           )}
 
-          <p className="text-xs text-muted-foreground flex items-start gap-2"><Sparkles className="w-4 h-4 mt-0.5" />This signals something completely different than ‘please consider my resume.’ You’re qualifying them. Your time is valuable too.</p>
         </div>
       </div>
     </section>

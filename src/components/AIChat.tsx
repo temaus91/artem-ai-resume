@@ -10,7 +10,7 @@ interface AIChatProps {
 const suggestedQuestions = [
   'What’s your biggest weakness?',
   'Tell me about a project that failed',
-  'Why did you leave [Company]?',
+  'Why did you leave Amazon?',
   'What would your last manager say about you?',
 ];
 

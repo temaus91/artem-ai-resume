@@ -6,15 +6,57 @@ export const artemProfile = {
   subtitle:
     "Full-stack engineering for enterprise platforms, test automation, and AI-enabled healthcare workflows",
   location: "Seattle Area",
-  status: "Open to Senior+ full-stack/platform roles",
+  status: "Open to Senior+ full-stack/platform roles (remote-first)",
   companies: ["Oracle", "Amazon"],
+  yearsExperience: "12+ years of software engineering experience",
   linkedinUrl: "https://www.linkedin.com/in/artem-tarasenko-seattle",
-  githubUrl: "https://github.com",
+  githubUrl: "https://github.com/temaus91",
   email: "temaus91@gmail.com",
 
   summary: `I build reliable full-stack and backend systems at enterprise scale across Oracle and Amazon.
-I focus on high-impact, problem-first execution: replace brittle systems, improve developer workflows, and deliver practical AI features.
-I also mentor engineers and help teams ramp quickly through clear documentation, training, and hands-on guidance, and I use AI development tools across planning, implementation, testing, and documentation.`,
+I have 12+ years of experience, including 10 years at Amazon across high-scale product and platform teams, and current work at Oracle on AI-enabled healthcare workflows.
+I focus on high-impact, problem-first execution: replacing brittle systems, improving developer workflows, and shipping practical solutions end-to-end.
+I mentor engineers, communicate directly, and use AI development tools across planning, implementation, testing, and documentation.
+I value friendly, honest working relationships and bring humor, curiosity, and strong ownership to teams.`,
+
+  awsServices: ["IAM", "S3", "DynamoDB", "EC2", "SNS", "SQS", "Lambda"],
+  cloudSecurityAndNetworking: [
+    "IAM permission design",
+    "Security groups",
+    "Service-to-service authorization",
+    "Encryption",
+    "Secrets management",
+  ],
+  hardNoClaims: [
+    "Not a people manager today",
+    "No server hardware engineering background",
+    "Limited direct device experience (Kindle-focused)",
+  ],
+  tonePreference: "balanced",
+  whyLeftAmazon: `After a long and meaningful run at Amazon, I wanted a new challenge in a remote-first setup while staying in Seattle. I was on a manager track, but company-wide flattening and layoffs paused that path. I also wanted to move away from older mobile technology constraints and back toward broader full-stack/platform work.`,
+  managerFeedback2026: `Artem started working on the LSAAS product at the beginning of the fiscal year and made solid contributions across the User Management plugin and multiple UI features. He collaborates effectively with the auth-z team, communicates clearly, and delivers practical results. The API automation tool he helped build is now used by multiple Clinical One service teams, with positive feedback on speed, error clarity, and troubleshooting.`,
+  personal: [
+    "Leads a home book club",
+    "Has two dogs and two cats",
+    "Travels frequently with his wife",
+    "Enjoys paragliding, kiteboarding, skiing, climbing, and snowboarding",
+  ],
+  personalityHighlights: [
+    "Funny and enjoys joking around",
+    "Enjoys spending time with friends",
+    "Reads extensively about AI",
+    "Strong practical knowledge of cars and RVs",
+  ],
+  workValues: [
+    "Honest, healthy, and friendly work relationships",
+    "Building new ideas and modern systems over long-term legacy maintenance",
+    "Using AI to help teams deliver faster and become more independent",
+    "Team outings and strong team connection",
+  ],
+  longTermDreams: [
+    "Open an RV shop one day",
+    "Contribute feature direction at a major car company",
+  ],
 
   experience: [
     {
@@ -25,7 +67,7 @@ I also mentor engineers and help teams ramp quickly through clear documentation,
         "Led replacement of a legacy VM-based test framework with a production-ready cross-platform Test Automation Studio and execution engine",
         "Owned core Java execution logic, CLI compatibility, JSON-based tests, live execution visibility, and Excel-to-JSON migration paths",
         "Drove production adoption through documentation, training, and support; tool is now used by multiple Clinical One service teams with positive usability feedback",
-        "Building LS Intelligence capabilities with abstracted pharma-safe scope on Clinical One, including user-management APIs and secure auth integration",
+        "Building AI Intelligence capabilities on Clinical One for large pharmaceutical comapnies, including user-management APIs and secure auth integration",
         "Delivered core full-stack workflows for trial-related pages and user journeys while maintaining confidentiality boundaries"
       ],
       aiContext: {
@@ -44,40 +86,47 @@ I also mentor engineers and help teams ramp quickly through clear documentation,
       role: "Software Engineer -> Software Engineer II, Full Stack / Backend",
       period: "2014-2023",
       highlights: [
-        "Delivered full-stack features in Seller Experience (2014-2018) and Amazon HR (2018-2020)",
-        "Built backend-focused systems for Seller Fraud Prevention (2020-2022) with strong operational reliability requirements",
-        "Contributed full-stack work in Kindle Content Management (2022-2023), including cross-platform content and workflow improvements",
-        "Consistently ramped across new domains and teams while collaborating with product, design, and partner engineering teams"
+        "Built and maintained full-stack tools in Seller Experience (2014-2018), including a metrics project using Amazon Kinesis and Redshift",
+        "Delivered Amazon HR tooling at large scale (2018-2020), including API latency optimizations with in-memory approaches and direct customer-driven delivery",
+        "In Seller Fraud Prevention (2020-2022), identified a Redshift integration design issue and became an early internal adopter of a newer Redshift API",
+        "In Kindle Content Management (2022-2023), helped lead delivery of a major Kindle UI redesign to on-time release",
+        "Hands-on with AWS services including IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda; operated systems through regular on-call up to Sev-1 incidents"
       ],
       aiContext: {
         situation:
-          "I worked across multiple internal organizations over nine years, each with different customer needs, system constraints, and delivery expectations.",
+          "I worked across multiple Amazon organizations over ten years, each with different customer needs, scale requirements, and operational constraints.",
         approach:
-          "My pattern was to ramp quickly on domain context, validate real user needs, and iterate toward practical solutions that reduce complexity and unblock delivery.",
+          "My approach was to ramp quickly, dive deep into root causes, and deliver practical solutions end-to-end while balancing reliability and speed.",
         technicalWork:
-          "I shipped APIs, backend services, and full-stack features in seller systems, HR workflows, fraud prevention tooling, and Kindle content management platforms.",
+          "I shipped APIs, backend services, and full-stack features across seller systems, HR workflows, fraud prevention tooling, and Kindle content platforms. I regularly worked with AWS cloud services and security primitives, handled production deployments, and participated in primary/secondary on-call rotations.",
         lessonsLearned:
-          "Strong execution comes from adaptability: deep context, direct communication, and fast feedback loops beat over-engineering."
+          "Strong execution at scale requires clear ownership through the full lifecycle: design, implementation, deployment, on-call operations, and continuous improvement."
       }
     }
   ],
 
   skills: {
     strong: [
+      "High-Scale Distributed Systems",
       "Full-Stack Engineering",
       "Java / Backend API Development",
+      "AWS Cloud-Native Development",
       "Test Automation Architecture",
       "Execution Engine Design",
+      "On-Call Operations and Incident Handling",
       "Cross-Team Delivery",
       "Mentoring and Knowledge Transfer"
     ],
     moderate: [
       "AI Feature Integration",
+      "Cloud-Native Networking Patterns",
       "AuthN/AuthZ Integrations",
       "Frontend Framework Ramp-Up (including Oracle JET)",
       "Product Discovery and Requirement Validation"
     ],
     gaps: [
+      "Formal People-Manager Experience",
+      "Server Hardware Engineering",
       "Native Mobile Development",
       "Consumer Growth Experimentation",
       "Pure Design/Brand-Led UI Roles"
@@ -107,6 +156,54 @@ I also mentor engineers and help teams ramp quickly through clear documentation,
     }
   ],
 
+  faq: [
+    {
+      question: "Why did you leave Amazon?",
+      answer:
+        "After ten years at Amazon, I wanted a new challenge in a remote-first setup while staying in Seattle. I was close to a manager path, but flattening and layoffs changed that trajectory. I also wanted to move away from older mobile technology constraints and focus on broader platform/full-stack impact."
+    },
+    {
+      question: "What is your latest manager feedback?",
+      answer:
+        "Recent feedback highlights strong contributions to the LSAAS product, clear collaboration with auth-z teams, and delivery impact from the API automation platform now adopted by multiple Clinical One teams."
+    },
+    {
+      question: "Do you have high-scale cloud and distributed-systems experience?",
+      answer:
+        "Yes. I have 10 years at Amazon and current Oracle work, with hands-on AWS experience including IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda, plus regular on-call and production operations."
+    },
+    {
+      question: "What operations or on-call improvements have you led?",
+      answer:
+        "I handled on-call through Sev-1 incidents for many years and improved rotation design by introducing a primary-to-secondary handoff pattern. The outgoing primary became secondary to finish in-flight issues and provide context, which improved triage speed, continuity, and sprint/vacation planning."
+    },
+    {
+      question: "What are your work preferences?",
+      answer:
+        "I am strongest as a senior IC in full-cycle ownership roles and prefer remote-first opportunities based in Seattle."
+    },
+    {
+      question: "What do you do outside work?",
+      answer:
+        "I lead a home book club, travel with my wife, and enjoy outdoor sports like paragliding, kiteboarding, skiing, climbing, and snowboarding."
+    },
+    {
+      question: "What do you value at work?",
+      answer:
+        "I value honest, healthy, and friendly working relationships. I prefer building new ideas and modern systems over maintaining very old codebases. I also enjoy team outings and strong team connection."
+    },
+    {
+      question: "How do you use AI at work?",
+      answer:
+        "I use AI throughout planning, implementation, testing, and documentation. I also teach teammates how to use AI effectively so they can deliver faster and work more independently."
+    },
+    {
+      question: "Any personal long-term goals outside software?",
+      answer:
+        "I know cars and RVs well, and my practical long-term dream is to open an RV shop. My aspirational dream is to influence feature direction at a major car company."
+    }
+  ],
+
   systemPrompt: `You are helping hiring managers evaluate Artem Tarasenko as a candidate.
 
 CORE INSTRUCTIONS:
@@ -114,12 +211,25 @@ CORE INSTRUCTIONS:
 - Be honest about gaps. If he does not have a skill, say so directly.
 - When assessing fit, include where he is NOT the right choice.
 - Do not oversell. Confidence should come from evidence.
+- Tone should be balanced and evidence-based, not pessimistic.
 
 WHAT ARTEM WANTS YOU TO KNOW:
 - He is open to Senior+ full-stack/platform roles
 - He is strongest in practical engineering execution, platform reliability, and test automation
 - He values ownership from design through production adoption
 - He is not pursuing a people-manager track right now
+- Baseline facts: 12+ years total experience, including 10 years at Amazon and current Oracle work
+- He has hands-on AWS experience with IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda
+- He has operated production systems through on-call rotations and Sev-1 handling
+- Amazon and Oracle are both high-scale environments; do not claim otherwise
+- He values healthy, friendly, and honest team culture
+- He actively uses and teaches AI-assisted development for faster, more independent execution
+- If asked about personality, reflect that he is humorous, social, and curious
+
+FIT EVALUATION GUARDRAILS:
+- Do not incorrectly claim insufficient years if a role asks for <=12 years.
+- Do not claim lack of high-scale background.
+- If there is a mismatch, anchor it to a concrete requirement he truly lacks.
 
 CONFIDENTIALITY CONSTRAINT:
 - For LS Intelligence details, stay abstract and non-confidential

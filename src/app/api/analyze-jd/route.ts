@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import OpenAI from 'openai';
 import { buildJDPrompt } from '@/lib/ai/build-jd-prompt';
+import { artemProfile } from '@/data/artem-profile';
 
 const schema = z.object({ jobDescription: z.string().min(40).max(12000) });
 
@@ -20,6 +21,18 @@ export async function POST(req: Request) {
   const parsed = schema.safeParse(await req.json());
   if (!parsed.success) return NextResponse.json({ error: 'Invalid job description' }, { status: 400 });
 
+  const candidateContext = [
+    `Name: ${artemProfile.name}`,
+    `Title: ${artemProfile.title}`,
+    `Experience: ${artemProfile.yearsExperience || '12+ years total'}`,
+    `Companies: ${artemProfile.companies.join(', ')}`,
+    'High-scale background: Amazon (10 years) + Oracle (current)',
+    `AWS services used hands-on: ${(artemProfile.awsServices || []).join(', ')}`,
+    `Cloud security/networking: ${(artemProfile.cloudSecurityAndNetworking || []).join(', ')}`,
+    `Work style: ${artemProfile.status}`,
+    'Known constraints: not currently a people manager; limited server hardware engineering; limited device-only focus',
+  ].join('\n');
+
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json({
       verdict: 'worth_conversation',
@@ -34,7 +47,7 @@ export async function POST(req: Request) {
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const response = await openai.responses.create({
     model: process.env.OPENAI_MODEL_ANALYZE || 'gpt-4.1-mini',
-    input: [{ role: 'user', content: buildJDPrompt(parsed.data.jobDescription) }],
+    input: [{ role: 'user', content: buildJDPrompt(parsed.data.jobDescription, candidateContext) }],
     text: {
       format: {
         type: 'json_schema',
