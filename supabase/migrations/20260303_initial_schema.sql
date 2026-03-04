@@ -1,7 +1,7 @@
-create extension if not exists "uuid-ossp";
+create extension if not exists "uuid-ossp" with schema extensions;
 
 create table if not exists candidate_profile (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default extensions.uuid_generate_v4(),
   name text not null,
   email text,
   title text,
@@ -27,7 +27,7 @@ create table if not exists candidate_profile (
 );
 
 create table if not exists experiences (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default extensions.uuid_generate_v4(),
   candidate_id uuid references candidate_profile(id),
   company_name text not null,
   title text not null,
@@ -53,7 +53,7 @@ create table if not exists experiences (
 );
 
 create table if not exists skills (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default extensions.uuid_generate_v4(),
   candidate_id uuid references candidate_profile(id),
   skill_name text not null,
   category text,
@@ -67,7 +67,7 @@ create table if not exists skills (
 );
 
 create table if not exists gaps_weaknesses (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default extensions.uuid_generate_v4(),
   candidate_id uuid references candidate_profile(id),
   gap_type text,
   description text not null,
@@ -80,7 +80,7 @@ create table if not exists gaps_weaknesses (
 );
 
 create table if not exists values_culture_fit (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default extensions.uuid_generate_v4(),
   candidate_id uuid references candidate_profile(id),
   must_haves text,
   dealbreakers text,
@@ -94,7 +94,7 @@ create table if not exists values_culture_fit (
 );
 
 create table if not exists faq_responses (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default extensions.uuid_generate_v4(),
   candidate_id uuid references candidate_profile(id),
   question text not null,
   answer text not null,
@@ -104,7 +104,7 @@ create table if not exists faq_responses (
 );
 
 create table if not exists ai_instructions (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default extensions.uuid_generate_v4(),
   candidate_id uuid references candidate_profile(id),
   instruction_type text,
   instruction text not null,
@@ -114,7 +114,7 @@ create table if not exists ai_instructions (
 );
 
 create table if not exists admin_users (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default extensions.uuid_generate_v4(),
   auth_user_id uuid unique not null,
   candidate_id uuid references candidate_profile(id),
   role text default 'owner',
@@ -122,7 +122,7 @@ create table if not exists admin_users (
 );
 
 create table if not exists chat_history (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default extensions.uuid_generate_v4(),
   session_id text not null,
   role text not null,
   content text not null,
