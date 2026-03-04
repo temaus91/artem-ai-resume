@@ -10,7 +10,7 @@ const FitAssessment = () => {
   const { result, analyze, loading } = useJDAnalyzer();
 
   return (
-    <section id="fit-assessment" className="py-24 px-6">
+    <section id="fit-assessment" className="py-16 md:py-24 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-4xl font-serif text-foreground mb-2">Honest Fit Assessment</h2>
