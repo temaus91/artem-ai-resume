@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Project Tracker"
+  short_description: "Track and update GitHub Project features and bugs"
+  default_prompt: "Track and update feature and bug work in GitHub Projects and linked issues."
