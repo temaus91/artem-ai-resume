@@ -7,7 +7,7 @@ const weakSample = `Staff Mobile Growth Engineer: 5+ years iOS/Android, deep A/B
 
 const FitAssessment = () => {
   const [jd, setJd] = useState('');
-  const { result, analyze, loading } = useJDAnalyzer();
+  const { result, error, analyze, loading } = useJDAnalyzer();
 
   return (
     <section id="fit-assessment" className="py-16 md:py-24 px-6">
@@ -26,6 +26,12 @@ const FitAssessment = () => {
           <button onClick={() => void analyze(jd)} disabled={loading || jd.length < 40} className="w-full py-3 rounded-xl bg-accent text-accent-foreground font-medium">
             {loading ? 'Analyzing…' : 'Analyze Fit'}
           </button>
+
+          {error && (
+            <p className="rounded-xl border border-warning/30 bg-warning-muted/40 p-3 text-sm text-foreground">
+              {error}
+            </p>
+          )}
 
           {result && (
             <div className="border border-border rounded-xl p-5 bg-secondary/40 space-y-4">

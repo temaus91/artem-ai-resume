@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Artem Tarasenko AI Queryable Portfolio">
+  <rect width="1200" height="630" fill="#0b0b0f"/>
+  <rect x="72" y="72" width="1056" height="486" rx="28" fill="#141418" stroke="#2a2a31" stroke-width="2"/>
+  <circle cx="156" cy="154" r="46" fill="#2f9f93"/>
+  <text x="156" y="171" text-anchor="middle" font-family="Georgia, serif" font-size="48" font-weight="700" fill="#f7f6ef">A</text>
+  <text x="224" y="150" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="28" fill="#8c8b95">AI-queryable resume</text>
+  <text x="90" y="304" font-family="Georgia, serif" font-size="76" fill="#f7f6ef">Artem Tarasenko</text>
+  <text x="94" y="368" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="30" fill="#cfcdd8">Senior Software Engineer</text>
+  <text x="94" y="426" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="24" fill="#8c8b95">Full-stack platforms, test automation, and practical AI workflows</text>
+  <rect x="94" y="474" width="160" height="44" rx="22" fill="#1f4f45" stroke="#2f9f93" stroke-width="1"/>
+  <text x="174" y="503" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="18" fill="#f7f6ef">Oracle</text>
+  <rect x="274" y="474" width="170" height="44" rx="22" fill="#1f4f45" stroke="#2f9f93" stroke-width="1"/>
+  <text x="359" y="503" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="18" fill="#f7f6ef">Amazon</text>
+  <rect x="464" y="474" width="250" height="44" rx="22" fill="#1f4f45" stroke="#2f9f93" stroke-width="1"/>
+  <text x="589" y="503" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="18" fill="#f7f6ef">OpenAI-backed chat</text>
+</svg>

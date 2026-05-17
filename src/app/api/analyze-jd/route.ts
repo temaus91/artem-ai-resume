@@ -3,8 +3,11 @@ import { z } from 'zod';
 import OpenAI from 'openai';
 import { buildJDPrompt } from '@/lib/ai/build-jd-prompt';
 import { artemProfile } from '@/data/artem-profile';
+import { rateLimitHeaders, rateLimitRequest } from '@/lib/rate-limit';
 
 const schema = z.object({ jobDescription: z.string().min(40).max(12000) });
+const JD_RATE_LIMIT = 10;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 
 const resultSchema = z.object({
   verdict: z.enum(['strong_fit', 'worth_conversation', 'probably_not']),
@@ -18,6 +21,18 @@ const resultSchema = z.object({
 export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
+  const limit = rateLimitRequest(req, {
+    route: 'analyze-jd',
+    limit: JD_RATE_LIMIT,
+    windowMs: RATE_LIMIT_WINDOW_MS,
+  });
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { error: 'Too many fit checks. Please wait a few minutes and try again.' },
+      { status: 429, headers: rateLimitHeaders(limit) },
+    );
+  }
+
   const parsed = schema.safeParse(await req.json());
   if (!parsed.success) return NextResponse.json({ error: 'Invalid job description' }, { status: 400 });
 

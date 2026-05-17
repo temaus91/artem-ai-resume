@@ -50,7 +50,7 @@ const Header = ({ onOpenChat }: HeaderProps) => {
         </button>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           <button
             onClick={() => scrollToSection("experience")}
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -62,6 +62,12 @@ const Header = ({ onOpenChat }: HeaderProps) => {
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             Projects
+          </button>
+          <button
+            onClick={() => scrollToSection("how-it-works")}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            How It Works
           </button>
           <button
             onClick={() => scrollToSection("fit-assessment")}
@@ -80,7 +86,7 @@ const Header = ({ onOpenChat }: HeaderProps) => {
         {/* Mobile menu button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-muted-foreground hover:text-foreground"
+          className="lg:hidden p-2 text-muted-foreground hover:text-foreground"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -88,7 +94,7 @@ const Header = ({ onOpenChat }: HeaderProps) => {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-card border-b border-border animate-slide-down">
+        <div className="lg:hidden bg-card border-b border-border animate-slide-down">
           <div className="px-6 py-4 space-y-4">
             <button
               onClick={() => scrollToSection("experience")}
@@ -101,6 +107,12 @@ const Header = ({ onOpenChat }: HeaderProps) => {
               className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
             >
               Projects
+            </button>
+            <button
+              onClick={() => scrollToSection("how-it-works")}
+              className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
+            >
+              How It Works
             </button>
             <button
               onClick={() => scrollToSection("fit-assessment")}
