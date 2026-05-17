@@ -4,6 +4,7 @@ export type RateLimitConfig = {
   windowMs: number;
   now?: number;
   store?: RateLimitStore;
+  maxEntries?: number;
 };
 
 type RateLimitEntry = {
@@ -24,6 +25,8 @@ export type RateLimitResult = {
 const globalForRateLimit = globalThis as typeof globalThis & {
   __artemResumeRateLimitStore?: RateLimitStore;
 };
+
+const DEFAULT_MAX_RATE_LIMIT_ENTRIES = 1000;
 
 function getDefaultStore() {
   if (!globalForRateLimit.__artemResumeRateLimitStore) {
@@ -47,12 +50,26 @@ export function getClientIp(request: Request) {
   );
 }
 
+function pruneRateLimitStore(store: RateLimitStore, now: number, maxEntries: number) {
+  for (const [key, entry] of store) {
+    if (entry.resetAt <= now) store.delete(key);
+  }
+
+  while (store.size >= maxEntries) {
+    const oldestKey = store.keys().next().value;
+    if (!oldestKey) return;
+    store.delete(oldestKey);
+  }
+}
+
 export function checkRateLimit(key: string, config: Omit<RateLimitConfig, 'route'>): RateLimitResult {
   const now = config.now ?? Date.now();
   const store = config.store ?? getDefaultStore();
+  const maxEntries = config.maxEntries ?? DEFAULT_MAX_RATE_LIMIT_ENTRIES;
   const existing = store.get(key);
 
   if (!existing || existing.resetAt <= now) {
+    pruneRateLimitStore(store, now, maxEntries);
     const resetAt = now + config.windowMs;
     store.set(key, { count: 1, resetAt });
     return {

@@ -29,6 +29,14 @@ const evidenceRules = [
   },
 ] as const;
 
+const refusalTerms = [
+  "I'm here to answer questions about Artem's resume",
+  "I can't help with unrelated requests",
+  'I can only answer questions about',
+  'I can talk about Artem',
+  'unrelated requests',
+] as const;
+
 export function inferEvidenceLabels(question: string) {
   const normalized = question.toLowerCase();
   return evidenceRules
@@ -36,9 +44,14 @@ export function inferEvidenceLabels(question: string) {
     .map((rule) => rule.label);
 }
 
+function isRefusalAnswer(answer: string) {
+  const normalized = answer.toLowerCase();
+  return refusalTerms.some((term) => normalized.includes(term.toLowerCase()));
+}
+
 export function withEvidenceLine(answer: string, question: string | undefined) {
   const trimmed = answer.trim();
-  if (!question || /^Evidence used:/im.test(trimmed)) return trimmed;
+  if (!question || /^Evidence used:/im.test(trimmed) || isRefusalAnswer(trimmed)) return trimmed;
 
   const labels = inferEvidenceLabels(question);
   if (labels.length === 0) return trimmed;

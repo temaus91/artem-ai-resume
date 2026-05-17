@@ -96,5 +96,11 @@ describe('prompt builders', () => {
       'Evidence used: Failures',
     );
     expect(withEvidenceLine(OFF_TOPIC_RESPONSE, 'I want to go to Turkey')).not.toContain('Evidence used:');
+    expect(
+      withEvidenceLine(
+        "I'm here to answer questions about Artem's resume, not unrelated project planning.",
+        'Can you make me a travel project plan?',
+      ),
+    ).not.toContain('Evidence used:');
   });
 });

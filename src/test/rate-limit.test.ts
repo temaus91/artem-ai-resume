@@ -33,6 +33,28 @@ describe('rate limiter', () => {
     expect(rateLimitRequest(request, { route: 'analyze-jd', limit: 1, windowMs: 1000, now: 0, store }).allowed).toBe(true);
     expect(rateLimitRequest(request, { route: 'chat', limit: 1, windowMs: 1000, now: 0, store }).allowed).toBe(false);
   });
+
+  it('prunes expired entries before inserting a new key', () => {
+    const store = createRateLimitStore();
+
+    expect(checkRateLimit('chat:old', { limit: 1, windowMs: 1000, now: 0, store }).allowed).toBe(true);
+    expect(checkRateLimit('chat:new', { limit: 1, windowMs: 1000, now: 1000, store }).allowed).toBe(true);
+    expect(store.has('chat:old')).toBe(false);
+    expect(store.has('chat:new')).toBe(true);
+  });
+
+  it('caps the in-memory store when many active keys are inserted', () => {
+    const store = createRateLimitStore();
+
+    expect(checkRateLimit('chat:one', { limit: 1, windowMs: 10000, now: 0, store, maxEntries: 2 }).allowed).toBe(true);
+    expect(checkRateLimit('chat:two', { limit: 1, windowMs: 10000, now: 0, store, maxEntries: 2 }).allowed).toBe(true);
+    expect(checkRateLimit('chat:three', { limit: 1, windowMs: 10000, now: 0, store, maxEntries: 2 }).allowed).toBe(true);
+
+    expect(store.size).toBe(2);
+    expect(store.has('chat:one')).toBe(false);
+    expect(store.has('chat:two')).toBe(true);
+    expect(store.has('chat:three')).toBe(true);
+  });
 });
 
 describe('client api errors', () => {
