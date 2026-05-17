@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import OpenAI from 'openai';
 import { buildSystemPrompt } from '@/lib/ai/build-system-prompt';
-import { createAdminSupabaseClient } from '@/lib/supabase/admin';
+import { createServiceRoleSupabaseClient } from '@/lib/supabase/service-role';
 import { artemProfile } from '@/data/artem-profile';
 import { randomUUID } from 'crypto';
 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
 
   if (process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.NEXT_PUBLIC_SUPABASE_URL) {
     try {
-      const supabase = createAdminSupabaseClient();
+      const supabase = createServiceRoleSupabaseClient();
       const { data } = await supabase
         .from('chat_history')
         .select('role, content')
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
         elevator_pitch: artemProfile.summary,
         location: artemProfile.location,
         target_titles: ['Senior Software Engineer', 'Senior Full-Stack Engineer', 'Platform Engineer'],
-        career_narrative: `${artemProfile.yearsExperience}. 10 years at Amazon across Seller Experience, HR, Seller Fraud Prevention, and Kindle Content Management, then Oracle building test automation and AI-enabled product workflows.`,
+        career_narrative: `${artemProfile.yearsExperience}. 10 years at Amazon across Seller Experience, HR, Seller Fraud Prevention, and Kindle Content Management, then Oracle building test automation and AI-enabled product workflows. ${artemProfile.aiExperienceSummary}`,
         looking_for: artemProfile.status,
         not_looking_for: (artemProfile.hardNoClaims || []).join('; '),
       },
@@ -59,6 +59,18 @@ export async function POST(req: Request) {
         actual_contributions: exp.aiContext.technicalWork,
         why_left: exp.company === 'Amazon' ? artemProfile.whyLeftAmazon : undefined,
         lessons_learned: exp.aiContext.lessonsLearned,
+      })),
+      projects: artemProfile.projects.map((project, idx) => ({
+        id: `project-${idx + 1}`,
+        name: project.name,
+        role: project.role,
+        period: project.period,
+        summary: project.summary,
+        source_url: project.sourceUrl,
+        bullet_points: project.highlights,
+        stack: project.stack,
+        actual_contributions: project.aiContext.technicalWork,
+        lessons_learned: project.aiContext.lessonsLearned,
       })),
       skills: [
         ...artemProfile.skills.strong.map((s) => ({ skill_name: s, category: 'strong', evidence: 'Repeatedly demonstrated in production environments.' })),
@@ -80,12 +92,14 @@ export async function POST(req: Request) {
         { instruction: `Work values: ${(artemProfile.workValues || []).join('; ')}.` },
         { instruction: `Personality highlights: ${(artemProfile.personalityHighlights || []).join('; ')}.` },
         { instruction: `Long-term dreams: ${(artemProfile.longTermDreams || []).join('; ')}.` },
+        { instruction: `AI experience: ${artemProfile.aiExperienceSummary}` },
       ],
     });
     const completion = await openai.responses.create({
       model: process.env.OPENAI_MODEL_CHAT || 'gpt-4.1-mini',
+      store: false,
+      instructions: prompt,
       input: [
-        { role: 'system', content: prompt },
         ...historyMessages.map((m) => ({ role: m.role, content: m.content })),
         ...parsed.data.messages.map((m) => ({ role: m.role, content: m.content })),
       ],
@@ -96,7 +110,7 @@ export async function POST(req: Request) {
 
   if (process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.NEXT_PUBLIC_SUPABASE_URL) {
     try {
-      const supabase = createAdminSupabaseClient();
+      const supabase = createServiceRoleSupabaseClient();
       await supabase.from('chat_history').insert([
         { session_id: sessionId, role: 'user', content: lastMessage },
         { session_id: sessionId, role: 'assistant', content: answer },

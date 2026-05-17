@@ -58,6 +58,12 @@ const Header = ({ onOpenChat }: HeaderProps) => {
             Experience
           </button>
           <button
+            onClick={() => scrollToSection("projects")}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Projects
+          </button>
+          <button
             onClick={() => scrollToSection("fit-assessment")}
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
@@ -89,6 +95,12 @@ const Header = ({ onOpenChat }: HeaderProps) => {
               className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
             >
               Experience
+            </button>
+            <button
+              onClick={() => scrollToSection("projects")}
+              className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Projects
             </button>
             <button
               onClick={() => scrollToSection("fit-assessment")}

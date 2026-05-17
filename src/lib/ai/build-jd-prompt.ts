@@ -8,6 +8,9 @@ Rules:
 - write opening/recommendation in first person
 - never claim "insufficient years" or "not high-scale" if the candidate context clearly satisfies those bars
 - if you identify a gap, tie it to a concrete missing requirement
+- absence from Candidate Context means "not enough evidence", not "the candidate lacks it"
+- only state that the candidate lacks a skill when the Candidate Context explicitly lists it as a known constraint or gap
+- for unlisted requirements, phrase gaps as evidence gaps, such as "No direct evidence of X in the provided profile"
 - tone should be approachable and professional, not cold or pessimistic
 - avoid hype language; be specific and grounded in evidence
 

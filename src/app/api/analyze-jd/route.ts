@@ -29,6 +29,9 @@ export async function POST(req: Request) {
     'High-scale background: Amazon (10 years) + Oracle (current)',
     `AWS services used hands-on: ${(artemProfile.awsServices || []).join(', ')}`,
     `Cloud security/networking: ${(artemProfile.cloudSecurityAndNetworking || []).join(', ')}`,
+    `Personal AI project evidence: ${artemProfile.aiExperienceSummary}`,
+    'Personal project: built this AI resume as a Next.js/OpenAI app with resume chatbot, structured job-description fit analyzer, prompt guardrails, optional Supabase chat history, tests, and public GitHub cleanup.',
+    'AI-assisted development tools used heavily since 2025: Codex and Anthropic Claude.',
     `Work style: ${artemProfile.status}`,
     'Known constraints: not currently a people manager; limited server hardware engineering; limited device-only focus',
   ].join('\n');
@@ -47,6 +50,7 @@ export async function POST(req: Request) {
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const response = await openai.responses.create({
     model: process.env.OPENAI_MODEL_ANALYZE || 'gpt-4.1-mini',
+    store: false,
     input: [{ role: 'user', content: buildJDPrompt(parsed.data.jobDescription, candidateContext) }],
     text: {
       format: {
