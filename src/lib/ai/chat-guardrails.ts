@@ -34,6 +34,17 @@ const resumeTopicTerms = [
   'portfolio',
   'linkedin',
   'email',
+  'education',
+  'degree',
+  'university',
+  'college',
+  'citizen',
+  'citizenship',
+  'authorized',
+  'authorization',
+  'visa',
+  'work legally',
+  'legally work',
 ];
 
 const offTopicTerms = [
@@ -70,6 +81,7 @@ export function normalizeAssistantAnswer(answer: string) {
     .replace(/^#{1,6}\s+/gm, '')
     .replace(/\*\*(.*?)\*\*/g, '$1')
     .replace(/__(.*?)__/g, '$1')
+    .replace(/\s*Evidence used:\s*[A-Za-z ,.-]+\.?\s*$/i, '')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 }

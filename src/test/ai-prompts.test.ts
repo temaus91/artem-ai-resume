@@ -39,6 +39,56 @@ describe('prompt builders', () => {
     expect(artemProfile.projects[0].highlights.join(' ')).toContain('OpenAI-backed resume chatbot');
   });
 
+  it('includes sanitized private marketplace project evidence', () => {
+    const marketplaceProject = artemProfile.projects.find((project) =>
+      project.name.includes('Marketplace'),
+    );
+
+    expect(marketplaceProject?.period).toBeUndefined();
+    expect(marketplaceProject?.sourceUrl).toBeUndefined();
+    expect(marketplaceProject?.stack.join(' ')).toContain('Stripe Connect');
+    expect(marketplaceProject?.stack.join(' ')).toContain('Supabase');
+    expect(marketplaceProject?.aiContext.technicalWork).toContain('webhook idempotency');
+    expect(marketplaceProject?.sourceUrl).toBeUndefined();
+  });
+
+  it('includes Kindle Scribe launch-readiness evidence without overstating device specialization', () => {
+    const amazonExperience = artemProfile.experience.find((experience) => experience.company === 'Amazon');
+
+    expect(amazonExperience?.highlights.join(' ')).toContain('Kindle Scribe');
+    expect(amazonExperience?.aiContext.technicalWork).toContain('pre-release Kindle Scribe devices');
+    expect(artemProfile.hardNoClaims.join(' ')).toContain('No long-term production ownership of shipped native iOS/watchOS apps yet');
+  });
+
+  it('includes AWS and OCI cloud evidence in profile data', () => {
+    expect(artemProfile.awsServices).toEqual(
+      expect.arrayContaining(['S3', 'DynamoDB', 'SNS', 'SQS', 'Kinesis', 'Redshift']),
+    );
+    expect(artemProfile.ociExperience.join(' ')).toContain('OCI IAM application configuration');
+    expect(artemProfile.experience[0].highlights.join(' ')).toContain('token minting');
+    expect(artemProfile.skills.strong.join(' ')).toContain('AWS Services and Cloud Operations');
+    expect(artemProfile.skills.moderate.join(' ')).toContain('Oracle Cloud (OCI) IAM and Operations Support');
+  });
+
+  it('includes education and work authorization evidence', () => {
+    expect(artemProfile.education).toBe('Bachelor of Science in Computer Science, University of Washington');
+    expect(artemProfile.workAuthorization).toContain('US citizen');
+    expect(artemProfile.faq.map((item) => item.answer).join(' ')).toContain('legally authorized to work');
+    expect(artemProfile.faq.map((item) => item.answer).join(' ')).toContain('LinkedIn is the best reference');
+  });
+
+  it('includes the in-progress iOS watchOS soaring project without overstating maturity', () => {
+    const soaringProject = artemProfile.projects.find((project) => project.name === 'Soaring Session');
+
+    expect(soaringProject?.period).toBeUndefined();
+    expect(soaringProject?.sourceUrl).toBeUndefined();
+    expect(soaringProject?.stack.join(' ')).toContain('SwiftUI');
+    expect(soaringProject?.stack.join(' ')).toContain('HealthKit');
+    expect(soaringProject?.stack.join(' ')).toContain('WatchConnectivity');
+    expect(soaringProject?.aiContext.technicalWork).toContain('automatic flight-segmentation engine');
+    expect(soaringProject?.highlights.join(' ')).toContain('field testing as explicit next validation steps');
+  });
+
   it('keeps projects separate from employment evidence in the system prompt', () => {
     const prompt = buildSystemPrompt({
       profile: { id: '1', name: 'Artem', title: 'SWE' },
@@ -82,16 +132,25 @@ describe('prompt builders', () => {
     expect(prompt).toContain('Do not answer unrelated questions using general world knowledge');
     expect(isClearlyOffTopic('I want to go on vacation to Turkey. Make me a good plan')).toBe(true);
     expect(isClearlyOffTopic('Tell me about Artem project failures')).toBe(false);
+    expect(isClearlyOffTopic('Can Artem legally work in the US?')).toBe(false);
+    expect(isClearlyOffTopic('What is Artem education?')).toBe(false);
     expect(OFF_TOPIC_RESPONSE).toContain("Artem's resume");
   });
 
   it('normalizes markdown artifacts from assistant output', () => {
     expect(normalizeAssistantAnswer('### 1. **Duration**\\n\\nUse **plain text**.')).toBe('1. Duration\\n\\nUse plain text.');
+    expect(normalizeAssistantAnswer('I have a BS in CS. Evidence used: Education.')).toBe('I have a BS in CS.');
   });
 
   it('adds deterministic evidence labels when the question maps to resume evidence', () => {
     expect(inferEvidenceLabels('Tell me about a real failure')).toEqual(['Failures']);
     expect(inferEvidenceLabels('Explain the AI resume project')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('Walk me through a project')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('Tell me about HR work at Amazon')).toEqual(['Amazon']);
+    expect(inferEvidenceLabels('Does Artem have Stripe or Supabase experience?')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('Does Artem have SwiftUI watchOS experience?')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('What degree does Artem have?')).toEqual(['Education']);
+    expect(inferEvidenceLabels('Can Artem work legally in the US?')).toEqual(['Work authorization']);
     expect(withEvidenceLine('I learned to narrow scope.', 'Tell me about a real failure')).toContain(
       'Evidence used: Failures',
     );

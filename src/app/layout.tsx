@@ -4,6 +4,19 @@ import './globals.css';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artem-ai-resume.vercel.app';
 const description =
   'Evidence-grounded AI resume for Artem Tarasenko, a senior full-stack and platform engineer with Amazon and Oracle experience.';
+const themeInitScript = `
+(() => {
+  try {
+    const storedTheme = window.localStorage.getItem('artem-resume-theme');
+    const theme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'dark';
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+  } catch {
+    document.documentElement.dataset.theme = 'dark';
+    document.documentElement.style.colorScheme = 'dark';
+  }
+})();
+`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -46,8 +59,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {children}
+      </body>
     </html>
   );
 }

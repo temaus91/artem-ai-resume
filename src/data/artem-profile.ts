@@ -4,17 +4,19 @@ export const artemProfile = {
   name: "Artem Tarasenko",
   title: "Senior Software Engineer",
   subtitle:
-    "Full-stack engineering for enterprise platforms, test automation, and AI-enabled healthcare workflows",
+    "Senior full-stack engineer building reliable platforms, AI workflows, and automation systems",
   location: "Seattle Area",
   status: "Open to Senior+ full-stack/platform roles (remote-first)",
   companies: ["Oracle", "Amazon"],
   yearsExperience: "12+ years of software engineering experience",
   linkedinUrl: "https://www.linkedin.com/in/artem-tarasenko-seattle",
   githubUrl: "https://github.com/temaus91",
-  email: "temaus91@gmail.com",
+  education: "Bachelor of Science in Computer Science, University of Washington",
+  workAuthorization: "US citizen; legally authorized to work in the United States",
 
   summary: `I build reliable full-stack and backend systems at enterprise scale across Oracle and Amazon.
 I have 12+ years of experience, including 10 years at Amazon across high-scale product and platform teams, and current work at Oracle on AI-enabled healthcare workflows.
+I have a Bachelor of Science in Computer Science from the University of Washington and am a US citizen legally authorized to work in the United States.
 I focus on high-impact, problem-first execution: replacing brittle systems, improving developer workflows, and shipping practical solutions end-to-end.
 Since 2025, I have used AI development tools heavily, especially Codex and Anthropic Claude, across planning, implementation, testing, refactoring, and documentation.
 I also build AI-enabled applications, including this AI-queryable resume with chatbot and structured job-fit analysis workflows.
@@ -24,7 +26,13 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
   aiExperienceSummary:
     "Since 2025, Artem has used Codex and Anthropic Claude heavily for software planning, implementation, testing, refactoring, and documentation. He has also built AI-enabled application flows, including this AI-queryable resume with an OpenAI-backed chat experience and structured job-description fit analyzer.",
 
-  awsServices: ["IAM", "S3", "DynamoDB", "EC2", "SNS", "SQS", "Lambda"],
+  awsServices: ["IAM", "S3", "DynamoDB", "EC2", "SNS", "SQS", "Lambda", "Kinesis", "Redshift"],
+  ociExperience: [
+    "Oracle Cloud Infrastructure (OCI) operations support",
+    "OCI IAM application configuration",
+    "Authentication and authorization integration",
+    "Token minting and service authorization flows",
+  ],
   cloudSecurityAndNetworking: [
     "IAM permission design",
     "Security groups",
@@ -35,7 +43,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
   hardNoClaims: [
     "Not a people manager today",
     "No server hardware engineering background",
-    "Limited direct device experience (Kindle-focused)",
+    "No long-term production ownership of shipped native iOS/watchOS apps yet; currently building a SwiftUI iOS/watchOS app and has some Kindle Scribe launch/device-readiness experience",
   ],
   tonePreference: "balanced",
   whyLeftAmazon: `After a long and meaningful run at Amazon, I wanted a new challenge in a remote-first setup while staying in Seattle. I was on a manager track, but company-wide flattening and layoffs paused that path. I also wanted to move away from older mobile technology constraints and back toward broader full-stack/platform work.`,
@@ -67,7 +75,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
     {
       name: "AI Resume / Candidate Portfolio",
       role: "Personal project",
-      period: "2025-Present",
+      period: "2026-Present",
       summary:
         "A public Next.js portfolio that lets recruiters ask questions against approved resume evidence and run structured job-description fit checks.",
       sourceUrl: "https://github.com/temaus91/artem-ai-resume",
@@ -88,6 +96,82 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         lessonsLearned:
           "AI tools are most valuable when paired with clear product intent, tight evidence boundaries, and human review. The hard part is not generating code; it is deciding what should exist, what should be deleted, and how the AI should behave honestly."
       }
+    },
+    {
+      name: "Private Marketplace / Operations Platform",
+      role: "Independent product build",
+      period: undefined,
+      sourceUrl: undefined,
+      summary:
+        "A private full-stack marketplace and operations platform for matching supply and venue-style demand, managing reservations, public discovery, payments, admin workflows, and staged production rollout.",
+      highlights: [
+        "Built a substantial Next.js product with authenticated user flows, public discovery pages, reservation workspaces, admin operations, and production-style deployment lanes",
+        "Implemented Supabase-backed auth, PostgreSQL schema design, RLS-aware server flows, image storage, generated database types, seed data, and fixture-driven mock/demo environments",
+        "Integrated Stripe Connect and Checkout Sessions with webhook idempotency, sale ledger snapshots, payout-readiness gating, refund/dispute-aware operations, and staged checkout testing",
+        "Designed public exhibition-style routes with stable opaque slugs, QR code generation, print-ready QR kits, and lifecycle-aware public states",
+        "Set up multi-environment deployment patterns across public preview, public demo, internal staging, mock data lanes, and server-backed staging",
+        "Added broad verification coverage with linting, TypeScript checks, Vitest unit tests, Playwright flows, Supabase seed/type checks, and CI/CD-style verification scripts"
+      ],
+      stack: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Supabase",
+        "PostgreSQL",
+        "Stripe Connect",
+        "Stripe Checkout",
+        "Vercel",
+        "Playwright",
+        "Vitest",
+        "Tailwind CSS",
+        "Zod",
+        "Email auth workflows"
+      ],
+      aiContext: {
+        situation:
+          "I wanted deeper hands-on experience building a real product surface beyond a resume demo: a marketplace-style workflow with public discovery, authenticated operators, payments, admin operations, and deployment discipline.",
+        approach:
+          "I kept the project private and independent, avoided naming the product publicly, and treated it as a production-oriented product build: clear environment topology, safe public preview/demo lanes, server-backed staging, payment ledgers, and broad automated verification.",
+        technicalWork:
+          "I built authenticated Next.js workflows backed by Supabase and PostgreSQL, designed RLS-aware server paths, implemented reservation and public exhibition flows, added Stripe Connect and Checkout integration, handled webhook idempotency and sale ledger snapshots, generated QR/public routes, managed Vercel deployment modes across mock and server-backed stages, and maintained Vitest plus Playwright coverage.",
+        lessonsLearned:
+          "Marketplace-style products require more than UI: auth boundaries, operational states, payments, webhooks, test data, staging topology, and launch gates have to be designed together. I learned to separate public demo behavior from real backend behavior so the product can be shown safely while production readiness is still gated."
+      }
+    },
+    {
+      name: "Soaring Session",
+      role: "Personal iOS/watchOS project",
+      period: undefined,
+      sourceUrl: undefined,
+      summary:
+        "An in-progress local-first iPhone and Apple Watch app for paragliding and soaring sessions that keeps one outing alive across repeated takeoffs, top landings, relaunches, and final landing.",
+      highlights: [
+        "Built native SwiftUI iOS and watchOS app targets with a shared SoaringCore Swift package",
+        "Implemented simulator telemetry replay and automatic flight-segment detection for takeoff, top-landing, relaunch, and final-landing scenarios",
+        "Added local session persistence, summary calculation, CSV/export previews, and XCTest coverage around core session behavior",
+        "Built WatchConnectivity command/snapshot sync and a HealthKit workout-session foundation for watch-controlled recording",
+        "Keeping real GPS/barometer capture, locked-watch reliability, battery behavior, and outdoor field testing as explicit next validation steps"
+      ],
+      stack: [
+        "Swift",
+        "SwiftUI",
+        "iOS",
+        "watchOS",
+        "HealthKit",
+        "WatchConnectivity",
+        "XCTest",
+        "Local-first persistence"
+      ],
+      aiContext: {
+        situation:
+          "I could not find a paragliding app that matched how I wanted to record dune, ridge, and beach soaring sessions: one outing with multiple takeoffs, top landings, relaunches, fitness context, and local ownership of the log.",
+        approach:
+          "I am building it for myself first as a native Apple prototype, validating the hard parts in layers: shared session state, simulated telemetry, automatic segmentation, watch controls, local persistence, and then real-device field testing.",
+        technicalWork:
+          "I built SwiftUI iOS and watchOS targets, a shared SoaringCore Swift package, simulator telemetry replay, an automatic flight-segmentation engine with XCTest coverage, local JSON persistence and export previews, WatchConnectivity command and snapshot sync, and a HealthKit workout-session foundation for watch-controlled recording.",
+        lessonsLearned:
+          "For sensor-heavy apps, the honest engineering boundary matters: simulator telemetry can prove UI, state transitions, data modeling, and segmentation logic, but real GPS, barometer, battery, locked-watch behavior, and outdoor detection reliability still need physical-device validation before public claims."
+      }
     }
   ],
 
@@ -101,6 +185,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         "Owned core Java execution logic, CLI compatibility, JSON-based tests, live execution visibility, and Excel-to-JSON migration paths",
         "Drove production adoption through documentation, training, and support; tool is now used by multiple Clinical One service teams with positive usability feedback",
         "Building AI Intelligence capabilities on Clinical One for large pharmaceutical companies, including user-management APIs and secure auth integration",
+        "Added authentication and authorization flows involving token minting, OCI IAM application configuration, and Oracle Cloud operations support",
         "Delivered core full-stack workflows for trial-related pages and user journeys while maintaining confidentiality boundaries"
       ],
       aiContext: {
@@ -109,7 +194,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         approach:
           "I wrote a technical design proposing a full replacement. Initially I co-led implementation with a principal engineer (UI ownership split), then took full ownership when he left and drove delivery to production.",
         technicalWork:
-          "I led the Java logic and execution engine architecture, added CLI-compatible execution, JSON test definitions, run-time observability, and migration support from Excel-based suites. I later transferred ownership through docs, enablement sessions, and a dedicated support channel. In parallel, I contributed to AI Intelligence with secure user-management APIs, auth integration, and end-user workflow pages in Clinical One.",
+          "I led the Java logic and execution engine architecture, added CLI-compatible execution, JSON test definitions, run-time observability, and migration support from Excel-based suites. I later transferred ownership through docs, enablement sessions, and a dedicated support channel. In parallel, I contributed to AI Intelligence with secure user-management APIs, authentication and authorization integration, token minting flows, OCI IAM application configuration, Oracle Cloud operations support, and end-user workflow pages in Clinical One.",
         lessonsLearned:
           "Own the full lifecycle, not just code: design quality, rollout, enablement, and long-term maintainability determine whether a platform change actually succeeds."
       }
@@ -123,7 +208,8 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         "Delivered Amazon HR tooling at large scale (2018-2020), including API latency optimizations with in-memory approaches and direct customer-driven delivery",
         "In Seller Fraud Prevention (2020-2022), identified a Redshift integration design issue and became an early internal adopter of a newer Redshift API",
         "In Kindle Content Management (2022-2023), helped lead delivery of a major Kindle UI redesign to on-time release",
-        "Hands-on with AWS services including IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda; operated systems through regular on-call up to Sev-1 incidents"
+        "Supported Kindle Scribe launch readiness by handling pre-release device workflows under embargo, coordinating a team for device deployment preparation, and delivering sorting/category experience work",
+        "Hands-on with AWS services including IAM, S3, DynamoDB, EC2, SNS, SQS, Lambda, Kinesis, and Redshift; operated systems through regular on-call up to Sev-1 incidents"
       ],
       aiContext: {
         situation:
@@ -131,9 +217,9 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         approach:
           "My approach was to ramp quickly, dive deep into root causes, and deliver practical solutions end-to-end while balancing reliability and speed.",
         technicalWork:
-          "I shipped APIs, backend services, and full-stack features across seller systems, HR workflows, fraud prevention tooling, and Kindle content platforms. I regularly worked with AWS cloud services and security primitives, handled production deployments, and participated in primary/secondary on-call rotations.",
+          "I shipped APIs, backend services, and full-stack features across seller systems, HR workflows, fraud prevention tooling, and Kindle content platforms. On Kindle, I helped prepare pre-release Kindle Scribe devices for launch workflows under embargo, coordinated device deployment preparation with a team, and delivered sorting/category experience work. I regularly worked with AWS services including IAM, S3, DynamoDB, EC2, SNS, SQS, Lambda, Kinesis, and Redshift, handled production deployments, and participated in primary/secondary on-call rotations.",
         lessonsLearned:
-          "Strong execution at scale requires clear ownership through the full lifecycle: design, implementation, deployment, on-call operations, and continuous improvement."
+          "Strong execution at scale requires clear ownership through the full lifecycle: design, implementation, deployment, confidential launch readiness, on-call operations, and continuous improvement."
       }
     }
   ],
@@ -143,27 +229,36 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
       "High-Scale Distributed Systems",
       "Full-Stack Engineering",
       "Java / Backend API Development",
-      "AWS Cloud-Native Development",
+      "AWS Services and Cloud Operations (S3, SNS/SQS, DynamoDB, Redshift)",
+      "AI Feature Integration",
       "AI-Assisted Software Development",
       "Test Automation Architecture",
-      "Execution Engine Design",
+      "Test Execution Engine Design",
+      "Supabase / PostgreSQL Application Development",
       "On-Call Operations and Incident Handling",
       "Cross-Team Delivery",
       "Mentoring and Knowledge Transfer"
     ],
     moderate: [
-      "AI Feature Integration",
       "OpenAI API and LLM Chatbot Integration",
       "Prompt and Guardrail Design",
-      "Cloud-Native Networking Patterns",
-      "AuthN/AuthZ Integrations",
-      "Frontend Framework Ramp-Up (including Oracle JET)",
+      "Stripe Connect and Checkout Integration",
+      "Marketplace Workflow Design",
+      "SwiftUI iOS/watchOS Prototyping",
+      "HealthKit and WatchConnectivity Foundations",
+      "Vercel Deployment and Environment Management",
+      "Playwright End-to-End Testing",
+      "Confidential Device Launch Readiness",
+      "Oracle Cloud (OCI) IAM and Operations Support",
+      "Authentication, Authorization, and Token Flows",
+      "Cloud Service Integration and Deployment Config",
+      "Adapting Quickly to New Frontend Frameworks",
       "Product Discovery and Requirement Validation"
     ],
     gaps: [
       "Formal People-Manager Experience",
       "Server Hardware Engineering",
-      "Native Mobile Development",
+      "Long-Term Production Ownership of Shipped Native iOS/watchOS Apps",
       "Consumer Growth Experimentation",
       "Pure Design/Brand-Led UI Roles"
     ]
@@ -206,7 +301,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
     {
       question: "Do you have high-scale cloud and distributed-systems experience?",
       answer:
-        "Yes. I have 10 years at Amazon and current Oracle work, with hands-on AWS experience including IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda, plus regular on-call and production operations."
+        "Yes. I have 10 years at Amazon and current Oracle work, with hands-on AWS experience including IAM, S3, DynamoDB, EC2, SNS, SQS, Lambda, Kinesis, and Redshift. I also have Oracle Cloud Infrastructure experience with IAM application configuration, token minting, auth integration, and operations support."
     },
     {
       question: "What operations or on-call improvements have you led?",
@@ -217,6 +312,16 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
       question: "What are your work preferences?",
       answer:
         "I am strongest as a senior IC in full-cycle ownership roles and prefer remote-first opportunities based in Seattle."
+    },
+    {
+      question: "What is your education?",
+      answer:
+        "I have a Bachelor of Science in Computer Science from the University of Washington. For fuller education details, LinkedIn is the best reference."
+    },
+    {
+      question: "Can you legally work in the United States?",
+      answer:
+        "Yes. I am a US citizen and legally authorized to work in the United States."
     },
     {
       question: "What do you do outside work?",
@@ -260,13 +365,17 @@ WHAT ARTEM WANTS YOU TO KNOW:
 - He values ownership from design through production adoption
 - He is not pursuing a people-manager track right now
 - Baseline facts: 12+ years total experience, including 10 years at Amazon and current Oracle work
-- He has hands-on AWS experience with IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda
+- Education: Bachelor of Science in Computer Science from the University of Washington
+- Work authorization: US citizen; legally authorized to work in the United States
+- He has hands-on AWS experience with IAM, S3, DynamoDB, EC2, SNS, SQS, Lambda, Kinesis, and Redshift
+- He has hands-on Oracle Cloud Infrastructure (OCI) experience with IAM application configuration, token minting, authentication/authorization integration, and operations support
 - He has operated production systems through on-call rotations and Sev-1 handling
 - Amazon and Oracle are both high-scale environments; do not claim otherwise
 - He values healthy, friendly, and honest team culture
 - He actively uses and teaches AI-assisted development for faster, more independent execution
 - Since 2025, he has used Codex and Anthropic Claude heavily for planning, implementation, debugging, refactoring, testing, and documentation
 - He built this AI resume project end-to-end as an OpenAI-backed chatbot and structured JD fit analyzer
+- He is also building a personal SwiftUI iOS/watchOS paragliding app with HealthKit, WatchConnectivity, local persistence, simulator telemetry, and flight-segmentation tests
 - He has practical experience integrating LLMs into app workflows, including prompt guardrails, structured outputs, and chat UX
 - If asked about personality, reflect that he is humorous, social, and curious
 - If asked about failures or mistakes, use the explicit failure examples in the profile. Do not invent new failure stories.
@@ -365,7 +474,7 @@ export const fitAssessments = {
       {
         requirement: "Deep mobile product development",
         reality:
-          "I do not have native mobile development depth. My background is primarily full-stack web and backend systems."
+          "I do not have deep production native mobile ownership yet. I am building a SwiftUI iOS/watchOS paragliding app with HealthKit and WatchConnectivity, and I have some Kindle Scribe launch/device-readiness experience, but my main background is full-stack web, backend systems, platform workflows, and production operations."
       },
       {
         requirement: "Consumer growth experimentation ownership",

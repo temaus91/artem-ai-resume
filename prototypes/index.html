@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design prototypes — Artem AI Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: hsl(240 10% 4%); color: hsl(60 9% 98%); margin: 0; padding: 0; }
+    h1, h2, h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+    .grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 2.5rem; }
+    a.card { display: block; padding: 1.75rem; border: 1px solid hsl(240 6% 18%); border-radius: 16px; background: hsl(240 8% 8%); color: inherit; text-decoration: none; transition: all .2s; }
+    a.card:hover { border-color: hsl(173 58% 39%); transform: translateY(-2px); }
+    .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: hsl(173 58% 50%); margin-bottom: .5rem; }
+    .title { font-size: 1.6rem; margin: 0 0 .5rem; }
+    .sub { color: hsl(240 5% 65%); font-size: .92rem; line-height: 1.55; }
+    h1.main { font-size: clamp(2.5rem, 6vw, 4rem); margin: 0 0 .5rem; }
+    .tag { color: hsl(240 5% 65%); font-size: 1.05rem; max-width: 620px; line-height: 1.6; }
+    code { font-family: 'JetBrains Mono', monospace; font-size: 12px; background: hsl(240 6% 12%); padding: 2px 6px; border-radius: 4px; color: hsl(45 80% 80%); }
+    .footnote { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid hsl(240 6% 18%); color: hsl(240 5% 50%); font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="eyebrow">Design exploration · 2026</p>
+    <h1 class="main">Three directions</h1>
+    <p class="tag">Each prototype reimagines the homepage of the AI resume site with a different identity. Open each one to compare hero treatment, ambient styling, and the chat side panel. Pick the direction you want — or mix and match.</p>
+
+    <div class="grid">
+      <a class="card" href="./variant-a.html">
+        <p class="eyebrow">Variant A</p>
+        <h2 class="title">Conversational</h2>
+        <p class="sub">Lean into the AI identity. Inline "Ask me anything" prompt in the hero, ambient cursor-follow glow, streaming chat with a blinking caret and clickable evidence chips, animated AI orb on the right.</p>
+      </a>
+      <a class="card" href="./variant-b.html">
+        <p class="eyebrow">Variant B</p>
+        <h2 class="title">Editorial</h2>
+        <p class="sub">Magazine-style asymmetric hero with a large serif monogram, dot-grid background, italic pull quote, dual primary/secondary CTAs (chat + PDF), numbered sections, traffic-light fit verdict.</p>
+      </a>
+      <a class="card" href="./variant-c.html">
+        <p class="eyebrow">Variant C</p>
+        <h2 class="title">Engineer</h2>
+        <p class="sub">Command-palette hero with prominent <code>⌘K</code>, code-fenced tagline, real SVG architecture diagram in How-It-Works, CLI-styled fit assessment, terminal-feel chat panel with mono streaming.</p>
+      </a>
+    </div>
+
+    <p class="footnote">Prototypes are static HTML (Tailwind CDN + Google Fonts). The real site lives in <code>src/</code> and is untouched.</p>
+  </div>
+</body>
+</html>

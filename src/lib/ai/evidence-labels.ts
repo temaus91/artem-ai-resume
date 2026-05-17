@@ -9,7 +9,41 @@ const evidenceRules = [
   },
   {
     label: 'Projects',
-    terms: ['project', 'portfolio', 'resume', 'chatbot', 'codex', 'anthropic', 'ai app'],
+    terms: [
+      'project',
+      'portfolio',
+      'resume',
+      'chatbot',
+      'codex',
+      'anthropic',
+      'ai app',
+      'marketplace',
+      'supabase',
+      'postgres',
+      'postgresql',
+      'stripe',
+      'checkout',
+      'payments',
+      'webhooks',
+      'vercel',
+      'deployment',
+      'deployments',
+      'ci/cd',
+      'playwright',
+      'qr',
+      'reservation',
+      'reservations',
+      'paragliding',
+      'soaring',
+      'ios',
+      'watchos',
+      'apple watch',
+      'swift',
+      'swiftui',
+      'healthkit',
+      'watchconnectivity',
+      'native apple',
+    ],
   },
   {
     label: 'Failures',
@@ -24,8 +58,24 @@ const evidenceRules = [
     terms: ['gap', 'not a fit', 'weakness', 'missing', 'lack', 'not your person'],
   },
   {
+    label: 'Education',
+    terms: ['education', 'degree', 'university', 'uw', 'computer science', 'bachelor', 'bs'],
+  },
+  {
+    label: 'Work authorization',
+    terms: ['citizen', 'citizenship', 'authorized', 'authorization', 'work legally', 'legally work', 'visa'],
+  },
+  {
     label: 'FAQ',
-    terms: ['contact', 'location', 'remote', 'status', 'why left', 'values', 'interview'],
+    terms: [
+      'contact',
+      'location',
+      'remote',
+      'status',
+      'why left',
+      'values',
+      'interview',
+    ],
   },
 ] as const;
 
@@ -37,10 +87,18 @@ const refusalTerms = [
   'unrelated requests',
 ] as const;
 
+function escapeRegExp(term: string) {
+  return term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function matchesEvidenceTerm(question: string, term: string) {
+  const escapedTerm = escapeRegExp(term).replace(/\s+/g, '\\s+');
+  return new RegExp(`(^|[^a-z0-9])${escapedTerm}(?=$|[^a-z0-9])`, 'i').test(question);
+}
+
 export function inferEvidenceLabels(question: string) {
-  const normalized = question.toLowerCase();
   return evidenceRules
-    .filter((rule) => rule.terms.some((term) => normalized.includes(term)))
+    .filter((rule) => rule.terms.some((term) => matchesEvidenceTerm(question, term)))
     .map((rule) => rule.label);
 }
 

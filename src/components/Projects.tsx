@@ -1,5 +1,6 @@
 import { Github, Layers, Sparkles } from "lucide-react";
 import { artemProfile } from "@/data/artem-profile";
+import { Chip } from "@/components/ui/Chip";
 
 const Projects = () => {
   return (
@@ -30,7 +31,7 @@ const Projects = () => {
                       <Layers className="h-3.5 w-3.5" />
                       {project.role}
                     </span>
-                    <span>{project.period}</span>
+                    {project.period ? <span>{project.period}</span> : null}
                   </div>
                   <h3 className="text-xl md:text-2xl font-serif text-foreground">
                     {project.name}
@@ -40,15 +41,17 @@ const Projects = () => {
                   </p>
                 </div>
 
-                <a
-                  href={project.sourceUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
-                >
-                  <Github className="h-4 w-4" />
-                  GitHub
-                </a>
+                {project.sourceUrl ? (
+                  <a
+                    href={project.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
+                  >
+                    <Github className="h-4 w-4" />
+                    GitHub
+                  </a>
+                ) : null}
               </div>
 
               <div className="mt-5 grid gap-5 md:grid-cols-[1.2fr_0.8fr]">
@@ -63,12 +66,9 @@ const Projects = () => {
 
                 <div className="flex flex-wrap content-start gap-2">
                   {project.stack.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-lg border border-border bg-secondary px-2.5 py-1 text-xs text-muted-foreground"
-                    >
+                    <Chip key={item} variant="muted">
                       {item}
-                    </span>
+                    </Chip>
                   ))}
                 </div>
               </div>

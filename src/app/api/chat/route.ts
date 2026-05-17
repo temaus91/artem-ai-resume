@@ -33,6 +33,31 @@ async function persistChatTurn(sessionId: string, userMessage: string | undefine
   }
 }
 
+function getDeterministicProfileAnswer(message: string | undefined) {
+  if (!message) return '';
+
+  const normalized = message.toLowerCase();
+  const asksEducation = /\b(education|degree|university|college|uw|bachelor|bs)\b/.test(normalized);
+  const asksWorkAuthorization =
+    /\b(citizen|citizenship|visa|authorized|authorization)\b/.test(normalized) ||
+    normalized.includes('work legally') ||
+    normalized.includes('legally work');
+
+  if (asksEducation && asksWorkAuthorization) {
+    return `I have a ${artemProfile.education}. For fuller education details, LinkedIn is the best reference. Yes, I am a US citizen and legally authorized to work in the United States.`;
+  }
+
+  if (asksEducation) {
+    return `I have a ${artemProfile.education}. For fuller education details, LinkedIn is the best reference.`;
+  }
+
+  if (asksWorkAuthorization) {
+    return 'Yes. I am a US citizen and legally authorized to work in the United States.';
+  }
+
+  return '';
+}
+
 export async function POST(req: Request) {
   const limit = rateLimitRequest(req, {
     route: 'chat',
@@ -56,6 +81,13 @@ export async function POST(req: Request) {
   if (lastMessage && isClearlyOffTopic(lastMessage)) {
     await persistChatTurn(sessionId, lastMessage, OFF_TOPIC_RESPONSE);
     return new NextResponse(OFF_TOPIC_RESPONSE, { headers: { 'x-session-id': sessionId } });
+  }
+
+  const deterministicAnswer = getDeterministicProfileAnswer(lastMessage);
+  if (deterministicAnswer) {
+    const answer = withEvidenceLine(deterministicAnswer, lastMessage);
+    await persistChatTurn(sessionId, lastMessage, answer);
+    return new NextResponse(answer, { headers: { 'x-session-id': sessionId } });
   }
 
   if (process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.NEXT_PUBLIC_SUPABASE_URL) {
@@ -87,6 +119,8 @@ export async function POST(req: Request) {
         career_narrative: `${artemProfile.yearsExperience}. 10 years at Amazon across Seller Experience, HR, Seller Fraud Prevention, and Kindle Content Management, then Oracle building test automation and AI-enabled product workflows. ${artemProfile.aiExperienceSummary}`,
         looking_for: artemProfile.status,
         not_looking_for: (artemProfile.hardNoClaims || []).join('; '),
+        education: artemProfile.education,
+        work_authorization: artemProfile.workAuthorization,
       },
       experiences: artemProfile.experience.map((exp, idx) => ({
         id: `exp-${idx + 1}`,
@@ -124,7 +158,7 @@ export async function POST(req: Request) {
       gaps: [
         { description: 'No formal people-manager role to date', why_its_a_gap: 'Career track has been senior IC ownership.' },
         { description: 'No server hardware engineering background', why_its_a_gap: 'Primary focus has been software platforms and cloud systems.' },
-        { description: 'Limited direct device-focused scope', why_its_a_gap: 'Some Kindle work, but not deeply device-specialized.' },
+        { description: 'No long-term production ownership of shipped native iOS/watchOS apps yet', why_its_a_gap: 'Currently building a SwiftUI iOS/watchOS paragliding app and has some Kindle Scribe launch/device-readiness experience, but primary professional focus is full-stack, backend, platform workflows, and production operations.' },
       ],
       faq: (artemProfile.faq || []).map((item) => ({ question: item.question, answer: item.answer })),
       instructions: [
@@ -132,11 +166,16 @@ export async function POST(req: Request) {
         { instruction: 'Do not claim insufficient years for roles requiring 12 years or fewer.' },
         { instruction: 'Do not claim lack of high-scale background; Amazon and Oracle are high-scale environments.' },
         { instruction: `AWS experience includes: ${(artemProfile.awsServices || []).join(', ')}.` },
+        { instruction: `Oracle Cloud / OCI experience includes: ${(artemProfile.ociExperience || []).join(', ')}.` },
         { instruction: `Latest manager feedback: ${artemProfile.managerFeedback2026}` },
         { instruction: `Work values: ${(artemProfile.workValues || []).join('; ')}.` },
         { instruction: `Personality highlights: ${(artemProfile.personalityHighlights || []).join('; ')}.` },
         { instruction: `Long-term dreams: ${(artemProfile.longTermDreams || []).join('; ')}.` },
         { instruction: `AI experience: ${artemProfile.aiExperienceSummary}` },
+        { instruction: `Education: ${artemProfile.education}` },
+        { instruction: `Work authorization: ${artemProfile.workAuthorization}` },
+        { instruction: 'When discussing the private marketplace project, do not name the product, domain, or present it as current employment. Describe it as independent product work built outside employment, focused on full-stack marketplace workflows, payments, auth, deployment, and operations.' },
+        { instruction: 'When discussing the Soaring Session project, describe it as an in-progress personal iOS/watchOS prototype. Do not present it as a shipped public app or claim real GPS/barometer/field-test reliability before that validation exists.' },
       ],
     });
     const completion = await openai.responses.create({

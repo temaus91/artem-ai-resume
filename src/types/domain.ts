@@ -16,6 +16,8 @@ export type CandidateProfilePrivate = CandidateProfilePublic & {
   career_narrative?: string;
   looking_for?: string;
   not_looking_for?: string;
+  education?: string;
+  work_authorization?: string;
 };
 
 export type ExperiencePublic = {

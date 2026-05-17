@@ -1,66 +1,112 @@
-import { MessageSquare } from "lucide-react";
+"use client";
+
+import { FormEvent, useState } from "react";
+import { Command, MessageSquare, Send } from "lucide-react";
 import { artemProfile } from "@/data/artem-profile";
 
 interface HeroProps {
   onOpenChat: () => void;
+  onAskQuestion: (question: string) => void;
 }
 
-const Hero = ({ onOpenChat }: HeroProps) => {
+const samplePrompts = [
+  "Where is Artem strongest?",
+  "What is Artem's education?",
+  "Can Artem legally work in the US?",
+];
+
+const Hero = ({ onOpenChat, onAskQuestion }: HeroProps) => {
+  const [question, setQuestion] = useState("");
+
+  const submitQuestion = () => {
+    const content = question.trim() || "Where is Artem strongest?";
+    setQuestion("");
+    onAskQuestion(content);
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    submitQuestion();
+  };
+
   return (
     <section
       id="hero"
-      className="min-h-[88svh] md:min-h-screen flex flex-col justify-center px-6 pt-24 pb-10 md:pt-20 md:pb-0"
+      className="relative overflow-hidden px-6 pt-24 pb-8 md:pt-28 md:pb-10"
     >
-      <div className="max-w-4xl mx-auto w-full">
-        {/* Status badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary rounded-full mb-8 animate-fade-in">
-          <span className="w-2 h-2 rounded-full bg-success animate-pulse-soft" />
-          <span className="text-sm text-muted-foreground">{artemProfile.status}</span>
-        </div>
+      <div className="mx-auto w-full max-w-4xl">
+        <div className="w-full">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/80 px-4 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] animate-fade-in">
+            <span className="h-2 w-2 rounded-full bg-success animate-pulse-soft" />
+            <span className="text-sm text-muted-foreground">{artemProfile.status}</span>
+          </div>
 
-        {/* Main heading */}
-        <h1 className="text-4xl leading-tight sm:text-5xl md:text-7xl lg:text-8xl font-serif text-foreground mb-6 animate-slide-up">
-          {artemProfile.name}
-        </h1>
+          <h1 className="mb-6 text-4xl leading-tight sm:text-5xl md:text-7xl lg:text-8xl font-serif text-foreground animate-slide-up">
+            {artemProfile.name}
+          </h1>
 
-        {/* Role */}
-        <p className="text-2xl md:text-3xl text-primary font-serif mb-4 animate-slide-up stagger-1">
-          {artemProfile.title}
-        </p>
+          <p className="mb-4 text-2xl md:text-3xl text-primary font-serif animate-slide-up stagger-1">
+            {artemProfile.title}
+          </p>
 
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8 animate-slide-up stagger-2">
-          {artemProfile.subtitle}
-        </p>
+          <p className="mb-7 text-lg md:text-xl text-muted-foreground animate-slide-up stagger-2">
+            {artemProfile.subtitle}
+          </p>
 
-        {/* Company badges */}
-        <div className="flex flex-wrap gap-3 mb-12 animate-slide-up stagger-3">
-          {artemProfile.companies.map((company) => (
-            <span
-              key={company}
-              className="px-4 py-2 bg-card border border-border rounded-full text-sm text-foreground"
+          <form
+            onSubmit={handleSubmit}
+            className="mb-5 w-full animate-slide-up stagger-3"
+            aria-label="Ask AI about Artem"
+          >
+            <label htmlFor="hero-ai-question" className="sr-only">
+              Ask AI about Artem
+            </label>
+            <div className="group flex items-center gap-2 rounded-2xl border border-accent/45 bg-card p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition-colors focus-within:border-accent">
+              <MessageSquare className="ml-2 h-5 w-5 shrink-0 text-accent" />
+              <input
+                id="hero-ai-question"
+                value={question}
+                onChange={(event) => setQuestion(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    submitQuestion();
+                  }
+                }}
+                placeholder="Ask about strengths, gaps, education, or fit..."
+                className="min-w-0 flex-1 bg-transparent px-1 py-3 text-[16px] text-foreground outline-none placeholder:text-muted-foreground/90 md:text-sm"
+              />
+              <button
+                type="submit"
+                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent text-accent-foreground transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                aria-label="Ask AI"
+              >
+                <Send className="h-4 w-4" />
+              </button>
+            </div>
+          </form>
+
+          <div className="flex flex-col gap-3 animate-slide-up stagger-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-wrap gap-2">
+              {samplePrompts.map((prompt) => (
+                <button
+                  key={prompt}
+                  onClick={() => onAskQuestion(prompt)}
+                  className="rounded-full border border-border bg-secondary/70 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-accent/50 hover:text-foreground"
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={onOpenChat}
+              className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
             >
-              {company}
-            </span>
-          ))}
-        </div>
-
-        {/* CTA Button */}
-        <button
-          onClick={onOpenChat}
-          className="group relative inline-flex items-center gap-3 px-8 py-4 bg-accent text-accent-foreground rounded-2xl font-medium transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-accent/20 animate-slide-up stagger-4"
-        >
-          <MessageSquare className="w-5 h-5" />
-          <span>Ask AI About Me</span>
-          <span className="absolute -top-2 -right-2 px-2 py-0.5 bg-success text-primary-foreground rounded-full text-xs font-medium">
-            New
-          </span>
-        </button>
-
-        {/* Scroll indicator */}
-        <div className="hidden md:flex absolute bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground animate-fade-in opacity-0" style={{ animationDelay: "1.5s", animationFillMode: "forwards" }}>
-          <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
-          <div className="w-px h-8 bg-gradient-to-b from-muted-foreground to-transparent" />
+              <Command className="h-4 w-4" />
+              <span>Open chat</span>
+              <kbd className="rounded border border-current/30 px-1.5 py-0.5 text-[10px]">⌘K</kbd>
+            </button>
+          </div>
         </div>
       </div>
     </section>

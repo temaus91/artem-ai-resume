@@ -1,43 +1,41 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 import { artemProfile } from "@/data/artem-profile";
 
 const Footer = () => {
-  const githubUrl = artemProfile.githubUrl || "https://github.com";
+  const githubUrl = "https://github.com/temaus91/artem-ai-resume";
   const linkedinUrl =
     artemProfile.linkedinUrl || "https://www.linkedin.com/in/artem-tarasenko-seattle";
-  const email = artemProfile.email || "temaus91@gmail.com";
 
   return (
     <footer className="py-16 px-6 border-t border-border">
       <div className="max-w-4xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8">
           <div>
             <p className="text-2xl font-serif text-foreground mb-2">{artemProfile.name}</p>
             <p className="text-muted-foreground">Senior Software Engineer · Full Stack Platform and AI Solutions</p>
+            <p className="mt-3 max-w-xl text-sm text-text-subtle">
+              Built with Next.js, OpenAI, Supabase, Tailwind CSS, and a deliberately public source trail.
+            </p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 md:justify-end">
             <a
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-secondary rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl bg-secondary px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
-              <Github className="w-5 h-5" />
+              <Github className="h-4 w-4" />
+              GitHub
             </a>
             <a
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-secondary rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl bg-secondary px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href={`mailto:${email}`}
-              className="p-3 bg-secondary rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-            >
-              <Mail className="w-5 h-5" />
+              <Linkedin className="h-4 w-4" />
+              LinkedIn
             </a>
           </div>
         </div>
