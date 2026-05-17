@@ -308,7 +308,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
     {
       question: "What is your education?",
       answer:
-        "I have a Bachelor of Science in Computer Science from the University of Washington."
+        "I have a Bachelor of Science in Computer Science from the University of Washington. For fuller education details, LinkedIn is the best reference."
     },
     {
       question: "Can you legally work in the United States?",

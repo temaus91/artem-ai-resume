@@ -44,6 +44,7 @@ const resumeTopicTerms = [
   'authorization',
   'visa',
   'work legally',
+  'legally work',
 ];
 
 const offTopicTerms = [

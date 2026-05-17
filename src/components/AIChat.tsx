@@ -14,6 +14,8 @@ const suggestedQuestions = [
   "Where is Artem strongest?",
   "Where is Artem not a fit?",
   "What should I probe in an interview?",
+  "What is Artem's education?",
+  "Can Artem legally work in the US?",
   "Explain the AI resume project",
   "Tell me about a real failure",
 ];
@@ -25,6 +27,8 @@ const evidenceTargets: Record<string, string> = {
   Failures: "experience",
   Skills: "skills",
   "Known gaps": "skills",
+  Education: "hero",
+  "Work authorization": "hero",
   FAQ: "hero",
 };
 

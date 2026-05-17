@@ -58,6 +58,14 @@ const evidenceRules = [
     terms: ['gap', 'not a fit', 'weakness', 'missing', 'lack', 'not your person'],
   },
   {
+    label: 'Education',
+    terms: ['education', 'degree', 'university', 'uw', 'computer science', 'bachelor', 'bs'],
+  },
+  {
+    label: 'Work authorization',
+    terms: ['citizen', 'citizenship', 'authorized', 'authorization', 'work legally', 'legally work', 'visa'],
+  },
+  {
     label: 'FAQ',
     terms: [
       'contact',
@@ -67,15 +75,6 @@ const evidenceRules = [
       'why left',
       'values',
       'interview',
-      'education',
-      'degree',
-      'university',
-      'uw',
-      'citizen',
-      'citizenship',
-      'authorized',
-      'work legally',
-      'visa',
     ],
   },
 ] as const;

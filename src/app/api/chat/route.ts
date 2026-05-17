@@ -33,6 +33,31 @@ async function persistChatTurn(sessionId: string, userMessage: string | undefine
   }
 }
 
+function getDeterministicProfileAnswer(message: string | undefined) {
+  if (!message) return '';
+
+  const normalized = message.toLowerCase();
+  const asksEducation = /\b(education|degree|university|college|uw|bachelor|bs)\b/.test(normalized);
+  const asksWorkAuthorization =
+    /\b(citizen|citizenship|visa|authorized|authorization)\b/.test(normalized) ||
+    normalized.includes('work legally') ||
+    normalized.includes('legally work');
+
+  if (asksEducation && asksWorkAuthorization) {
+    return `I have a ${artemProfile.education}. For fuller education details, LinkedIn is the best reference. Yes, I am a US citizen and legally authorized to work in the United States.`;
+  }
+
+  if (asksEducation) {
+    return `I have a ${artemProfile.education}. For fuller education details, LinkedIn is the best reference.`;
+  }
+
+  if (asksWorkAuthorization) {
+    return 'Yes. I am a US citizen and legally authorized to work in the United States.';
+  }
+
+  return '';
+}
+
 export async function POST(req: Request) {
   const limit = rateLimitRequest(req, {
     route: 'chat',
@@ -56,6 +81,13 @@ export async function POST(req: Request) {
   if (lastMessage && isClearlyOffTopic(lastMessage)) {
     await persistChatTurn(sessionId, lastMessage, OFF_TOPIC_RESPONSE);
     return new NextResponse(OFF_TOPIC_RESPONSE, { headers: { 'x-session-id': sessionId } });
+  }
+
+  const deterministicAnswer = getDeterministicProfileAnswer(lastMessage);
+  if (deterministicAnswer) {
+    const answer = withEvidenceLine(deterministicAnswer, lastMessage);
+    await persistChatTurn(sessionId, lastMessage, answer);
+    return new NextResponse(answer, { headers: { 'x-session-id': sessionId } });
   }
 
   if (process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.NEXT_PUBLIC_SUPABASE_URL) {
