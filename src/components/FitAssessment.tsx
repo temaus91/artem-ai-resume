@@ -40,8 +40,7 @@ const FitAssessment = () => {
         <div className="rounded-2xl border border-border bg-card/85 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="font-mono text-xs uppercase tracking-wider text-accent">Job fit check</p>
-              <h2 className="mt-1 text-2xl font-serif text-foreground md:text-3xl">Have a job description?</h2>
+              <h2 className="text-2xl font-serif text-foreground md:text-3xl">Have a job description?</h2>
               <p className="mt-1 max-w-2xl text-sm text-muted-foreground md:text-base">
                 Paste it here for an honest, evidence-based read on strengths, gaps, and whether I am the right fit.
               </p>
