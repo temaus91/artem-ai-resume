@@ -47,6 +47,14 @@ export type ProjectEvidence = {
   lessons_learned?: string;
 };
 
+export type FailureEvidence = {
+  year?: number;
+  title: string;
+  summary: string;
+  details?: string;
+  lessons?: string;
+};
+
 export type SkillAssessment = {
   skill_name: string;
   category: 'strong' | 'moderate' | 'gaps' | string;

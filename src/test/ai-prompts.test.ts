@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { buildSystemPrompt } from '@/lib/ai/build-system-prompt';
 import { buildJDPrompt } from '@/lib/ai/build-jd-prompt';
+import { isClearlyOffTopic, normalizeAssistantAnswer, OFF_TOPIC_RESPONSE } from '@/lib/ai/chat-guardrails';
 import { artemProfile } from '@/data/artem-profile';
 
 describe('prompt builders', () => {
@@ -54,5 +55,30 @@ describe('prompt builders', () => {
     expect(prompt).toContain('Experiences:');
     expect(prompt).toContain('Projects:');
     expect(prompt).toContain('AI Resume / Candidate Portfolio');
+  });
+
+  it('includes failure examples and blocks invented failure stories', () => {
+    const prompt = buildSystemPrompt({
+      profile: { id: '1', name: 'Artem', title: 'SWE' },
+      failures: artemProfile.failures,
+    });
+
+    expect(prompt).toContain('Failure examples:');
+    expect(prompt).toContain('Permission Scope Was Too Broad');
+    expect(prompt).toContain('Built the Spec, Then Found a Simpler Solution');
+    expect(prompt).toContain('Do not invent new failure stories');
+  });
+
+  it('defines off-topic scope control for resume chat', () => {
+    const prompt = buildSystemPrompt({ profile: { id: '1', name: 'Artem', title: 'SWE' } });
+    expect(prompt).toContain('Only answer questions about my professional background');
+    expect(prompt).toContain('Do not answer unrelated questions using general world knowledge');
+    expect(isClearlyOffTopic('I want to go on vacation to Turkey. Make me a good plan')).toBe(true);
+    expect(isClearlyOffTopic('Tell me about Artem project failures')).toBe(false);
+    expect(OFF_TOPIC_RESPONSE).toContain("Artem's resume");
+  });
+
+  it('normalizes markdown artifacts from assistant output', () => {
+    expect(normalizeAssistantAnswer('### 1. **Duration**\\n\\nUse **plain text**.')).toBe('1. Duration\\n\\nUse plain text.');
   });
 });
