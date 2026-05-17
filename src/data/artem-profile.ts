@@ -34,7 +34,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
   hardNoClaims: [
     "Not a people manager today",
     "No server hardware engineering background",
-    "Some direct Kindle Scribe launch/device-readiness experience, but not deep native mobile or device-systems specialization",
+    "Not a deep production native mobile specialist yet; currently building a SwiftUI iOS/watchOS app and has some Kindle Scribe launch/device-readiness experience",
   ],
   tonePreference: "balanced",
   whyLeftAmazon: `After a long and meaningful run at Amazon, I wanted a new challenge in a remote-first setup while staying in Seattle. I was on a manager track, but company-wide flattening and layoffs paused that path. I also wanted to move away from older mobile technology constraints and back toward broader full-stack/platform work.`,
@@ -128,6 +128,41 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         lessonsLearned:
           "Marketplace-style products require more than UI: auth boundaries, operational states, payments, webhooks, test data, staging topology, and launch gates have to be designed together. I learned to separate public demo behavior from real backend behavior so the product can be shown safely while production readiness is still gated."
       }
+    },
+    {
+      name: "Soaring Session",
+      role: "Personal iOS/watchOS project",
+      period: undefined,
+      sourceUrl: undefined,
+      summary:
+        "An in-progress local-first iPhone and Apple Watch app for paragliding and soaring sessions that keeps one outing alive across repeated takeoffs, top landings, relaunches, and final landing.",
+      highlights: [
+        "Built native SwiftUI iOS and watchOS app targets with a shared SoaringCore Swift package",
+        "Implemented simulator telemetry replay and automatic flight-segment detection for takeoff, top-landing, relaunch, and final-landing scenarios",
+        "Added local session persistence, summary calculation, CSV/export previews, and XCTest coverage around core session behavior",
+        "Built WatchConnectivity command/snapshot sync and a HealthKit workout-session foundation for watch-controlled recording",
+        "Keeping real GPS/barometer capture, locked-watch reliability, battery behavior, and outdoor field testing as explicit next validation steps"
+      ],
+      stack: [
+        "Swift",
+        "SwiftUI",
+        "iOS",
+        "watchOS",
+        "HealthKit",
+        "WatchConnectivity",
+        "XCTest",
+        "Local-first persistence"
+      ],
+      aiContext: {
+        situation:
+          "I could not find a paragliding app that matched how I wanted to record dune, ridge, and beach soaring sessions: one outing with multiple takeoffs, top landings, relaunches, fitness context, and local ownership of the log.",
+        approach:
+          "I am building it for myself first as a native Apple prototype, validating the hard parts in layers: shared session state, simulated telemetry, automatic segmentation, watch controls, local persistence, and then real-device field testing.",
+        technicalWork:
+          "I built SwiftUI iOS and watchOS targets, a shared SoaringCore Swift package, simulator telemetry replay, an automatic flight-segmentation engine with XCTest coverage, local JSON persistence and export previews, WatchConnectivity command and snapshot sync, and a HealthKit workout-session foundation for watch-controlled recording.",
+        lessonsLearned:
+          "For sensor-heavy apps, the honest engineering boundary matters: simulator telemetry can prove UI, state transitions, data modeling, and segmentation logic, but real GPS, barometer, battery, locked-watch behavior, and outdoor detection reliability still need physical-device validation before public claims."
+      }
     }
   ],
 
@@ -199,6 +234,8 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
       "Prompt and Guardrail Design",
       "Stripe Connect and Checkout Integration",
       "Marketplace Workflow Design",
+      "SwiftUI iOS/watchOS Prototyping",
+      "HealthKit and WatchConnectivity Foundations",
       "Vercel Deployment and Environment Management",
       "Playwright End-to-End Testing",
       "Confidential Device Launch Readiness",
@@ -210,7 +247,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
     gaps: [
       "Formal People-Manager Experience",
       "Server Hardware Engineering",
-      "Native Mobile Development",
+      "Deep Production Native Mobile Specialization",
       "Consumer Growth Experimentation",
       "Pure Design/Brand-Led UI Roles"
     ]
@@ -314,6 +351,7 @@ WHAT ARTEM WANTS YOU TO KNOW:
 - He actively uses and teaches AI-assisted development for faster, more independent execution
 - Since 2025, he has used Codex and Anthropic Claude heavily for planning, implementation, debugging, refactoring, testing, and documentation
 - He built this AI resume project end-to-end as an OpenAI-backed chatbot and structured JD fit analyzer
+- He is also building a personal SwiftUI iOS/watchOS paragliding app with HealthKit, WatchConnectivity, local persistence, simulator telemetry, and flight-segmentation tests
 - He has practical experience integrating LLMs into app workflows, including prompt guardrails, structured outputs, and chat UX
 - If asked about personality, reflect that he is humorous, social, and curious
 - If asked about failures or mistakes, use the explicit failure examples in the profile. Do not invent new failure stories.
@@ -412,7 +450,7 @@ export const fitAssessments = {
       {
         requirement: "Deep mobile product development",
         reality:
-          "I do not have deep native mobile or device-systems specialization. I do have some Kindle Scribe launch/device-readiness experience, but my main background is full-stack web, backend systems, platform workflows, and production operations."
+          "I do not have deep production native mobile ownership yet. I am building a SwiftUI iOS/watchOS paragliding app with HealthKit and WatchConnectivity, and I have some Kindle Scribe launch/device-readiness experience, but my main background is full-stack web, backend systems, platform workflows, and production operations."
       },
       {
         requirement: "Consumer growth experimentation ownership",

@@ -57,7 +57,19 @@ describe('prompt builders', () => {
 
     expect(amazonExperience?.highlights.join(' ')).toContain('Kindle Scribe');
     expect(amazonExperience?.aiContext.technicalWork).toContain('pre-release Kindle Scribe devices');
-    expect(artemProfile.hardNoClaims.join(' ')).toContain('not deep native mobile or device-systems specialization');
+    expect(artemProfile.hardNoClaims.join(' ')).toContain('Not a deep production native mobile specialist yet');
+  });
+
+  it('includes the in-progress iOS watchOS soaring project without overstating maturity', () => {
+    const soaringProject = artemProfile.projects.find((project) => project.name === 'Soaring Session');
+
+    expect(soaringProject?.period).toBeUndefined();
+    expect(soaringProject?.sourceUrl).toBeUndefined();
+    expect(soaringProject?.stack.join(' ')).toContain('SwiftUI');
+    expect(soaringProject?.stack.join(' ')).toContain('HealthKit');
+    expect(soaringProject?.stack.join(' ')).toContain('WatchConnectivity');
+    expect(soaringProject?.aiContext.technicalWork).toContain('automatic flight-segmentation engine');
+    expect(soaringProject?.highlights.join(' ')).toContain('field testing as explicit next validation steps');
   });
 
   it('keeps projects separate from employment evidence in the system prompt', () => {
@@ -116,6 +128,7 @@ describe('prompt builders', () => {
     expect(inferEvidenceLabels('Walk me through a project')).toEqual(['Projects']);
     expect(inferEvidenceLabels('Tell me about HR work at Amazon')).toEqual(['Amazon']);
     expect(inferEvidenceLabels('Does Artem have Stripe or Supabase experience?')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('Does Artem have SwiftUI watchOS experience?')).toEqual(['Projects']);
     expect(withEvidenceLine('I learned to narrow scope.', 'Tell me about a real failure')).toContain(
       'Evidence used: Failures',
     );

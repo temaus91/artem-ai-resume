@@ -124,7 +124,7 @@ export async function POST(req: Request) {
       gaps: [
         { description: 'No formal people-manager role to date', why_its_a_gap: 'Career track has been senior IC ownership.' },
         { description: 'No server hardware engineering background', why_its_a_gap: 'Primary focus has been software platforms and cloud systems.' },
-        { description: 'Not deeply specialized in native mobile or device systems', why_its_a_gap: 'Has some Kindle Scribe launch/device-readiness experience, but primary focus is full-stack, backend, platform workflows, and production operations.' },
+        { description: 'Not deeply specialized in production native mobile or device systems', why_its_a_gap: 'Currently building a SwiftUI iOS/watchOS paragliding app and has some Kindle Scribe launch/device-readiness experience, but primary professional focus is full-stack, backend, platform workflows, and production operations.' },
       ],
       faq: (artemProfile.faq || []).map((item) => ({ question: item.question, answer: item.answer })),
       instructions: [
@@ -138,6 +138,7 @@ export async function POST(req: Request) {
         { instruction: `Long-term dreams: ${(artemProfile.longTermDreams || []).join('; ')}.` },
         { instruction: `AI experience: ${artemProfile.aiExperienceSummary}` },
         { instruction: 'When discussing the private marketplace project, do not name the product, domain, or present it as current employment. Describe it as independent product work built outside employment, focused on full-stack marketplace workflows, payments, auth, deployment, and operations.' },
+        { instruction: 'When discussing the Soaring Session project, describe it as an in-progress personal iOS/watchOS prototype. Do not present it as a shipped public app or claim real GPS/barometer/field-test reliability before that validation exists.' },
       ],
     });
     const completion = await openai.responses.create({
