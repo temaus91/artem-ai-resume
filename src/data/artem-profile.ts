@@ -66,7 +66,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
     {
       name: "AI Resume / Candidate Portfolio",
       role: "Personal project",
-      period: "2025-Present",
+      period: "2026-Present",
       summary:
         "A public Next.js portfolio that lets recruiters ask questions against approved resume evidence and run structured job-description fit checks.",
       sourceUrl: "https://github.com/temaus91/artem-ai-resume",
