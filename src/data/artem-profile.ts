@@ -4,7 +4,7 @@ export const artemProfile = {
   name: "Artem Tarasenko",
   title: "Senior Software Engineer",
   subtitle:
-    "Full-stack engineering for enterprise platforms, test automation, and AI-enabled healthcare workflows",
+    "Senior full-stack engineer building reliable platforms, AI workflows, and automation systems",
   location: "Seattle Area",
   status: "Open to Senior+ full-stack/platform roles (remote-first)",
   companies: ["Oracle", "Amazon"],

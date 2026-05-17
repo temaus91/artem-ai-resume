@@ -3,7 +3,6 @@
 import { FormEvent, useState } from "react";
 import { Command, MessageSquare, Send } from "lucide-react";
 import { artemProfile } from "@/data/artem-profile";
-import { Chip } from "@/components/ui/Chip";
 
 interface HeroProps {
   onOpenChat: () => void;
@@ -33,9 +32,9 @@ const Hero = ({ onOpenChat, onAskQuestion }: HeroProps) => {
   return (
     <section
       id="hero"
-      className="relative min-h-[88svh] md:min-h-[100dvh] overflow-hidden px-6 pt-24 pb-12 md:pt-24 md:pb-16"
+      className="relative min-h-[72svh] overflow-hidden px-6 pt-24 pb-10 md:min-h-[78svh] md:pt-24 md:pb-12"
     >
-      <div className="mx-auto flex min-h-[calc(88svh-9rem)] w-full max-w-4xl items-center md:min-h-[calc(100dvh-10rem)]">
+      <div className="mx-auto flex min-h-[calc(72svh-8.5rem)] w-full max-w-4xl items-center md:min-h-[calc(78svh-9rem)]">
         <div>
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/80 px-4 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] animate-fade-in">
             <span className="h-2 w-2 rounded-full bg-success animate-pulse-soft" />
@@ -100,9 +99,6 @@ const Hero = ({ onOpenChat, onAskQuestion }: HeroProps) => {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 animate-slide-up stagger-4">
-            {artemProfile.companies.map((company) => (
-              <Chip key={company}>{company}</Chip>
-            ))}
             <button
               onClick={onOpenChat}
               className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm text-accent transition-colors hover:bg-accent hover:text-accent-foreground"

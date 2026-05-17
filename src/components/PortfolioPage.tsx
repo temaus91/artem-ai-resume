@@ -45,10 +45,10 @@ const PortfolioPage = () => {
       <Header onOpenChat={openChat} />
       <main>
         <Hero onOpenChat={openChat} onAskQuestion={openChatWithQuestion} />
+        <FitAssessment />
         <Experience />
         <Projects />
         <HowItWorks />
-        <FitAssessment />
       </main>
       <Footer />
       <AIChat
