@@ -19,9 +19,27 @@ const Header = ({ onOpenChat }: HeaderProps) => {
   }, []);
 
   const scrollToSection = (id: string) => {
+    const shouldWaitForMenuClose = mobileMenuOpen;
+
     setMobileMenuOpen(false);
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    document.getElementById(id)?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+
+    window.setTimeout(() => {
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const target = document.getElementById(id);
+
+      if (!target) {
+        return;
+      }
+
+      const navHeight = document.querySelector("header nav")?.getBoundingClientRect().height ?? 0;
+      const breathingRoom = id === "hero" ? 0 : 16;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: Math.max(targetTop - navHeight - breathingRoom, 0),
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
+    }, shouldWaitForMenuClose ? 75 : 0);
   };
 
   const handleAskAI = () => {
