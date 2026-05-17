@@ -5,7 +5,6 @@ import {
   ChevronDown,
   ChevronUp,
   CircleSlash,
-  FileSearch,
 } from 'lucide-react';
 import { useJDAnalyzer } from '@/hooks/useJDAnalyzer';
 
@@ -40,17 +39,12 @@ const FitAssessment = () => {
       <div className="max-w-4xl mx-auto">
         <div className="rounded-2xl border border-border bg-card/85 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-accent">
-                <FileSearch className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="font-mono text-xs uppercase tracking-wider text-accent">Job fit check</p>
-                <h2 className="mt-1 text-2xl font-serif text-foreground md:text-3xl">Have a job description?</h2>
-                <p className="mt-1 max-w-2xl text-sm text-muted-foreground md:text-base">
-                  Paste it here for an honest, evidence-based read on strengths, gaps, and whether I am the right fit.
-                </p>
-              </div>
+            <div>
+              <p className="font-mono text-xs uppercase tracking-wider text-accent">Job fit check</p>
+              <h2 className="mt-1 text-2xl font-serif text-foreground md:text-3xl">Have a job description?</h2>
+              <p className="mt-1 max-w-2xl text-sm text-muted-foreground md:text-base">
+                Paste it here for an honest, evidence-based read on strengths, gaps, and whether I am the right fit.
+              </p>
             </div>
 
             <button

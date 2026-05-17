@@ -86,22 +86,21 @@ const Hero = ({ onOpenChat, onAskQuestion }: HeroProps) => {
             </div>
           </form>
 
-          <div className="mb-9 flex flex-wrap gap-2 animate-slide-up stagger-4">
-            {samplePrompts.map((prompt) => (
-              <button
-                key={prompt}
-                onClick={() => onAskQuestion(prompt)}
-                className="rounded-full border border-border bg-secondary/70 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-accent/50 hover:text-foreground"
-              >
-                {prompt}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3 animate-slide-up stagger-4">
+          <div className="mb-9 flex flex-col gap-3 animate-slide-up stagger-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-wrap gap-2">
+              {samplePrompts.map((prompt) => (
+                <button
+                  key={prompt}
+                  onClick={() => onAskQuestion(prompt)}
+                  className="rounded-full border border-border bg-secondary/70 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-accent/50 hover:text-foreground"
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
             <button
               onClick={onOpenChat}
-              className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
+              className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               <Command className="h-4 w-4" />
               <span>Open chat</span>
