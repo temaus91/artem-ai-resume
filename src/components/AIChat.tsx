@@ -60,7 +60,7 @@ const AIChat = ({ isOpen, onClose }: AIChatProps) => {
           ) : (
             messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${msg.role === 'user' ? 'bg-accent text-accent-foreground' : 'bg-secondary text-foreground'}`}>
+                <div className={`max-w-[80%] whitespace-pre-wrap break-words rounded-2xl px-4 py-3 text-sm ${msg.role === 'user' ? 'bg-accent text-accent-foreground' : 'bg-secondary text-foreground'}`}>
                   {msg.content}
                 </div>
               </div>

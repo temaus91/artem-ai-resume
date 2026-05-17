@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import OpenAI from 'openai';
 import { buildSystemPrompt } from '@/lib/ai/build-system-prompt';
+import { isClearlyOffTopic, normalizeAssistantAnswer, OFF_TOPIC_RESPONSE } from '@/lib/ai/chat-guardrails';
 import { createServiceRoleSupabaseClient } from '@/lib/supabase/service-role';
 import { artemProfile } from '@/data/artem-profile';
 import { randomUUID } from 'crypto';
@@ -13,6 +14,20 @@ const schema = z.object({
 
 export const runtime = 'nodejs';
 
+async function persistChatTurn(sessionId: string, userMessage: string | undefined, assistantMessage: string) {
+  if (!userMessage || !process.env.SUPABASE_SERVICE_ROLE_KEY || !process.env.NEXT_PUBLIC_SUPABASE_URL) return;
+
+  try {
+    const supabase = createServiceRoleSupabaseClient();
+    await supabase.from('chat_history').insert([
+      { session_id: sessionId, role: 'user', content: userMessage },
+      { session_id: sessionId, role: 'assistant', content: assistantMessage },
+    ]);
+  } catch {
+    // no-op if db unavailable
+  }
+}
+
 export async function POST(req: Request) {
   const parsed = schema.safeParse(await req.json());
   if (!parsed.success) return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
@@ -20,6 +35,11 @@ export async function POST(req: Request) {
   const sessionId = parsed.data.sessionId || randomUUID();
   const lastMessage = parsed.data.messages[parsed.data.messages.length - 1]?.content;
   let historyMessages: { role: 'user' | 'assistant'; content: string }[] = [];
+
+  if (lastMessage && isClearlyOffTopic(lastMessage)) {
+    await persistChatTurn(sessionId, lastMessage, OFF_TOPIC_RESPONSE);
+    return new NextResponse(OFF_TOPIC_RESPONSE, { headers: { 'x-session-id': sessionId } });
+  }
 
   if (process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.NEXT_PUBLIC_SUPABASE_URL) {
     try {
@@ -72,6 +92,13 @@ export async function POST(req: Request) {
         actual_contributions: project.aiContext.technicalWork,
         lessons_learned: project.aiContext.lessonsLearned,
       })),
+      failures: artemProfile.failures.map((failure) => ({
+        year: failure.year,
+        title: failure.title,
+        summary: failure.summary,
+        details: failure.details,
+        lessons: failure.lessons,
+      })),
       skills: [
         ...artemProfile.skills.strong.map((s) => ({ skill_name: s, category: 'strong', evidence: 'Repeatedly demonstrated in production environments.' })),
         ...artemProfile.skills.moderate.map((s) => ({ skill_name: s, category: 'moderate', evidence: 'Applied in real project delivery contexts.' })),
@@ -105,20 +132,10 @@ export async function POST(req: Request) {
       ],
       max_output_tokens: 350,
     });
-    answer = completion.output_text || answer;
+    answer = normalizeAssistantAnswer(completion.output_text || answer);
   }
 
-  if (process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.NEXT_PUBLIC_SUPABASE_URL) {
-    try {
-      const supabase = createServiceRoleSupabaseClient();
-      await supabase.from('chat_history').insert([
-        { session_id: sessionId, role: 'user', content: lastMessage },
-        { session_id: sessionId, role: 'assistant', content: answer },
-      ]);
-    } catch {
-      // no-op if db unavailable
-    }
-  }
+  await persistChatTurn(sessionId, lastMessage, answer);
 
   return new NextResponse(answer, { headers: { 'x-session-id': sessionId } });
 }
