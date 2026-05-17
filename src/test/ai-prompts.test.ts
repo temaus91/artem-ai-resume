@@ -39,6 +39,19 @@ describe('prompt builders', () => {
     expect(artemProfile.projects[0].highlights.join(' ')).toContain('OpenAI-backed resume chatbot');
   });
 
+  it('includes sanitized private marketplace project evidence', () => {
+    const marketplaceProject = artemProfile.projects.find((project) =>
+      project.name.includes('Marketplace'),
+    );
+
+    expect(marketplaceProject?.period).toBeUndefined();
+    expect(marketplaceProject?.sourceUrl).toBeUndefined();
+    expect(marketplaceProject?.stack.join(' ')).toContain('Stripe Connect');
+    expect(marketplaceProject?.stack.join(' ')).toContain('Supabase');
+    expect(marketplaceProject?.aiContext.technicalWork).toContain('webhook idempotency');
+    expect(marketplaceProject?.sourceUrl).toBeUndefined();
+  });
+
   it('keeps projects separate from employment evidence in the system prompt', () => {
     const prompt = buildSystemPrompt({
       profile: { id: '1', name: 'Artem', title: 'SWE' },
@@ -94,6 +107,7 @@ describe('prompt builders', () => {
     expect(inferEvidenceLabels('Explain the AI resume project')).toEqual(['Projects']);
     expect(inferEvidenceLabels('Walk me through a project')).toEqual(['Projects']);
     expect(inferEvidenceLabels('Tell me about HR work at Amazon')).toEqual(['Amazon']);
+    expect(inferEvidenceLabels('Does Artem have Stripe or Supabase experience?')).toEqual(['Projects']);
     expect(withEvidenceLine('I learned to narrow scope.', 'Tell me about a real failure')).toContain(
       'Evidence used: Failures',
     );

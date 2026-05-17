@@ -137,6 +137,7 @@ export async function POST(req: Request) {
         { instruction: `Personality highlights: ${(artemProfile.personalityHighlights || []).join('; ')}.` },
         { instruction: `Long-term dreams: ${(artemProfile.longTermDreams || []).join('; ')}.` },
         { instruction: `AI experience: ${artemProfile.aiExperienceSummary}` },
+        { instruction: 'When discussing the private marketplace project, do not name the product, domain, or present it as current employment. Describe it as independent product work built outside employment, focused on full-stack marketplace workflows, payments, auth, deployment, and operations.' },
       ],
     });
     const completion = await openai.responses.create({

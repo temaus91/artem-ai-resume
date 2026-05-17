@@ -46,6 +46,7 @@ export async function POST(req: Request) {
     `Cloud security/networking: ${(artemProfile.cloudSecurityAndNetworking || []).join(', ')}`,
     `Personal AI project evidence: ${artemProfile.aiExperienceSummary}`,
     'Personal project: built this AI resume as a Next.js/OpenAI app with resume chatbot, structured job-description fit analyzer, prompt guardrails, optional Supabase chat history, tests, and public GitHub cleanup.',
+    'Private independent product build: built a substantial marketplace/operations platform with Next.js, React, TypeScript, Supabase/PostgreSQL, auth, RLS-aware server flows, image storage, Stripe Connect, Checkout Sessions, webhook idempotency, sale ledger snapshots, Vercel deployment lanes, Playwright, Vitest, and CI/CD-style verification. Do not name the private product or domain.',
     'AI-assisted development tools used heavily since 2025: Codex and Anthropic Claude.',
     `Work style: ${artemProfile.status}`,
     'Known constraints: not currently a people manager; limited server hardware engineering; limited device-only focus',

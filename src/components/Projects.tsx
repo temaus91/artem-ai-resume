@@ -30,7 +30,7 @@ const Projects = () => {
                       <Layers className="h-3.5 w-3.5" />
                       {project.role}
                     </span>
-                    <span>{project.period}</span>
+                    {project.period ? <span>{project.period}</span> : null}
                   </div>
                   <h3 className="text-xl md:text-2xl font-serif text-foreground">
                     {project.name}
@@ -40,15 +40,17 @@ const Projects = () => {
                   </p>
                 </div>
 
-                <a
-                  href={project.sourceUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
-                >
-                  <Github className="h-4 w-4" />
-                  GitHub
-                </a>
+                {project.sourceUrl ? (
+                  <a
+                    href={project.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
+                  >
+                    <Github className="h-4 w-4" />
+                    GitHub
+                  </a>
+                ) : null}
               </div>
 
               <div className="mt-5 grid gap-5 md:grid-cols-[1.2fr_0.8fr]">

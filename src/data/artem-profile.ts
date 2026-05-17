@@ -87,6 +87,47 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         lessonsLearned:
           "AI tools are most valuable when paired with clear product intent, tight evidence boundaries, and human review. The hard part is not generating code; it is deciding what should exist, what should be deleted, and how the AI should behave honestly."
       }
+    },
+    {
+      name: "Private Marketplace / Operations Platform",
+      role: "Independent product build",
+      period: undefined,
+      sourceUrl: undefined,
+      summary:
+        "A private full-stack marketplace and operations platform for matching supply and venue-style demand, managing reservations, public discovery, payments, admin workflows, and staged production rollout.",
+      highlights: [
+        "Built a substantial Next.js product with authenticated user flows, public discovery pages, reservation workspaces, admin operations, and production-style deployment lanes",
+        "Implemented Supabase-backed auth, PostgreSQL schema design, RLS-aware server flows, image storage, generated database types, seed data, and fixture-driven mock/demo environments",
+        "Integrated Stripe Connect and Checkout Sessions with webhook idempotency, sale ledger snapshots, payout-readiness gating, refund/dispute-aware operations, and staged checkout testing",
+        "Designed public exhibition-style routes with stable opaque slugs, QR code generation, print-ready QR kits, and lifecycle-aware public states",
+        "Set up multi-environment deployment patterns across public preview, public demo, internal staging, mock data lanes, and server-backed staging",
+        "Added broad verification coverage with linting, TypeScript checks, Vitest unit tests, Playwright flows, Supabase seed/type checks, and CI/CD-style verification scripts"
+      ],
+      stack: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Supabase",
+        "PostgreSQL",
+        "Stripe Connect",
+        "Stripe Checkout",
+        "Vercel",
+        "Playwright",
+        "Vitest",
+        "Tailwind CSS",
+        "Zod",
+        "Email auth workflows"
+      ],
+      aiContext: {
+        situation:
+          "I wanted deeper hands-on experience building a real product surface beyond a resume demo: a marketplace-style workflow with public discovery, authenticated operators, payments, admin operations, and deployment discipline.",
+        approach:
+          "I kept the project private and independent, avoided naming the product publicly, and treated it as a production-oriented product build: clear environment topology, safe public preview/demo lanes, server-backed staging, payment ledgers, and broad automated verification.",
+        technicalWork:
+          "I built authenticated Next.js workflows backed by Supabase and PostgreSQL, designed RLS-aware server paths, implemented reservation and public exhibition flows, added Stripe Connect and Checkout integration, handled webhook idempotency and sale ledger snapshots, generated QR/public routes, managed Vercel deployment modes across mock and server-backed stages, and maintained Vitest plus Playwright coverage.",
+        lessonsLearned:
+          "Marketplace-style products require more than UI: auth boundaries, operational states, payments, webhooks, test data, staging topology, and launch gates have to be designed together. I learned to separate public demo behavior from real backend behavior so the product can be shown safely while production readiness is still gated."
+      }
     }
   ],
 
@@ -146,6 +187,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
       "AI-Assisted Software Development",
       "Test Automation Architecture",
       "Execution Engine Design",
+      "Supabase / PostgreSQL Application Development",
       "On-Call Operations and Incident Handling",
       "Cross-Team Delivery",
       "Mentoring and Knowledge Transfer"
@@ -154,6 +196,10 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
       "AI Feature Integration",
       "OpenAI API and LLM Chatbot Integration",
       "Prompt and Guardrail Design",
+      "Stripe Connect and Checkout Integration",
+      "Marketplace Workflow Design",
+      "Vercel Deployment and Environment Management",
+      "Playwright End-to-End Testing",
       "Cloud-Native Networking Patterns",
       "AuthN/AuthZ Integrations",
       "Frontend Framework Ramp-Up (including Oracle JET)",
