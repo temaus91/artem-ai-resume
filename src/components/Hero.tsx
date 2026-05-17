@@ -32,9 +32,9 @@ const Hero = ({ onOpenChat, onAskQuestion }: HeroProps) => {
   return (
     <section
       id="hero"
-      className="relative min-h-[72svh] overflow-hidden px-6 pt-24 pb-10 md:min-h-[78svh] md:pt-24 md:pb-12"
+      className="relative overflow-hidden px-6 pt-24 pb-8 md:pt-28 md:pb-10"
     >
-      <div className="mx-auto flex min-h-[calc(72svh-8.5rem)] w-full max-w-4xl items-center md:min-h-[calc(78svh-9rem)]">
+      <div className="mx-auto w-full max-w-4xl">
         <div className="w-full">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/80 px-4 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] animate-fade-in">
             <span className="h-2 w-2 rounded-full bg-success animate-pulse-soft" />
@@ -86,7 +86,7 @@ const Hero = ({ onOpenChat, onAskQuestion }: HeroProps) => {
             </div>
           </form>
 
-          <div className="mb-9 flex flex-col gap-3 animate-slide-up stagger-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-3 animate-slide-up stagger-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2">
               {samplePrompts.map((prompt) => (
                 <button
