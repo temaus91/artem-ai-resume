@@ -34,7 +34,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
   hardNoClaims: [
     "Not a people manager today",
     "No server hardware engineering background",
-    "Limited direct device experience (Kindle-focused)",
+    "Some direct Kindle Scribe launch/device-readiness experience, but not deep native mobile or device-systems specialization",
   ],
   tonePreference: "balanced",
   whyLeftAmazon: `After a long and meaningful run at Amazon, I wanted a new challenge in a remote-first setup while staying in Seattle. I was on a manager track, but company-wide flattening and layoffs paused that path. I also wanted to move away from older mobile technology constraints and back toward broader full-stack/platform work.`,
@@ -163,6 +163,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         "Delivered Amazon HR tooling at large scale (2018-2020), including API latency optimizations with in-memory approaches and direct customer-driven delivery",
         "In Seller Fraud Prevention (2020-2022), identified a Redshift integration design issue and became an early internal adopter of a newer Redshift API",
         "In Kindle Content Management (2022-2023), helped lead delivery of a major Kindle UI redesign to on-time release",
+        "Supported Kindle Scribe launch readiness by handling pre-release device workflows under embargo, coordinating a team for device deployment preparation, and delivering sorting/category experience work",
         "Hands-on with AWS services including IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda; operated systems through regular on-call up to Sev-1 incidents"
       ],
       aiContext: {
@@ -171,9 +172,9 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         approach:
           "My approach was to ramp quickly, dive deep into root causes, and deliver practical solutions end-to-end while balancing reliability and speed.",
         technicalWork:
-          "I shipped APIs, backend services, and full-stack features across seller systems, HR workflows, fraud prevention tooling, and Kindle content platforms. I regularly worked with AWS cloud services and security primitives, handled production deployments, and participated in primary/secondary on-call rotations.",
+          "I shipped APIs, backend services, and full-stack features across seller systems, HR workflows, fraud prevention tooling, and Kindle content platforms. On Kindle, I helped prepare pre-release Kindle Scribe devices for launch workflows under embargo, coordinated device deployment preparation with a team, and delivered sorting/category experience work. I regularly worked with AWS cloud services and security primitives, handled production deployments, and participated in primary/secondary on-call rotations.",
         lessonsLearned:
-          "Strong execution at scale requires clear ownership through the full lifecycle: design, implementation, deployment, on-call operations, and continuous improvement."
+          "Strong execution at scale requires clear ownership through the full lifecycle: design, implementation, deployment, confidential launch readiness, on-call operations, and continuous improvement."
       }
     }
   ],
@@ -200,6 +201,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
       "Marketplace Workflow Design",
       "Vercel Deployment and Environment Management",
       "Playwright End-to-End Testing",
+      "Confidential Device Launch Readiness",
       "Cloud-Native Networking Patterns",
       "AuthN/AuthZ Integrations",
       "Frontend Framework Ramp-Up (including Oracle JET)",
@@ -410,7 +412,7 @@ export const fitAssessments = {
       {
         requirement: "Deep mobile product development",
         reality:
-          "I do not have native mobile development depth. My background is primarily full-stack web and backend systems."
+          "I do not have deep native mobile or device-systems specialization. I do have some Kindle Scribe launch/device-readiness experience, but my main background is full-stack web, backend systems, platform workflows, and production operations."
       },
       {
         requirement: "Consumer growth experimentation ownership",

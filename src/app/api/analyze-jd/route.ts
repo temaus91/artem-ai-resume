@@ -49,7 +49,7 @@ export async function POST(req: Request) {
     'Private independent product build: built a substantial marketplace/operations platform with Next.js, React, TypeScript, Supabase/PostgreSQL, auth, RLS-aware server flows, image storage, Stripe Connect, Checkout Sessions, webhook idempotency, sale ledger snapshots, Vercel deployment lanes, Playwright, Vitest, and CI/CD-style verification. Do not name the private product or domain.',
     'AI-assisted development tools used heavily since 2025: Codex and Anthropic Claude.',
     `Work style: ${artemProfile.status}`,
-    'Known constraints: not currently a people manager; limited server hardware engineering; limited device-only focus',
+    'Known constraints: not currently a people manager; limited server hardware engineering; some Kindle Scribe launch/device-readiness experience but not deep native mobile or device-systems specialization',
   ].join('\n');
 
   if (!process.env.OPENAI_API_KEY) {

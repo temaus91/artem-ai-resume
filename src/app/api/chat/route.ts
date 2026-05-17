@@ -124,7 +124,7 @@ export async function POST(req: Request) {
       gaps: [
         { description: 'No formal people-manager role to date', why_its_a_gap: 'Career track has been senior IC ownership.' },
         { description: 'No server hardware engineering background', why_its_a_gap: 'Primary focus has been software platforms and cloud systems.' },
-        { description: 'Limited direct device-focused scope', why_its_a_gap: 'Some Kindle work, but not deeply device-specialized.' },
+        { description: 'Not deeply specialized in native mobile or device systems', why_its_a_gap: 'Has some Kindle Scribe launch/device-readiness experience, but primary focus is full-stack, backend, platform workflows, and production operations.' },
       ],
       faq: (artemProfile.faq || []).map((item) => ({ question: item.question, answer: item.answer })),
       instructions: [

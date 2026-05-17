@@ -52,6 +52,14 @@ describe('prompt builders', () => {
     expect(marketplaceProject?.sourceUrl).toBeUndefined();
   });
 
+  it('includes Kindle Scribe launch-readiness evidence without overstating device specialization', () => {
+    const amazonExperience = artemProfile.experience.find((experience) => experience.company === 'Amazon');
+
+    expect(amazonExperience?.highlights.join(' ')).toContain('Kindle Scribe');
+    expect(amazonExperience?.aiContext.technicalWork).toContain('pre-release Kindle Scribe devices');
+    expect(artemProfile.hardNoClaims.join(' ')).toContain('not deep native mobile or device-systems specialization');
+  });
+
   it('keeps projects separate from employment evidence in the system prompt', () => {
     const prompt = buildSystemPrompt({
       profile: { id: '1', name: 'Artem', title: 'SWE' },
