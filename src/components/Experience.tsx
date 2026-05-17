@@ -4,7 +4,7 @@ import { Check, Minus, X } from "lucide-react";
 
 const skillGroups = [
   {
-    title: "Strong",
+    title: "Core Strengths",
     skills: artemProfile.skills.strong,
     icon: Check,
     className: "bg-success-muted border-success/20",
@@ -12,7 +12,7 @@ const skillGroups = [
     titleClassName: "text-success",
   },
   {
-    title: "Recent / Hands-On",
+    title: "Recent Hands-On",
     skills: artemProfile.skills.moderate,
     icon: Minus,
     className: "bg-secondary border-border",
@@ -20,7 +20,7 @@ const skillGroups = [
     titleClassName: "text-muted-foreground",
   },
   {
-    title: "Gaps (I'll tell you)",
+    title: "Known Gaps",
     skills: artemProfile.skills.gaps,
     icon: X,
     className: "bg-warning-muted border-warning/20",
