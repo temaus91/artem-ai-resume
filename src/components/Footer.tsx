@@ -1,11 +1,10 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 import { artemProfile } from "@/data/artem-profile";
 
 const Footer = () => {
   const githubUrl = artemProfile.githubUrl || "https://github.com";
   const linkedinUrl =
     artemProfile.linkedinUrl || "https://www.linkedin.com/in/artem-tarasenko-seattle";
-  const email = artemProfile.email || "temaus91@gmail.com";
 
   return (
     <footer className="py-16 px-6 border-t border-border">
@@ -32,12 +31,6 @@ const Footer = () => {
               className="p-3 bg-secondary rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
             >
               <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href={`mailto:${email}`}
-              className="p-3 bg-secondary rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-            >
-              <Mail className="w-5 h-5" />
             </a>
           </div>
         </div>

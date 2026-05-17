@@ -11,7 +11,6 @@ export const artemProfile = {
   yearsExperience: "12+ years of software engineering experience",
   linkedinUrl: "https://www.linkedin.com/in/artem-tarasenko-seattle",
   githubUrl: "https://github.com/temaus91",
-  email: "temaus91@gmail.com",
 
   summary: `I build reliable full-stack and backend systems at enterprise scale across Oracle and Amazon.
 I have 12+ years of experience, including 10 years at Amazon across high-scale product and platform teams, and current work at Oracle on AI-enabled healthcare workflows.
