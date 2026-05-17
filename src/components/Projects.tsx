@@ -12,7 +12,7 @@ const Projects = () => {
           <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-3">
             Projects
           </h2>
-          <p className="text-muted-foreground max-w-2xl">
+          <p className="text-muted-foreground">
             Things I built outside employment. Useful signal, but separate from Oracle and Amazon experience.
           </p>
         </div>
