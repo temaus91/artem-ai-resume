@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Command, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface HeaderProps {
   onOpenChat?: () => void;
@@ -94,6 +95,7 @@ const Header = ({ onOpenChat }: HeaderProps) => {
           >
             Fit Check
           </button>
+          <ThemeToggle />
           <button
             onClick={handleAskAI}
             className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent px-4 py-2 text-sm text-accent-foreground transition-transform hover:scale-[1.02] active:scale-[0.98]"
@@ -105,14 +107,17 @@ const Header = ({ onOpenChat }: HeaderProps) => {
         </div>
 
         {/* Mobile menu button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 text-muted-foreground hover:text-foreground"
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileMenuOpen}
-        >
-          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 text-muted-foreground hover:text-foreground"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}

@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root,
+  [data-theme="dark"] {
+    color-scheme: dark;
+
     --background: 240 10% 4%;
     --foreground: 60 9% 98%;
 
@@ -42,6 +45,46 @@
     --warning: 38 92% 50%;
     --warning-muted: 38 50% 20%;
   }
+
+  [data-theme="light"] {
+    color-scheme: light;
+
+    --background: 216 28% 97%;
+    --foreground: 230 18% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 230 18% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 230 18% 11%;
+
+    --primary: 39 32% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 22% 93%;
+    --secondary-foreground: 230 16% 18%;
+
+    --muted: 220 18% 90%;
+    --muted-foreground: 226 10% 38%;
+
+    --accent: 174 58% 32%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 16% 84%;
+    --input: 220 18% 90%;
+    --ring: 174 58% 32%;
+
+    --surface-elevated: 0 0% 100%;
+    --text-subtle: 226 9% 46%;
+    --text-highlight: 38 55% 34%;
+    --success: 158 58% 34%;
+    --success-muted: 158 35% 90%;
+    --warning: 36 86% 42%;
+    --warning-muted: 38 80% 90%;
+  }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -64,6 +107,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
+    transition: background-color 180ms ease, color 180ms ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
