@@ -1,12 +1,15 @@
+'use client';
+
 import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
 import FitAssessment from "@/components/FitAssessment";
 import AIChat from "@/components/AIChat";
 import Footer from "@/components/Footer";
 
-const Index = () => {
+const PortfolioPage = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   const openChat = () => setIsChatOpen(true);
@@ -17,6 +20,7 @@ const Index = () => {
       <main>
         <Hero onOpenChat={openChat} />
         <Experience />
+        <Projects />
         <FitAssessment />
       </main>
       <Footer />
@@ -25,4 +29,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default PortfolioPage;

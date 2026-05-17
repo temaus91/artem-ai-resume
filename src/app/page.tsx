@@ -1,7 +1,5 @@
-'use client';
-
-import Index from '@/pages/Index';
+import PortfolioPage from '@/components/PortfolioPage';
 
 export default function HomePage() {
-  return <Index />;
+  return <PortfolioPage />;
 }

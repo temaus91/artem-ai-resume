@@ -16,8 +16,13 @@ export const artemProfile = {
   summary: `I build reliable full-stack and backend systems at enterprise scale across Oracle and Amazon.
 I have 12+ years of experience, including 10 years at Amazon across high-scale product and platform teams, and current work at Oracle on AI-enabled healthcare workflows.
 I focus on high-impact, problem-first execution: replacing brittle systems, improving developer workflows, and shipping practical solutions end-to-end.
-I mentor engineers, communicate directly, and use AI development tools across planning, implementation, testing, and documentation.
+Since 2025, I have used AI development tools heavily, especially Codex and Anthropic Claude, across planning, implementation, testing, refactoring, and documentation.
+I also build AI-enabled applications, including this AI-queryable resume with chatbot and structured job-fit analysis workflows.
+I mentor engineers, communicate directly, and help teammates use AI tools more effectively.
 I value friendly, honest working relationships and bring humor, curiosity, and strong ownership to teams.`,
+
+  aiExperienceSummary:
+    "Since 2025, Artem has used Codex and Anthropic Claude heavily for software planning, implementation, testing, refactoring, and documentation. He has also built AI-enabled application flows, including this AI-queryable resume with an OpenAI-backed chat experience and structured job-description fit analyzer.",
 
   awsServices: ["IAM", "S3", "DynamoDB", "EC2", "SNS", "SQS", "Lambda"],
   cloudSecurityAndNetworking: [
@@ -58,6 +63,34 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
     "Contribute feature direction at a major car company",
   ],
 
+  projects: [
+    {
+      name: "AI Resume / Candidate Portfolio",
+      role: "Personal project",
+      period: "2025-Present",
+      summary:
+        "A public Next.js portfolio that lets recruiters ask questions against approved resume evidence and run structured job-description fit checks.",
+      sourceUrl: "https://github.com/temaus91/artem-ai-resume",
+      highlights: [
+        "Built an OpenAI-backed resume chatbot and structured job-description fit analyzer",
+        "Designed prompt guardrails so answers stay grounded, admit gaps, and avoid overselling",
+        "Added optional Supabase chat-history persistence, focused tests, and a cleaned GitHub-ready project structure",
+        "Used Codex and Anthropic Claude heavily throughout planning, implementation, debugging, cleanup, and documentation"
+      ],
+      stack: ["Next.js", "TypeScript", "OpenAI Responses API", "Tailwind CSS", "Supabase", "Vitest"],
+      aiContext: {
+        situation:
+          "I wanted my resume to demonstrate how I think and build, not just list past jobs. A static resume could not answer recruiter-specific questions or expose my judgment around fit, gaps, and tradeoffs.",
+        approach:
+          "I treated the resume as a real AI product: define approved evidence, design anti-overselling behavior, build the chat and JD analysis flows, then clean the repo so the implementation itself is inspectable.",
+        technicalWork:
+          "I built a Next.js App Router portfolio with an OpenAI Responses API chat endpoint, structured job-description analysis using JSON schema output, reusable prompt builders, optional Supabase chat persistence, Tailwind UI, focused Vitest coverage, and a cleaned GitHub-ready project structure. I used Codex and Anthropic Claude heavily as development partners while keeping final architecture, product direction, and code review decisions grounded in my own judgment.",
+        lessonsLearned:
+          "AI tools are most valuable when paired with clear product intent, tight evidence boundaries, and human review. The hard part is not generating code; it is deciding what should exist, what should be deleted, and how the AI should behave honestly."
+      }
+    }
+  ],
+
   experience: [
     {
       company: "Oracle",
@@ -67,7 +100,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         "Led replacement of a legacy VM-based test framework with a production-ready cross-platform Test Automation Studio and execution engine",
         "Owned core Java execution logic, CLI compatibility, JSON-based tests, live execution visibility, and Excel-to-JSON migration paths",
         "Drove production adoption through documentation, training, and support; tool is now used by multiple Clinical One service teams with positive usability feedback",
-        "Building AI Intelligence capabilities on Clinical One for large pharmaceutical comapnies, including user-management APIs and secure auth integration",
+        "Building AI Intelligence capabilities on Clinical One for large pharmaceutical companies, including user-management APIs and secure auth integration",
         "Delivered core full-stack workflows for trial-related pages and user journeys while maintaining confidentiality boundaries"
       ],
       aiContext: {
@@ -111,6 +144,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
       "Full-Stack Engineering",
       "Java / Backend API Development",
       "AWS Cloud-Native Development",
+      "AI-Assisted Software Development",
       "Test Automation Architecture",
       "Execution Engine Design",
       "On-Call Operations and Incident Handling",
@@ -119,6 +153,8 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
     ],
     moderate: [
       "AI Feature Integration",
+      "OpenAI API and LLM Chatbot Integration",
+      "Prompt and Guardrail Design",
       "Cloud-Native Networking Patterns",
       "AuthN/AuthZ Integrations",
       "Frontend Framework Ramp-Up (including Oracle JET)",
@@ -195,7 +231,12 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
     {
       question: "How do you use AI at work?",
       answer:
-        "I use AI throughout planning, implementation, testing, and documentation. I also teach teammates how to use AI effectively so they can deliver faster and work more independently."
+        "Since 2025, I have used Codex and Anthropic Claude heavily across planning, implementation, debugging, refactoring, testing, and documentation. I also teach teammates how to use AI effectively so they can deliver faster and work more independently."
+    },
+    {
+      question: "Have you built AI apps or chatbots yourself?",
+      answer:
+        "Yes. This portfolio is itself an AI-enabled application: it has an OpenAI-backed resume chatbot, structured job-description fit analyzer, prompt guardrails to avoid overselling, optional Supabase chat-history persistence, and a public GitHub-ready Next.js implementation."
     },
     {
       question: "Any personal long-term goals outside software?",
@@ -224,6 +265,9 @@ WHAT ARTEM WANTS YOU TO KNOW:
 - Amazon and Oracle are both high-scale environments; do not claim otherwise
 - He values healthy, friendly, and honest team culture
 - He actively uses and teaches AI-assisted development for faster, more independent execution
+- Since 2025, he has used Codex and Anthropic Claude heavily for planning, implementation, debugging, refactoring, testing, and documentation
+- He built this AI resume project end-to-end as an OpenAI-backed chatbot and structured JD fit analyzer
+- He has practical experience integrating LLMs into app workflows, including prompt guardrails, structured outputs, and chat UX
 - If asked about personality, reflect that he is humorous, social, and curious
 
 FIT EVALUATION GUARDRAILS:

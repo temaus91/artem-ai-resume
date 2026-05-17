@@ -34,6 +34,19 @@ export type ExperiencePrivate = ExperiencePublic & {
   lessons_learned?: string;
 };
 
+export type ProjectEvidence = {
+  id: string;
+  name: string;
+  role?: string;
+  period?: string;
+  summary?: string;
+  source_url?: string;
+  bullet_points: string[];
+  stack?: string[];
+  actual_contributions?: string;
+  lessons_learned?: string;
+};
+
 export type SkillAssessment = {
   skill_name: string;
   category: 'strong' | 'moderate' | 'gaps' | string;

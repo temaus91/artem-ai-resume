@@ -1,73 +1,87 @@
-# Welcome to your Lovable project
+# Artem AI Resume
 
-## Project info
+An AI-queryable resume and candidate portfolio built with Next.js and the OpenAI Responses API.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+The project is intentionally opinionated: the assistant is designed to answer recruiter-style questions with evidence, admit gaps, and recommend against a fit when the role does not match my background.
 
-## How can I edit this code?
+## What It Does
 
-There are several ways of editing your application.
+- Presents my career narrative, experience, strengths, and known gaps as a polished portfolio.
+- Lets visitors ask an AI assistant specific questions about my background.
+- Analyzes a pasted job description and returns a structured, honest fit assessment.
+- Uses a local static profile as the source of truth, so the public site works without a database.
+- Optionally stores chat turns in Supabase when Supabase service credentials are configured.
 
-**Use Lovable**
+## Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- Next.js App Router
+- React and TypeScript
+- Tailwind CSS
+- OpenAI Responses API
+- Zod for request and response validation
+- Supabase optional chat-history persistence
+- Vitest for prompt and schema tests
 
-Changes made via Lovable will be committed automatically to this repo.
+## Project Shape
 
-**Use your preferred IDE**
+```txt
+src/app
+  api/chat        AI resume chat endpoint
+  api/analyze-jd  structured job-fit analyzer
+  page.tsx        public portfolio entrypoint
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+src/components    portfolio UI and chat drawer
+src/data          approved resume/profile context
+src/lib/ai        prompt builders
+src/types         shared domain types
+supabase          optional chat-history schema
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## AI Behavior
 
-Follow these steps:
+The system prompt is built in `src/lib/ai/build-system-prompt.ts`. Core rules:
+
+- Never oversell.
+- Be direct about missing requirements.
+- Use first person.
+- Keep answers concise and concrete.
+- It is acceptable to say: "I'm probably not your person for this role."
+
+The job-description analyzer uses Structured Outputs so the UI receives a predictable schema for verdict, gaps, transferable strengths, and recommendation.
+
+## Local Setup
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
+cp .env.example .env.local
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Open `http://localhost:3000`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The app runs without API keys, but chat and JD analysis use fallback/mock responses. Add `OPENAI_API_KEY` for real AI responses.
 
-**Use GitHub Codespaces**
+## Environment Variables
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```sh
+OPENAI_API_KEY=
+OPENAI_MODEL_CHAT=gpt-4.1-mini
+OPENAI_MODEL_ANALYZE=gpt-4.1-mini
 
-## What technologies are used for this project?
+# Optional: only needed for persisted chat history
+NEXT_PUBLIC_SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+```
 
-This project is built with:
+## Useful Commands
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```sh
+npm run dev
+npm run test
+npm run lint
+npm run build
+```
 
-## How can I deploy this project?
+## Notes
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+This is not a generic resume builder. It is a single-candidate portfolio built to demonstrate product judgment, full-stack implementation, and practical AI behavior for a real hiring workflow.
