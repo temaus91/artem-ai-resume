@@ -41,12 +41,6 @@ const Footer = () => {
             </a>
           </div>
         </div>
-
-        <div className="mt-12 pt-8 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground">
-            This portfolio demonstrates AI-queryable professional presentation.
-          </p>
-        </div>
       </div>
     </footer>
   );
