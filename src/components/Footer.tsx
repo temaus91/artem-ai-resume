@@ -1,11 +1,10 @@
-import { ExternalLink, Github, Linkedin } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 import { artemProfile } from "@/data/artem-profile";
 
 const Footer = () => {
-  const githubUrl = artemProfile.githubUrl || "https://github.com";
+  const githubUrl = "https://github.com/temaus91/artem-ai-resume";
   const linkedinUrl =
     artemProfile.linkedinUrl || "https://www.linkedin.com/in/artem-tarasenko-seattle";
-  const sourceUrl = "https://github.com/temaus91/artem-ai-resume";
 
   return (
     <footer className="py-16 px-6 border-t border-border">
@@ -37,15 +36,6 @@ const Footer = () => {
             >
               <Linkedin className="h-4 w-4" />
               LinkedIn
-            </a>
-            <a
-              href={sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2 text-sm text-muted-foreground transition-colors hover:border-accent/50 hover:text-foreground"
-            >
-              <ExternalLink className="h-4 w-4" />
-              Site source
             </a>
           </div>
         </div>
