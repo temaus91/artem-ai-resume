@@ -92,6 +92,8 @@ describe('prompt builders', () => {
   it('adds deterministic evidence labels when the question maps to resume evidence', () => {
     expect(inferEvidenceLabels('Tell me about a real failure')).toEqual(['Failures']);
     expect(inferEvidenceLabels('Explain the AI resume project')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('Walk me through a project')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('Tell me about HR work at Amazon')).toEqual(['Amazon']);
     expect(withEvidenceLine('I learned to narrow scope.', 'Tell me about a real failure')).toContain(
       'Evidence used: Failures',
     );

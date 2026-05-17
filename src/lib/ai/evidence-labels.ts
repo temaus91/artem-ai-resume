@@ -37,10 +37,18 @@ const refusalTerms = [
   'unrelated requests',
 ] as const;
 
+function escapeRegExp(term: string) {
+  return term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function matchesEvidenceTerm(question: string, term: string) {
+  const escapedTerm = escapeRegExp(term).replace(/\s+/g, '\\s+');
+  return new RegExp(`(^|[^a-z0-9])${escapedTerm}(?=$|[^a-z0-9])`, 'i').test(question);
+}
+
 export function inferEvidenceLabels(question: string) {
-  const normalized = question.toLowerCase();
   return evidenceRules
-    .filter((rule) => rule.terms.some((term) => normalized.includes(term)))
+    .filter((rule) => rule.terms.some((term) => matchesEvidenceTerm(question, term)))
     .map((rule) => rule.label);
 }
 
