@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { extractApiErrorMessage } from '@/lib/client-api-errors';
 import type { ChatTurn } from '@/types/domain';
 
@@ -14,7 +14,7 @@ export function useChat() {
     if (existing) setSessionId(existing);
   }, []);
 
-  const ask = async (content: string) => {
+  const ask = useCallback(async (content: string) => {
     const next = [...messages, { role: 'user' as const, content }];
     setMessages(next);
     setLoading(true);
@@ -52,7 +52,7 @@ export function useChat() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [messages, sessionId]);
 
   return { messages, loading, ask, sessionId };
 }

@@ -11,9 +11,12 @@ export const artemProfile = {
   yearsExperience: "12+ years of software engineering experience",
   linkedinUrl: "https://www.linkedin.com/in/artem-tarasenko-seattle",
   githubUrl: "https://github.com/temaus91",
+  education: "Bachelor of Science in Computer Science, University of Washington",
+  workAuthorization: "US citizen; legally authorized to work in the United States",
 
   summary: `I build reliable full-stack and backend systems at enterprise scale across Oracle and Amazon.
 I have 12+ years of experience, including 10 years at Amazon across high-scale product and platform teams, and current work at Oracle on AI-enabled healthcare workflows.
+I have a Bachelor of Science in Computer Science from the University of Washington and am a US citizen legally authorized to work in the United States.
 I focus on high-impact, problem-first execution: replacing brittle systems, improving developer workflows, and shipping practical solutions end-to-end.
 Since 2025, I have used AI development tools heavily, especially Codex and Anthropic Claude, across planning, implementation, testing, refactoring, and documentation.
 I also build AI-enabled applications, including this AI-queryable resume with chatbot and structured job-fit analysis workflows.
@@ -303,6 +306,16 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         "I am strongest as a senior IC in full-cycle ownership roles and prefer remote-first opportunities based in Seattle."
     },
     {
+      question: "What is your education?",
+      answer:
+        "I have a Bachelor of Science in Computer Science from the University of Washington."
+    },
+    {
+      question: "Can you legally work in the United States?",
+      answer:
+        "Yes. I am a US citizen and legally authorized to work in the United States."
+    },
+    {
       question: "What do you do outside work?",
       answer:
         "I lead a home book club, travel with my wife, and enjoy outdoor sports like paragliding, kiteboarding, skiing, climbing, and snowboarding."
@@ -344,6 +357,8 @@ WHAT ARTEM WANTS YOU TO KNOW:
 - He values ownership from design through production adoption
 - He is not pursuing a people-manager track right now
 - Baseline facts: 12+ years total experience, including 10 years at Amazon and current Oracle work
+- Education: Bachelor of Science in Computer Science from the University of Washington
+- Work authorization: US citizen; legally authorized to work in the United States
 - He has hands-on AWS experience with IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda
 - He has operated production systems through on-call rotations and Sev-1 handling
 - Amazon and Oracle are both high-scale environments; do not claim otherwise

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -27,14 +27,42 @@ const ExperienceCard = ({
   index,
 }: ExperienceCardProps) => {
   const [expanded, setExpanded] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const cardId = `experience-${company.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
+  useEffect(() => {
+    const element = cardRef.current;
+    if (!element) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -10% 0px" },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
+      id={cardId}
+      ref={cardRef}
       className={cn(
         "group relative p-6 md:p-8 bg-card border border-border rounded-2xl transition-all duration-300 hover:border-accent/50",
-        "animate-slide-up opacity-0"
+        visible ? "animate-slide-up opacity-100" : "opacity-0 translate-y-5"
       )}
-      style={{ animationDelay: `${index * 0.1 + 0.2}s`, animationFillMode: "forwards" }}
+      style={visible ? { animationDelay: `${index * 0.1}s`, animationFillMode: "forwards" } : undefined}
     >
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Command, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface HeaderProps {
@@ -14,13 +14,14 @@ const Header = ({ onOpenChat }: HeaderProps) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById(id)?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
   };
 
   const handleAskAI = () => {
@@ -77,9 +78,11 @@ const Header = ({ onOpenChat }: HeaderProps) => {
           </button>
           <button
             onClick={handleAskAI}
-            className="text-sm px-4 py-2 bg-accent text-accent-foreground rounded-full hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent px-4 py-2 text-sm text-accent-foreground transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
-            Ask AI
+            <Command className="h-3.5 w-3.5" />
+            <span>Ask AI</span>
+            <kbd className="rounded border border-accent-foreground/30 px-1.5 py-0.5 text-[10px]">⌘K</kbd>
           </button>
         </div>
 
@@ -87,6 +90,8 @@ const Header = ({ onOpenChat }: HeaderProps) => {
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="lg:hidden p-2 text-muted-foreground hover:text-foreground"
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -95,7 +100,8 @@ const Header = ({ onOpenChat }: HeaderProps) => {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-card border-b border-border animate-slide-down">
-          <div className="px-6 py-4 space-y-4">
+          <div className="px-6 py-4">
+            <div className="grid gap-4 border-b border-border pb-4">
             <button
               onClick={() => scrollToSection("experience")}
               className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
@@ -120,10 +126,12 @@ const Header = ({ onOpenChat }: HeaderProps) => {
             >
               Fit Check
             </button>
+            </div>
             <button
               onClick={handleAskAI}
-              className="block w-full text-left text-accent hover:opacity-80 transition-opacity"
+              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-accent-foreground transition-transform active:scale-[0.98]"
             >
+              <Command className="h-4 w-4" />
               Ask AI About Me
             </button>
           </div>

@@ -87,6 +87,8 @@ export async function POST(req: Request) {
         career_narrative: `${artemProfile.yearsExperience}. 10 years at Amazon across Seller Experience, HR, Seller Fraud Prevention, and Kindle Content Management, then Oracle building test automation and AI-enabled product workflows. ${artemProfile.aiExperienceSummary}`,
         looking_for: artemProfile.status,
         not_looking_for: (artemProfile.hardNoClaims || []).join('; '),
+        education: artemProfile.education,
+        work_authorization: artemProfile.workAuthorization,
       },
       experiences: artemProfile.experience.map((exp, idx) => ({
         id: `exp-${idx + 1}`,
@@ -137,6 +139,8 @@ export async function POST(req: Request) {
         { instruction: `Personality highlights: ${(artemProfile.personalityHighlights || []).join('; ')}.` },
         { instruction: `Long-term dreams: ${(artemProfile.longTermDreams || []).join('; ')}.` },
         { instruction: `AI experience: ${artemProfile.aiExperienceSummary}` },
+        { instruction: `Education: ${artemProfile.education}` },
+        { instruction: `Work authorization: ${artemProfile.workAuthorization}` },
         { instruction: 'When discussing the private marketplace project, do not name the product, domain, or present it as current employment. Describe it as independent product work built outside employment, focused on full-stack marketplace workflows, payments, auth, deployment, and operations.' },
         { instruction: 'When discussing the Soaring Session project, describe it as an in-progress personal iOS/watchOS prototype. Do not present it as a shipped public app or claim real GPS/barometer/field-test reliability before that validation exists.' },
       ],

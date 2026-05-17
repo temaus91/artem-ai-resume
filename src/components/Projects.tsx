@@ -1,5 +1,6 @@
 import { Github, Layers, Sparkles } from "lucide-react";
 import { artemProfile } from "@/data/artem-profile";
+import { Chip } from "@/components/ui/Chip";
 
 const Projects = () => {
   return (
@@ -65,12 +66,9 @@ const Projects = () => {
 
                 <div className="flex flex-wrap content-start gap-2">
                   {project.stack.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-lg border border-border bg-secondary px-2.5 py-1 text-xs text-muted-foreground"
-                    >
+                    <Chip key={item} variant="muted">
                       {item}
-                    </span>
+                    </Chip>
                   ))}
                 </div>
               </div>

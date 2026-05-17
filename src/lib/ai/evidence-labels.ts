@@ -59,7 +59,24 @@ const evidenceRules = [
   },
   {
     label: 'FAQ',
-    terms: ['contact', 'location', 'remote', 'status', 'why left', 'values', 'interview'],
+    terms: [
+      'contact',
+      'location',
+      'remote',
+      'status',
+      'why left',
+      'values',
+      'interview',
+      'education',
+      'degree',
+      'university',
+      'uw',
+      'citizen',
+      'citizenship',
+      'authorized',
+      'work legally',
+      'visa',
+    ],
   },
 ] as const;
 

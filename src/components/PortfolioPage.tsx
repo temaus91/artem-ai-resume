@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Experience from "@/components/Experience";
@@ -12,21 +12,51 @@ import Footer from "@/components/Footer";
 
 const PortfolioPage = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [initialQuestion, setInitialQuestion] = useState<string | null>(null);
 
-  const openChat = () => setIsChatOpen(true);
+  const openChat = useCallback(() => setIsChatOpen(true), []);
+  const openChatWithQuestion = useCallback((question: string) => {
+    setInitialQuestion(question);
+    setIsChatOpen(true);
+  }, []);
+  const clearInitialQuestion = useCallback(() => setInitialQuestion(null), []);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      const isEditable =
+        target?.tagName === "INPUT" ||
+        target?.tagName === "TEXTAREA" ||
+        target?.tagName === "SELECT" ||
+        target?.isContentEditable;
+
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k" && !isEditable) {
+        event.preventDefault();
+        openChat();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [openChat]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="site-shell min-h-screen bg-background">
       <Header onOpenChat={openChat} />
       <main>
-        <Hero onOpenChat={openChat} />
+        <Hero onOpenChat={openChat} onAskQuestion={openChatWithQuestion} />
         <Experience />
         <Projects />
         <HowItWorks />
         <FitAssessment />
       </main>
       <Footer />
-      <AIChat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+      <AIChat
+        isOpen={isChatOpen}
+        initialQuestion={initialQuestion}
+        onInitialQuestionConsumed={clearInitialQuestion}
+        onClose={() => setIsChatOpen(false)}
+      />
     </div>
   );
 };

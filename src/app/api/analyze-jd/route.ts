@@ -41,6 +41,8 @@ export async function POST(req: Request) {
     `Title: ${artemProfile.title}`,
     `Experience: ${artemProfile.yearsExperience || '12+ years total'}`,
     `Companies: ${artemProfile.companies.join(', ')}`,
+    `Education: ${artemProfile.education}`,
+    `Work authorization: ${artemProfile.workAuthorization}`,
     'High-scale background: Amazon (10 years) + Oracle (current)',
     `AWS services used hands-on: ${(artemProfile.awsServices || []).join(', ')}`,
     `Cloud security/networking: ${(artemProfile.cloudSecurityAndNetworking || []).join(', ')}`,

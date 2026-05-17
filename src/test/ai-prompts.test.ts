@@ -60,6 +60,12 @@ describe('prompt builders', () => {
     expect(artemProfile.hardNoClaims.join(' ')).toContain('Not a deep production native mobile specialist yet');
   });
 
+  it('includes education and work authorization evidence', () => {
+    expect(artemProfile.education).toBe('Bachelor of Science in Computer Science, University of Washington');
+    expect(artemProfile.workAuthorization).toContain('US citizen');
+    expect(artemProfile.faq.map((item) => item.answer).join(' ')).toContain('legally authorized to work');
+  });
+
   it('includes the in-progress iOS watchOS soaring project without overstating maturity', () => {
     const soaringProject = artemProfile.projects.find((project) => project.name === 'Soaring Session');
 
@@ -115,11 +121,14 @@ describe('prompt builders', () => {
     expect(prompt).toContain('Do not answer unrelated questions using general world knowledge');
     expect(isClearlyOffTopic('I want to go on vacation to Turkey. Make me a good plan')).toBe(true);
     expect(isClearlyOffTopic('Tell me about Artem project failures')).toBe(false);
+    expect(isClearlyOffTopic('Can Artem legally work in the US?')).toBe(false);
+    expect(isClearlyOffTopic('What is Artem education?')).toBe(false);
     expect(OFF_TOPIC_RESPONSE).toContain("Artem's resume");
   });
 
   it('normalizes markdown artifacts from assistant output', () => {
     expect(normalizeAssistantAnswer('### 1. **Duration**\\n\\nUse **plain text**.')).toBe('1. Duration\\n\\nUse plain text.');
+    expect(normalizeAssistantAnswer('I have a BS in CS. Evidence used: Education.')).toBe('I have a BS in CS.');
   });
 
   it('adds deterministic evidence labels when the question maps to resume evidence', () => {
@@ -129,6 +138,8 @@ describe('prompt builders', () => {
     expect(inferEvidenceLabels('Tell me about HR work at Amazon')).toEqual(['Amazon']);
     expect(inferEvidenceLabels('Does Artem have Stripe or Supabase experience?')).toEqual(['Projects']);
     expect(inferEvidenceLabels('Does Artem have SwiftUI watchOS experience?')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('What degree does Artem have?')).toEqual(['FAQ']);
+    expect(inferEvidenceLabels('Can Artem work legally in the US?')).toEqual(['FAQ']);
     expect(withEvidenceLine('I learned to narrow scope.', 'Tell me about a real failure')).toContain(
       'Evidence used: Failures',
     );
