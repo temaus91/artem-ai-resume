@@ -45,6 +45,7 @@ export async function POST(req: Request) {
     `Work authorization: ${artemProfile.workAuthorization}`,
     'High-scale background: Amazon (10 years) + Oracle (current)',
     `AWS services used hands-on: ${(artemProfile.awsServices || []).join(', ')}`,
+    `Oracle Cloud / OCI experience: ${(artemProfile.ociExperience || []).join(', ')}`,
     `Cloud security/networking: ${(artemProfile.cloudSecurityAndNetworking || []).join(', ')}`,
     `Personal AI project evidence: ${artemProfile.aiExperienceSummary}`,
     'Personal project: built this AI resume as a Next.js/OpenAI app with resume chatbot, structured job-description fit analyzer, prompt guardrails, optional Supabase chat history, tests, and public GitHub cleanup.',
@@ -52,7 +53,7 @@ export async function POST(req: Request) {
     'In-progress personal native Apple project: building Soaring Session, a SwiftUI iOS/watchOS paragliding app with a shared Swift package, simulator telemetry replay, automatic flight-segment detection tests, local persistence/export previews, WatchConnectivity sync, and a HealthKit workout-session foundation. Do not present it as a shipped public app or as field-tested GPS/barometer reliability yet.',
     'AI-assisted development tools used heavily since 2025: Codex and Anthropic Claude.',
     `Work style: ${artemProfile.status}`,
-    'Known constraints: not currently a people manager; limited server hardware engineering; some Kindle Scribe launch/device-readiness experience and in-progress SwiftUI iOS/watchOS project work, but not deep production native mobile or device-systems specialization',
+    'Known constraints: not currently a people manager; limited server hardware engineering; some Kindle Scribe launch/device-readiness experience and in-progress SwiftUI iOS/watchOS project work, but no long-term production ownership of shipped native iOS/watchOS apps yet',
   ].join('\n');
 
   if (!process.env.OPENAI_API_KEY) {

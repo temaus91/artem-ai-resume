@@ -26,7 +26,13 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
   aiExperienceSummary:
     "Since 2025, Artem has used Codex and Anthropic Claude heavily for software planning, implementation, testing, refactoring, and documentation. He has also built AI-enabled application flows, including this AI-queryable resume with an OpenAI-backed chat experience and structured job-description fit analyzer.",
 
-  awsServices: ["IAM", "S3", "DynamoDB", "EC2", "SNS", "SQS", "Lambda"],
+  awsServices: ["IAM", "S3", "DynamoDB", "EC2", "SNS", "SQS", "Lambda", "Kinesis", "Redshift"],
+  ociExperience: [
+    "Oracle Cloud Infrastructure (OCI) operations support",
+    "OCI IAM application configuration",
+    "Authentication and authorization integration",
+    "Token minting and service authorization flows",
+  ],
   cloudSecurityAndNetworking: [
     "IAM permission design",
     "Security groups",
@@ -37,7 +43,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
   hardNoClaims: [
     "Not a people manager today",
     "No server hardware engineering background",
-    "Not a deep production native mobile specialist yet; currently building a SwiftUI iOS/watchOS app and has some Kindle Scribe launch/device-readiness experience",
+    "No long-term production ownership of shipped native iOS/watchOS apps yet; currently building a SwiftUI iOS/watchOS app and has some Kindle Scribe launch/device-readiness experience",
   ],
   tonePreference: "balanced",
   whyLeftAmazon: `After a long and meaningful run at Amazon, I wanted a new challenge in a remote-first setup while staying in Seattle. I was on a manager track, but company-wide flattening and layoffs paused that path. I also wanted to move away from older mobile technology constraints and back toward broader full-stack/platform work.`,
@@ -179,6 +185,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         "Owned core Java execution logic, CLI compatibility, JSON-based tests, live execution visibility, and Excel-to-JSON migration paths",
         "Drove production adoption through documentation, training, and support; tool is now used by multiple Clinical One service teams with positive usability feedback",
         "Building AI Intelligence capabilities on Clinical One for large pharmaceutical companies, including user-management APIs and secure auth integration",
+        "Added authentication and authorization flows involving token minting, OCI IAM application configuration, and Oracle Cloud operations support",
         "Delivered core full-stack workflows for trial-related pages and user journeys while maintaining confidentiality boundaries"
       ],
       aiContext: {
@@ -187,7 +194,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         approach:
           "I wrote a technical design proposing a full replacement. Initially I co-led implementation with a principal engineer (UI ownership split), then took full ownership when he left and drove delivery to production.",
         technicalWork:
-          "I led the Java logic and execution engine architecture, added CLI-compatible execution, JSON test definitions, run-time observability, and migration support from Excel-based suites. I later transferred ownership through docs, enablement sessions, and a dedicated support channel. In parallel, I contributed to AI Intelligence with secure user-management APIs, auth integration, and end-user workflow pages in Clinical One.",
+          "I led the Java logic and execution engine architecture, added CLI-compatible execution, JSON test definitions, run-time observability, and migration support from Excel-based suites. I later transferred ownership through docs, enablement sessions, and a dedicated support channel. In parallel, I contributed to AI Intelligence with secure user-management APIs, authentication and authorization integration, token minting flows, OCI IAM application configuration, Oracle Cloud operations support, and end-user workflow pages in Clinical One.",
         lessonsLearned:
           "Own the full lifecycle, not just code: design quality, rollout, enablement, and long-term maintainability determine whether a platform change actually succeeds."
       }
@@ -202,7 +209,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         "In Seller Fraud Prevention (2020-2022), identified a Redshift integration design issue and became an early internal adopter of a newer Redshift API",
         "In Kindle Content Management (2022-2023), helped lead delivery of a major Kindle UI redesign to on-time release",
         "Supported Kindle Scribe launch readiness by handling pre-release device workflows under embargo, coordinating a team for device deployment preparation, and delivering sorting/category experience work",
-        "Hands-on with AWS services including IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda; operated systems through regular on-call up to Sev-1 incidents"
+        "Hands-on with AWS services including IAM, S3, DynamoDB, EC2, SNS, SQS, Lambda, Kinesis, and Redshift; operated systems through regular on-call up to Sev-1 incidents"
       ],
       aiContext: {
         situation:
@@ -210,7 +217,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
         approach:
           "My approach was to ramp quickly, dive deep into root causes, and deliver practical solutions end-to-end while balancing reliability and speed.",
         technicalWork:
-          "I shipped APIs, backend services, and full-stack features across seller systems, HR workflows, fraud prevention tooling, and Kindle content platforms. On Kindle, I helped prepare pre-release Kindle Scribe devices for launch workflows under embargo, coordinated device deployment preparation with a team, and delivered sorting/category experience work. I regularly worked with AWS cloud services and security primitives, handled production deployments, and participated in primary/secondary on-call rotations.",
+          "I shipped APIs, backend services, and full-stack features across seller systems, HR workflows, fraud prevention tooling, and Kindle content platforms. On Kindle, I helped prepare pre-release Kindle Scribe devices for launch workflows under embargo, coordinated device deployment preparation with a team, and delivered sorting/category experience work. I regularly worked with AWS services including IAM, S3, DynamoDB, EC2, SNS, SQS, Lambda, Kinesis, and Redshift, handled production deployments, and participated in primary/secondary on-call rotations.",
         lessonsLearned:
           "Strong execution at scale requires clear ownership through the full lifecycle: design, implementation, deployment, confidential launch readiness, on-call operations, and continuous improvement."
       }
@@ -222,17 +229,17 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
       "High-Scale Distributed Systems",
       "Full-Stack Engineering",
       "Java / Backend API Development",
-      "AWS Cloud-Native Development",
+      "AWS Services and Cloud Operations (S3, SNS/SQS, DynamoDB, Redshift)",
+      "AI Feature Integration",
       "AI-Assisted Software Development",
       "Test Automation Architecture",
-      "Execution Engine Design",
+      "Test Execution Engine Design",
       "Supabase / PostgreSQL Application Development",
       "On-Call Operations and Incident Handling",
       "Cross-Team Delivery",
       "Mentoring and Knowledge Transfer"
     ],
     moderate: [
-      "AI Feature Integration",
       "OpenAI API and LLM Chatbot Integration",
       "Prompt and Guardrail Design",
       "Stripe Connect and Checkout Integration",
@@ -242,15 +249,16 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
       "Vercel Deployment and Environment Management",
       "Playwright End-to-End Testing",
       "Confidential Device Launch Readiness",
-      "Cloud-Native Networking Patterns",
-      "AuthN/AuthZ Integrations",
-      "Frontend Framework Ramp-Up (including Oracle JET)",
+      "Oracle Cloud (OCI) IAM and Operations Support",
+      "Authentication, Authorization, and Token Flows",
+      "Cloud Service Integration and Deployment Config",
+      "Adapting Quickly to New Frontend Frameworks",
       "Product Discovery and Requirement Validation"
     ],
     gaps: [
       "Formal People-Manager Experience",
       "Server Hardware Engineering",
-      "Deep Production Native Mobile Specialization",
+      "Long-Term Production Ownership of Shipped Native iOS/watchOS Apps",
       "Consumer Growth Experimentation",
       "Pure Design/Brand-Led UI Roles"
     ]
@@ -293,7 +301,7 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
     {
       question: "Do you have high-scale cloud and distributed-systems experience?",
       answer:
-        "Yes. I have 10 years at Amazon and current Oracle work, with hands-on AWS experience including IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda, plus regular on-call and production operations."
+        "Yes. I have 10 years at Amazon and current Oracle work, with hands-on AWS experience including IAM, S3, DynamoDB, EC2, SNS, SQS, Lambda, Kinesis, and Redshift. I also have Oracle Cloud Infrastructure experience with IAM application configuration, token minting, auth integration, and operations support."
     },
     {
       question: "What operations or on-call improvements have you led?",
@@ -359,7 +367,8 @@ WHAT ARTEM WANTS YOU TO KNOW:
 - Baseline facts: 12+ years total experience, including 10 years at Amazon and current Oracle work
 - Education: Bachelor of Science in Computer Science from the University of Washington
 - Work authorization: US citizen; legally authorized to work in the United States
-- He has hands-on AWS experience with IAM, S3, DynamoDB, EC2, SNS, SQS, and Lambda
+- He has hands-on AWS experience with IAM, S3, DynamoDB, EC2, SNS, SQS, Lambda, Kinesis, and Redshift
+- He has hands-on Oracle Cloud Infrastructure (OCI) experience with IAM application configuration, token minting, authentication/authorization integration, and operations support
 - He has operated production systems through on-call rotations and Sev-1 handling
 - Amazon and Oracle are both high-scale environments; do not claim otherwise
 - He values healthy, friendly, and honest team culture

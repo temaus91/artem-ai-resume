@@ -12,7 +12,7 @@ const skillGroups = [
     titleClassName: "text-success",
   },
   {
-    title: "Moderate",
+    title: "Recent / Hands-On",
     skills: artemProfile.skills.moderate,
     icon: Minus,
     className: "bg-secondary border-border",

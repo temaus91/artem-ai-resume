@@ -158,7 +158,7 @@ export async function POST(req: Request) {
       gaps: [
         { description: 'No formal people-manager role to date', why_its_a_gap: 'Career track has been senior IC ownership.' },
         { description: 'No server hardware engineering background', why_its_a_gap: 'Primary focus has been software platforms and cloud systems.' },
-        { description: 'Not deeply specialized in production native mobile or device systems', why_its_a_gap: 'Currently building a SwiftUI iOS/watchOS paragliding app and has some Kindle Scribe launch/device-readiness experience, but primary professional focus is full-stack, backend, platform workflows, and production operations.' },
+        { description: 'No long-term production ownership of shipped native iOS/watchOS apps yet', why_its_a_gap: 'Currently building a SwiftUI iOS/watchOS paragliding app and has some Kindle Scribe launch/device-readiness experience, but primary professional focus is full-stack, backend, platform workflows, and production operations.' },
       ],
       faq: (artemProfile.faq || []).map((item) => ({ question: item.question, answer: item.answer })),
       instructions: [
@@ -166,6 +166,7 @@ export async function POST(req: Request) {
         { instruction: 'Do not claim insufficient years for roles requiring 12 years or fewer.' },
         { instruction: 'Do not claim lack of high-scale background; Amazon and Oracle are high-scale environments.' },
         { instruction: `AWS experience includes: ${(artemProfile.awsServices || []).join(', ')}.` },
+        { instruction: `Oracle Cloud / OCI experience includes: ${(artemProfile.ociExperience || []).join(', ')}.` },
         { instruction: `Latest manager feedback: ${artemProfile.managerFeedback2026}` },
         { instruction: `Work values: ${(artemProfile.workValues || []).join('; ')}.` },
         { instruction: `Personality highlights: ${(artemProfile.personalityHighlights || []).join('; ')}.` },

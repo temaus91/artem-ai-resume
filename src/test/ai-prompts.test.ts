@@ -57,7 +57,17 @@ describe('prompt builders', () => {
 
     expect(amazonExperience?.highlights.join(' ')).toContain('Kindle Scribe');
     expect(amazonExperience?.aiContext.technicalWork).toContain('pre-release Kindle Scribe devices');
-    expect(artemProfile.hardNoClaims.join(' ')).toContain('Not a deep production native mobile specialist yet');
+    expect(artemProfile.hardNoClaims.join(' ')).toContain('No long-term production ownership of shipped native iOS/watchOS apps yet');
+  });
+
+  it('includes AWS and OCI cloud evidence in profile data', () => {
+    expect(artemProfile.awsServices).toEqual(
+      expect.arrayContaining(['S3', 'DynamoDB', 'SNS', 'SQS', 'Kinesis', 'Redshift']),
+    );
+    expect(artemProfile.ociExperience.join(' ')).toContain('OCI IAM application configuration');
+    expect(artemProfile.experience[0].highlights.join(' ')).toContain('token minting');
+    expect(artemProfile.skills.strong.join(' ')).toContain('AWS Services and Cloud Operations');
+    expect(artemProfile.skills.moderate.join(' ')).toContain('Oracle Cloud (OCI) IAM and Operations Support');
   });
 
   it('includes education and work authorization evidence', () => {
