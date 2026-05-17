@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://artem-ai-resume.vercel.app/sitemap.xml

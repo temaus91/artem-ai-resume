@@ -3,9 +3,14 @@ import { z } from 'zod';
 import OpenAI from 'openai';
 import { buildSystemPrompt } from '@/lib/ai/build-system-prompt';
 import { isClearlyOffTopic, normalizeAssistantAnswer, OFF_TOPIC_RESPONSE } from '@/lib/ai/chat-guardrails';
+import { withEvidenceLine } from '@/lib/ai/evidence-labels';
+import { rateLimitHeaders, rateLimitRequest } from '@/lib/rate-limit';
 import { createServiceRoleSupabaseClient } from '@/lib/supabase/service-role';
 import { artemProfile } from '@/data/artem-profile';
 import { randomUUID } from 'crypto';
+
+const CHAT_RATE_LIMIT = 20;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 
 const schema = z.object({
   messages: z.array(z.object({ role: z.enum(['user', 'assistant']), content: z.string().min(1) })).min(1),
@@ -29,6 +34,18 @@ async function persistChatTurn(sessionId: string, userMessage: string | undefine
 }
 
 export async function POST(req: Request) {
+  const limit = rateLimitRequest(req, {
+    route: 'chat',
+    limit: CHAT_RATE_LIMIT,
+    windowMs: RATE_LIMIT_WINDOW_MS,
+  });
+  if (!limit.allowed) {
+    return new NextResponse('Too many chat requests. Please wait a few minutes and try again.', {
+      status: 429,
+      headers: rateLimitHeaders(limit),
+    });
+  }
+
   const parsed = schema.safeParse(await req.json());
   if (!parsed.success) return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
 
@@ -134,6 +151,8 @@ export async function POST(req: Request) {
     });
     answer = normalizeAssistantAnswer(completion.output_text || answer);
   }
+
+  answer = withEvidenceLine(answer, lastMessage);
 
   await persistChatTurn(sessionId, lastMessage, answer);
 

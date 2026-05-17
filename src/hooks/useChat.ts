@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { extractApiErrorMessage } from '@/lib/client-api-errors';
 import type { ChatTurn } from '@/types/domain';
 
 export function useChat() {
@@ -29,7 +30,25 @@ export function useChat() {
         setSessionId(newSession);
         localStorage.setItem('chat-session-id', newSession);
       }
+      if (!response.ok) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: extractApiErrorMessage(text, 'I could not answer that right now. Please try again shortly.'),
+          },
+        ]);
+        return;
+      }
       setMessages((prev) => [...prev, { role: 'assistant', content: text }]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: 'I could not reach the resume assistant right now. Please try again shortly.',
+        },
+      ]);
     } finally {
       setLoading(false);
     }

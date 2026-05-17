@@ -9,8 +9,27 @@ The project is intentionally opinionated: the assistant is designed to answer re
 - Presents my career narrative, experience, strengths, and known gaps as a polished portfolio.
 - Lets visitors ask an AI assistant specific questions about my background.
 - Analyzes a pasted job description and returns a structured, honest fit assessment.
+- Explains the implementation choices behind the assistant in a compact case-study section.
 - Uses a local static profile as the source of truth, so the public site works without a database.
 - Optionally stores chat turns in Supabase when Supabase service credentials are configured.
+
+## Screenshots
+
+Portfolio overview:
+
+![Portfolio overview](public/readme/portfolio.png)
+
+Resume chat drawer:
+
+![Resume chat drawer](public/readme/chat-drawer.png)
+
+How it works:
+
+![How it works section](public/readme/how-it-works.png)
+
+Job-description fit analyzer:
+
+![Job-description fit analyzer](public/readme/jd-analyzer.png)
 
 ## Stack
 
@@ -67,6 +86,7 @@ The app runs without API keys, but chat and JD analysis use fallback/mock respon
 OPENAI_API_KEY=
 OPENAI_MODEL_CHAT=gpt-4.1-mini
 OPENAI_MODEL_ANALYZE=gpt-4.1-mini
+NEXT_PUBLIC_SITE_URL=https://artem-ai-resume.vercel.app
 
 # Optional: only needed for persisted chat history
 NEXT_PUBLIC_SUPABASE_URL=

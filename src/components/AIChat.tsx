@@ -8,10 +8,11 @@ interface AIChatProps {
 }
 
 const suggestedQuestions = [
-  'What’s your biggest weakness?',
-  'Tell me about a project that failed',
-  'Why did you leave Amazon?',
-  'What would your last manager say about you?',
+  'Where is Artem strongest?',
+  'Where is Artem not a fit?',
+  'What should I probe in an interview?',
+  'Explain the AI resume project',
+  'Tell me about a real failure',
 ];
 
 const AIChat = ({ isOpen, onClose }: AIChatProps) => {

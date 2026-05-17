@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { buildSystemPrompt } from '@/lib/ai/build-system-prompt';
 import { buildJDPrompt } from '@/lib/ai/build-jd-prompt';
 import { isClearlyOffTopic, normalizeAssistantAnswer, OFF_TOPIC_RESPONSE } from '@/lib/ai/chat-guardrails';
+import { inferEvidenceLabels, withEvidenceLine } from '@/lib/ai/evidence-labels';
 import { artemProfile } from '@/data/artem-profile';
 
 describe('prompt builders', () => {
@@ -15,6 +16,12 @@ describe('prompt builders', () => {
     const prompt = buildSystemPrompt({ profile: { id: '1', name: 'Artem', title: 'SWE' } });
     expect(prompt).toContain('missing evidence');
     expect(prompt).toContain('not enough evidence in the profile');
+  });
+
+  it('asks for a short evidence-used line on substantive answers', () => {
+    const prompt = buildSystemPrompt({ profile: { id: '1', name: 'Artem', title: 'SWE' } });
+    expect(prompt).toContain('Evidence used: Oracle, Projects');
+    expect(prompt).toContain('Do not add this line to off-topic refusals');
   });
 
   it('creates JD prompt with strict json instruction', () => {
@@ -80,5 +87,20 @@ describe('prompt builders', () => {
 
   it('normalizes markdown artifacts from assistant output', () => {
     expect(normalizeAssistantAnswer('### 1. **Duration**\\n\\nUse **plain text**.')).toBe('1. Duration\\n\\nUse plain text.');
+  });
+
+  it('adds deterministic evidence labels when the question maps to resume evidence', () => {
+    expect(inferEvidenceLabels('Tell me about a real failure')).toEqual(['Failures']);
+    expect(inferEvidenceLabels('Explain the AI resume project')).toEqual(['Projects']);
+    expect(withEvidenceLine('I learned to narrow scope.', 'Tell me about a real failure')).toContain(
+      'Evidence used: Failures',
+    );
+    expect(withEvidenceLine(OFF_TOPIC_RESPONSE, 'I want to go to Turkey')).not.toContain('Evidence used:');
+    expect(
+      withEvidenceLine(
+        "I'm here to answer questions about Artem's resume, not unrelated project planning.",
+        'Can you make me a travel project plan?',
+      ),
+    ).not.toContain('Evidence used:');
   });
 });
