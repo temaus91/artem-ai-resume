@@ -35,13 +35,13 @@ const Hero = ({ onOpenChat, onAskQuestion }: HeroProps) => {
       className="relative min-h-[72svh] overflow-hidden px-6 pt-24 pb-10 md:min-h-[78svh] md:pt-24 md:pb-12"
     >
       <div className="mx-auto flex min-h-[calc(72svh-8.5rem)] w-full max-w-4xl items-center md:min-h-[calc(78svh-9rem)]">
-        <div>
+        <div className="w-full">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/80 px-4 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] animate-fade-in">
             <span className="h-2 w-2 rounded-full bg-success animate-pulse-soft" />
             <span className="text-sm text-muted-foreground">{artemProfile.status}</span>
           </div>
 
-          <h1 className="mb-6 max-w-3xl text-4xl leading-tight sm:text-5xl md:text-7xl lg:text-8xl font-serif text-foreground animate-slide-up">
+          <h1 className="mb-6 text-4xl leading-tight sm:text-5xl md:text-7xl lg:text-8xl font-serif text-foreground animate-slide-up">
             {artemProfile.name}
           </h1>
 
@@ -49,13 +49,13 @@ const Hero = ({ onOpenChat, onAskQuestion }: HeroProps) => {
             {artemProfile.title}
           </p>
 
-          <p className="mb-7 max-w-2xl text-lg md:text-xl text-muted-foreground animate-slide-up stagger-2">
+          <p className="mb-7 text-lg md:text-xl text-muted-foreground animate-slide-up stagger-2">
             {artemProfile.subtitle}
           </p>
 
           <form
             onSubmit={handleSubmit}
-            className="mb-5 max-w-2xl animate-slide-up stagger-3"
+            className="mb-5 w-full animate-slide-up stagger-3"
             aria-label="Ask AI about Artem"
           >
             <label htmlFor="hero-ai-question" className="sr-only">
