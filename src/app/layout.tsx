@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://artem-ai-resume.vercel.app';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://v0-artem-ai-resume.vercel.app';
 const description =
   'Evidence-grounded AI resume for Artem Tarasenko, a senior full-stack and platform engineer with Amazon and Oracle experience.';
 const themeInitScript = `

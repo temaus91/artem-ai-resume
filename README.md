@@ -86,7 +86,7 @@ The app runs without API keys, but chat and JD analysis use fallback/mock respon
 OPENAI_API_KEY=
 OPENAI_MODEL_CHAT=gpt-4.1-mini
 OPENAI_MODEL_ANALYZE=gpt-4.1-mini
-NEXT_PUBLIC_SITE_URL=https://artem-ai-resume.vercel.app
+NEXT_PUBLIC_SITE_URL=https://v0-artem-ai-resume.vercel.app
 
 # Optional: only needed for persisted chat history
 NEXT_PUBLIC_SUPABASE_URL=
