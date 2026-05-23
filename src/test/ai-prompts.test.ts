@@ -35,8 +35,29 @@ describe('prompt builders', () => {
     expect(artemProfile.aiExperienceSummary).toContain('Codex');
     expect(artemProfile.aiExperienceSummary).toContain('Anthropic Claude');
     expect(artemProfile.experience[0].company).toBe('Oracle');
-    expect(artemProfile.projects[0].name).toBe('AI Resume / Candidate Portfolio');
-    expect(artemProfile.projects[0].highlights.join(' ')).toContain('OpenAI-backed resume chatbot');
+    const resumeProject = artemProfile.projects.find((project) => project.name === 'AI Resume / Candidate Portfolio');
+    expect(resumeProject?.highlights.join(' ')).toContain('OpenAI-backed resume chatbot');
+  });
+
+  it('includes FirstTrace as open-source developer-tooling evidence without overstating adoption', () => {
+    const firstTraceProject = artemProfile.projects.find((project) => project.name === 'FirstTrace');
+
+    expect(firstTraceProject?.role).toBe('Open-source developer tooling');
+    expect(firstTraceProject?.sourceUrl).toBe('https://github.com/temaus91/firsttrace');
+    expect(firstTraceProject?.summary).toContain('self-hosted bug-localization tool');
+    expect(firstTraceProject?.highlights.join(' ')).toContain('read-only bug localization');
+    expect(firstTraceProject?.highlights.join(' ')).toContain('Slack Events');
+    expect(firstTraceProject?.stack.join(' ')).toContain('GitHub App');
+    expect(firstTraceProject?.stack.join(' ')).toContain('Worker queues');
+    expect(firstTraceProject?.aiContext.technicalWork).toContain('Supabase queue adapters');
+    expect(firstTraceProject?.aiContext.lessonsLearned).toContain('what still needs live dogfood validation');
+    expect(
+      artemProfile.faq.find((item) => item.question === 'Have you built AI agents or developer tooling?')?.answer,
+    ).toContain('evidence-grounded bug-localization agent/tooling project');
+    expect(artemProfile.faq.find((item) => item.question === 'What is FirstTrace?')?.answer).toContain(
+      'not as a production SaaS with customer adoption',
+    );
+    expect(artemProfile.systemPrompt).toContain('When discussing FirstTrace');
   });
 
   it('includes sanitized private marketplace project evidence', () => {
@@ -68,6 +89,12 @@ describe('prompt builders', () => {
     expect(artemProfile.experience[0].highlights.join(' ')).toContain('token minting');
     expect(artemProfile.skills.strong.join(' ')).toContain('AWS Services and Cloud Operations');
     expect(artemProfile.skills.moderate.join(' ')).toContain('Oracle Cloud (OCI) IAM and Operations Support');
+    expect(artemProfile.skills.strong.join(' ')).toContain('AI Feature Integration');
+    expect(artemProfile.skills.moderate.join(' ')).toContain('Open-Source Developer Tooling');
+    expect(artemProfile.skills.moderate.join(' ')).toContain('Evidence-Grounded AI Workflow Design');
+    expect(artemProfile.skills.moderate.join(' ')).toContain('AI Agent Tooling Prototyping');
+    expect(artemProfile.skills.moderate.join(' ')).toContain('GitHub App and Slack Events Integration');
+    expect(artemProfile.skills.moderate.join(' ')).toContain('AI Evaluation Harnesses');
   });
 
   it('includes education and work authorization evidence', () => {
@@ -146,6 +173,11 @@ describe('prompt builders', () => {
     expect(inferEvidenceLabels('Tell me about a real failure')).toEqual(['Failures']);
     expect(inferEvidenceLabels('Explain the AI resume project')).toEqual(['Projects']);
     expect(inferEvidenceLabels('Walk me through a project')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('What is FirstTrace?')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('Has Artem built open-source developer tooling?')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('Does Artem have experience building AI agents?')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('Does Artem have Slack or GitHub App integration experience?')).toEqual(['Projects']);
+    expect(inferEvidenceLabels('What skills does Artem have in AI evaluation harnesses?')).toEqual(['Projects', 'Skills']);
     expect(inferEvidenceLabels('Tell me about HR work at Amazon')).toEqual(['Amazon']);
     expect(inferEvidenceLabels('Does Artem have Stripe or Supabase experience?')).toEqual(['Projects']);
     expect(inferEvidenceLabels('Does Artem have SwiftUI watchOS experience?')).toEqual(['Projects']);

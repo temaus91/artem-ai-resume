@@ -19,12 +19,12 @@ I have 12+ years of experience, including 10 years at Amazon across high-scale p
 I have a Bachelor of Science in Computer Science from the University of Washington and am a US citizen legally authorized to work in the United States.
 I focus on high-impact, problem-first execution: replacing brittle systems, improving developer workflows, and shipping practical solutions end-to-end.
 Since 2025, I have used AI development tools heavily, especially Codex and Anthropic Claude, across planning, implementation, testing, refactoring, and documentation.
-I also build AI-enabled applications, including this AI-queryable resume with chatbot and structured job-fit analysis workflows.
+I also build AI-enabled applications and developer tools, including this AI-queryable resume and FirstTrace, an open-source, evidence-grounded bug-localization tool.
 I mentor engineers, communicate directly, and help teammates use AI tools more effectively.
 I value friendly, honest working relationships and bring humor, curiosity, and strong ownership to teams.`,
 
   aiExperienceSummary:
-    "Since 2025, Artem has used Codex and Anthropic Claude heavily for software planning, implementation, testing, refactoring, and documentation. He has also built AI-enabled application flows, including this AI-queryable resume with an OpenAI-backed chat experience and structured job-description fit analyzer.",
+    "Since 2025, Artem has used Codex and Anthropic Claude heavily for software planning, implementation, testing, refactoring, and documentation. He has also built AI-enabled application and developer-tooling flows, including this AI-queryable resume with an OpenAI-backed chat experience and structured job-description fit analyzer, plus FirstTrace, an open-source evidence-grounded bug-localization tool for engineers.",
 
   awsServices: ["IAM", "S3", "DynamoDB", "EC2", "SNS", "SQS", "Lambda", "Kinesis", "Redshift"],
   ociExperience: [
@@ -72,6 +72,44 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
   ],
 
   projects: [
+    {
+      name: "FirstTrace",
+      role: "Open-source developer tooling",
+      period: "2026-Present",
+      summary:
+        "A self-hosted bug-localization tool that turns vague bug reports from CLI, Slack, or API input into cited investigation trails across code, commits, ownership, and issue context.",
+      sourceUrl: "https://github.com/temaus91/firsttrace",
+      highlights: [
+        "Built a TypeScript CLI and hosted investigation path for read-only bug localization across local and GitHub repositories",
+        "Designed an evidence-first AI workflow: deterministic search and ranking before optional OpenAI reasoning over bounded evidence",
+        "Implemented provider-style architecture for repository access, filesystem/Supabase queues, Slack/API/CLI inputs, Vercel-compatible receivers, and worker execution",
+        "Added Slack Events handling with signature verification, trigger gating, dedupe, queued investigations, and thread-ready result rendering",
+        "Built eval and hosted-readiness flows to test citations, expected files, ownership hints, and receiver-to-worker behavior before live deployment claims"
+      ],
+      stack: [
+        "TypeScript",
+        "Node.js",
+        "OpenAI",
+        "Slack API",
+        "GitHub App",
+        "Supabase",
+        "Vercel Functions",
+        "Vitest",
+        "Zod",
+        "CLI tooling",
+        "Worker queues"
+      ],
+      aiContext: {
+        situation:
+          "Teams often lose the first hour of debugging just finding the right code, owner, commit, or adjacent issue. I wanted an AI tool that produces a useful investigation starting point without requiring write access to private repositories.",
+        approach:
+          "I designed FirstTrace as read-only, self-hostable, and evidence-first. Deterministic search gathers files, docs, commit, issue, and ownership signals first; optional LLM reasoning ranks and explains that bounded evidence instead of inventing an answer.",
+        technicalWork:
+          "I built the TypeScript CLI, investigation runner, evidence search and ranking flow, OpenAI-backed investigator provider, GitHub App repository materialization, filesystem and Supabase queue adapters, Slack Events receiver with signature verification and dedupe, Vercel-compatible HTTP handlers, worker runtime, and Vitest/eval coverage for cited results.",
+        lessonsLearned:
+          "AI developer tools earn trust through constraints: read-only access, citations, evals, provider boundaries, clear failure modes, and honest wording about what has been locally verified versus what still needs live dogfood validation."
+      }
+    },
     {
       name: "AI Resume / Candidate Portfolio",
       role: "Personal project",
@@ -240,8 +278,14 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
       "Mentoring and Knowledge Transfer"
     ],
     moderate: [
-      "OpenAI API and LLM Chatbot Integration",
-      "Prompt and Guardrail Design",
+      "Evidence-Grounded AI Workflow Design",
+      "Open-Source Developer Tooling",
+      "AI Agent Tooling Prototyping",
+      "OpenAI API and LLM Integration",
+      "Prompt, Guardrail, and Citation Design",
+      "GitHub App and Slack Events Integration",
+      "Async Job Queues and Worker Processing",
+      "AI Evaluation Harnesses",
       "Stripe Connect and Checkout Integration",
       "Marketplace Workflow Design",
       "SwiftUI iOS/watchOS Prototyping",
@@ -341,7 +385,17 @@ I value friendly, honest working relationships and bring humor, curiosity, and s
     {
       question: "Have you built AI apps or chatbots yourself?",
       answer:
-        "Yes. This portfolio is itself an AI-enabled application: it has an OpenAI-backed resume chatbot, structured job-description fit analyzer, prompt guardrails to avoid overselling, optional Supabase chat-history persistence, and a public GitHub-ready Next.js implementation."
+        "Yes. This portfolio is itself an AI-enabled application: it has an OpenAI-backed resume chatbot, structured job-description fit analyzer, prompt guardrails to avoid overselling, optional Supabase chat-history persistence, and a public GitHub-ready Next.js implementation. I am also building FirstTrace, an open-source AI developer tool that localizes bugs using read-only repository evidence, citations, evals, and Slack/GitHub/Supabase integration paths."
+    },
+    {
+      question: "Have you built AI agents or developer tooling?",
+      answer:
+        "Yes. FirstTrace is the clearest example: it is an open-source developer tool with deterministic evidence search, optional OpenAI reasoning over bounded repository evidence, citations, evals, Slack Events handling, GitHub App repository access, queues, and worker execution. I would describe it as an evidence-grounded bug-localization agent/tooling project, not a production SaaS with customer adoption."
+    },
+    {
+      question: "What is FirstTrace?",
+      answer:
+        "FirstTrace is my open-source developer-tooling project for self-hosted bug localization. It turns vague bug reports from CLI, Slack, or API input into cited investigation trails across code, docs, commits, ownership, and issue context. It is a real working project, but I describe it as a current open-source build, not as a production SaaS with customer adoption."
     },
     {
       question: "Any personal long-term goals outside software?",
@@ -375,8 +429,10 @@ WHAT ARTEM WANTS YOU TO KNOW:
 - He actively uses and teaches AI-assisted development for faster, more independent execution
 - Since 2025, he has used Codex and Anthropic Claude heavily for planning, implementation, debugging, refactoring, testing, and documentation
 - He built this AI resume project end-to-end as an OpenAI-backed chatbot and structured JD fit analyzer
+- He is building FirstTrace, an open-source, self-hosted bug-localization developer tool with a TypeScript CLI, read-only repository investigation, deterministic evidence search, optional OpenAI reasoning, citations, evals, Slack Events handling, GitHub App repository access, Supabase/filesystem queues, Vercel-compatible receivers, and worker execution
+- When discussing FirstTrace, describe it as a real working open-source project, not as a production SaaS with customer adoption
 - He is also building a personal SwiftUI iOS/watchOS paragliding app with HealthKit, WatchConnectivity, local persistence, simulator telemetry, and flight-segmentation tests
-- He has practical experience integrating LLMs into app workflows, including prompt guardrails, structured outputs, and chat UX
+- He has practical experience integrating LLMs into app and developer-tooling workflows, including prompt guardrails, structured outputs, citations, evals, and chat UX
 - If asked about personality, reflect that he is humorous, social, and curious
 - If asked about failures or mistakes, use the explicit failure examples in the profile. Do not invent new failure stories.
 - If asked for unrelated help, redirect back to Artem's resume, experience, projects, strengths, gaps, or role fit.

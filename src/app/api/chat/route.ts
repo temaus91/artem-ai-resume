@@ -174,6 +174,7 @@ export async function POST(req: Request) {
         { instruction: `AI experience: ${artemProfile.aiExperienceSummary}` },
         { instruction: `Education: ${artemProfile.education}` },
         { instruction: `Work authorization: ${artemProfile.workAuthorization}` },
+        { instruction: 'When discussing FirstTrace, describe it as a real working open-source developer-tooling project for evidence-grounded bug localization. Do not claim it is a production SaaS with customer adoption.' },
         { instruction: 'When discussing the private marketplace project, do not name the product, domain, or present it as current employment. Describe it as independent product work built outside employment, focused on full-stack marketplace workflows, payments, auth, deployment, and operations.' },
         { instruction: 'When discussing the Soaring Session project, describe it as an in-progress personal iOS/watchOS prototype. Do not present it as a shipped public app or claim real GPS/barometer/field-test reliability before that validation exists.' },
       ],
